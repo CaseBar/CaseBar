@@ -132,20 +132,13 @@ app.get('/', function(req, res){
 
 //index
 app.post('/', function(req, res){
-//進入不同文章擁有者的部落格
-if (req.body.viewOthers != null) {
-	req.session.ownername = req.body.viewOthers;
-	delete req.session.postId;
-	return res.redirect(303, '/');
-}
-
 
 ///////////--------------------------------------------
 
  //var num = req.body.postAgreeNum;
 // console.log(num);
 //文章同意
-else if (req.body.postAgree != null) {
+if (req.body.postAgree != null) {
 	var n = (Number)(Post.postagree);
 	//n = n+1;
 	console.log(n)
