@@ -1,0 +1,46 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+</head>
+
+<body>
+	<div class="ui three column grid">
+		<div class="row"></div>
+		<div class="row">
+			<div class="column"></div>
+			<div class="column ui segment">
+				<% if (login) {%>
+				<%for(var i=0;i< posts.length;i++){%>
+				<h3 class="title">編輯文章</h3>
+				<form class="ui form" action="/updatepost" method="post">
+					<div class="field">
+						<label>標題</label>
+						<input type="text" maxlength='16' name="posttitle" value=<%=posts[i].thisPosttitle%>>
+					</div>
+					<div class="field">
+						<label>內文</label>
+						<textarea type="text" cols="30" rows="8" name='postcontent' value=<%=posts[i].thisPostcontent%>></textarea>
+					</div>
+					<div class="ui buttons">
+						<button class="ui button">取消</button>
+						<div class="or"></div>
+						<button class="ui positive button" type="submit">確認</button>
+					</div>
+					<%}%>
+				</form>
+				<%}else{%>
+				<h3>請先登入以繼續</h3>
+				<a href='/'>回首頁</a>
+				<a href='/login'>登入</a>
+				<%}%>
+			</div>
+			<div class="column"></div>
+		</div>
+	</div>
+</body>
+</html>
