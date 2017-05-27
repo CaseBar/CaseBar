@@ -40,6 +40,11 @@ var User = require('./models/user.js');
 var Post = require('./models/post.js');
 var Response = require('./models/response.js');
 
+app.get('/landingpage', function(req, res){
+	res.render('landingpage', "");
+});
+
+
 //index
 app.get('/', function(req, res){
 	if (req.session.login == null)
