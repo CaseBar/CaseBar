@@ -76,7 +76,8 @@ app.get('/', function(req, res){
 					thisPosttitle: Post.posttitle,
 					thisPostcontent: Post.postcontent,
 					thisPostowner: Post.postowner,
-					thisPostagree:Post.postagree
+					thisPostagree:Post.postagree,
+					thisPostdisagree:Post.postdisagree
 				}
 			})
 		};
@@ -142,16 +143,31 @@ app.post('/', function(req, res){
 ///////////--------------------------------------------
 
  //var num = req.body.postAgreeNum;
-// console.log(num);
 //文章同意
 if (req.body.postAgree != null) {
-	var n = (Number)(Post.postagree);
-	//n = n+1;
-	console.log(n)
+	
 	Post.update({_id: req.session.postId},
-		{ postagree:n},
+		{ $inc : { postagree : 1 }},
 		{ upsert: true },
-		function(err){
+		function(err,Post){
+			if (err){
+				console.error(err.stack);
+				return res.redirect(303, '/');
+			}
+			return res.redirect(303, '/');
+		}
+
+	);
+
+}
+
+//文章不同意
+if (req.body.postDisagree != null) {
+	
+	Post.update({_id: req.session.postId},
+		{ $inc : { postdisagree : 1 }},
+		{ upsert: true },
+		function(err,Post){
 			if (err){
 				console.error(err.stack);
 				return res.redirect(303, '/');
@@ -250,8 +266,10 @@ app.post('/signup', function(req, res){
 				console.error(err.stack);
 				return res.redirect(303, '/');
 			}
-			req.session.username = req.body.username;
-			req.session.login = 'login';
+			if(User.username!=null){
+				req.session.username = req.body.username;
+				req.session.login = 'login';
+			}
 			return res.redirect(303, '/');
 		}
 	);
@@ -285,7 +303,7 @@ app.post('/login', function(req, res){
 			res.redirect(303, 'login');
 		}
 		else {
-			var login = true;
+				var login = true;
 			res.redirect(303, '/');
 		}
 	});
