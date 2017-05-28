@@ -50,7 +50,7 @@
       </div>
 
       <div class="ui list">
-        <h4>全部文章</h4>
+        <h4>最新文章</h4>
         <%for(var i =0; i< posts.length;i++) {%>
 
         <a class="item">
@@ -62,126 +62,8 @@
             </form>
           </div>
         </a>
+
         <%}%>
-
-        <h4>文章分類</h4>
-      <!--  <% var types = ''; %>
-      <form action="/" method="POST">
-         <div class="ui buttons">
-          <button type="submit" class="ui blue basic button" name="postType" value="backend" onclick="">後端工程師</button>
-          <button type="submit" class="ui green basic button" name="postType" value="frontend" onclick="">前端工程師</button>
-          <button type="submit" class="ui red basic button" name="postType" value="uiux" onclick="">UI/UX</button>
-          <button type="submit" class="ui green basic button" name="postType" value="photography" onclick="">攝影</button>
-          </form>
-        </div> -->
-
-        <div class="ui buttons">
-          <button class="ui blue basic button" name="postType" value="backend" onclick="getbackPost()">後端工程師</button>
-          <button class="ui green basic button" name="postType" value="frontend" onclick="getf2ePost()">前端工程師</button>
-          <button class="ui red basic button" name="postType" value="uiux" onclick="getuiuxPost()">UI/UX</button>
-          <button class="ui green basic button" name="postType" value="photography" onclick="getphotoPost()">攝影</button>
-
-        </div>
-        <script type="text/javascript">
-          // function test2(target){
-          //   if(target=="uiux"){<% types = 'uiux'; %> alert(target);}
-          //   if(target=="backend"){<% types = 'backend'; %> alert(target);}
-          // }
-
-          function getf2ePost(){
-            $('#frontend_posts').show();
-            $('#backend_posts').hide();
-            $('#uiux_posts').hide();
-            $('#photography_posts').hide();
-          }
-
-          function getbackPost(){
-            $('#backend_posts').show();
-            $('#uiux_posts').hide();
-            $('#photography_posts').hide();
-            $('#frontend_posts').hide();
-          }
-
-          function getuiuxPost(){
-            $('#frontend_posts').hide();
-            $('#backend_posts').hide();
-            $('#uiux_posts').show();
-            $('#photography_posts').hide();
-          }
-
-          function getphotoPost(){
-            $('#backend_posts').hide();
-            $('#uiux_posts').hide();
-            $('#photography_posts').show();
-            $('#frontend_posts').hide();
-          }
-        </script>
-
-        <div id="backend_posts" hidden>
-          <%for(var i =0; i< posts.length;i++) {%>
-          <%if(posts[i].posttype=="backend"){%>
-          <a class="item">
-            <i class="right triangle icon"></i>
-            <div class="content">
-              <form action="/" method="POST">
-                <button class="postbutton" type="submit" name='postId'
-                value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-              </form>
-            </div>
-          </a>
-          <%}%>
-          <%}%>
-        </div>
-
-        <div id="frontend_posts" hidden>
-          <%for(var i =0; i< posts.length;i++) {%>
-          <%if(posts[i].posttype=="frontend"){%>
-          <a class="item">
-            <i class="right triangle icon"></i>
-            <div class="content">
-              <form action="/" method="POST">
-                <button class="postbutton" type="submit" name='postId'
-                value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-              </form>
-            </div>
-          </a>
-          <%}%>
-          <%}%>
-        </div>
-
-        <div id="uiux_posts" hidden>
-          <%for(var i =0; i< posts.length;i++) {%>
-          <%if(posts[i].posttype=="uiux"){%>
-          <a class="item">
-            <i class="right triangle icon"></i>
-            <div class="content">
-              <form action="/" method="POST">
-                <button class="postbutton" type="submit" name='postId'
-                value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-              </form>
-            </div>
-          </a>
-          <%}%>
-          <%}%>
-        </div>
-
-        <div id="photography_posts" hidden>
-          <%for(var i =0; i< posts.length;i++) {%>
-          <%if(posts[i].posttype=="photography"){%>
-          <a class="item">
-            <i class="right triangle icon"></i>
-            <div class="content">
-              <form action="/" method="POST">
-                <button class="postbutton" type="submit" name='postId'
-                value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-              </form>
-            </div>
-          </a>
-          <%}%>
-          <%}%>
-        </div>
-
-
       </div>
 
       <%if (defaultPost){%>
@@ -198,7 +80,7 @@
           <%=username%>
         </h4>
 
-<!--         <form action="/" method="POST">
+        <form action="/" method="POST">
           <div class="ui button">
             <button class="ui red button" name="postAgree" onclick="test()">
               <i class="heart icon"></i> 同意
@@ -208,7 +90,7 @@
             </a>
 
           </div>
-        </form> -->
+        </form>
 
         <%if(thisPost[j].thisPostowner==username){%> 
         <div class="ui buttons">
