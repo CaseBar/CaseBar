@@ -44,7 +44,6 @@ app.get('/landingpage', function(req, res){
 	res.render('landingpage', "");
 });
 
-
 //index
 app.get('/', function(req, res){
 	if (req.session.login == null)
@@ -57,6 +56,15 @@ app.get('/', function(req, res){
 		username: username,
 		login: login,
 	}
+
+	if (req.session.ownername != null)
+		var ownername = req.session.ownername;
+	else {
+		req.session.ownername = req.session.username;
+		var ownername = req.session.ownername;
+	}
+
+	//console.log(req.session.ownername);
 
 	User.find(function(err, users){
 		signupContext = {
@@ -80,6 +88,8 @@ app.get('/', function(req, res){
 			})
 		};
 	});
+
+
 
 	//留言
 	Response.find({ responsePost: req.session.postId }, function(err,responses){
@@ -119,6 +129,7 @@ app.get('/', function(req, res){
 			defaultPost: defaultPost,
 			login: login,
 			username: req.session.username,
+			ownername: ownername,
 			posts: posts.map(function(Post){
 				return {
 					posttitle: Post.posttitle,
@@ -126,6 +137,7 @@ app.get('/', function(req, res){
 					postagree: Post.postagree,
 					postdisagree: Post.postdisagree,
 					postowner: Post.postowner,
+					posttype: Post.posttype,
 					_id: Post._id,
 				}
 			})
@@ -218,7 +230,15 @@ else if (req.body.response != null) {
 else if (req.body.postId != null) {
 	req.session.postId = req.body.postId;
 	return res.redirect(303, '/');
+	//return res;
 }
+
+//儲存點選類別
+// else if (req.body.postType != null) {
+// 	req.session.postType = req.body.postType;
+// 	return res.redirect(303, '/');
+// }
+
 
 });
 
@@ -318,6 +338,7 @@ app.post('/newpost', function(req, res){
 		  postcontent: req.body.postcontent,
 		  postagree: 0,
 		  postdisagree: 0,
+		  posttype: req.body.posttype,
 		  postowner: req.session.ownername },
 		{ upsert: true },
 		function(err){
