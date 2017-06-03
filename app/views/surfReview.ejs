@@ -24,7 +24,15 @@
       function Navmouseout(x){
         x.style.textDecoration = "none";
       }
+      // 熱門/最新評論 切換顏色
+      function Surfmouseover(x) {
+          x.style.color = "red";
+      }
+      function Surfmouseout(x) {
+          x.style.color = "black";
+      }
     </script>
+
     <!-- 註冊modal用 -->
     <script>
     $(document).ready(function(){
@@ -35,7 +43,7 @@
     </script>
 
     <!-- 登入modal用 -->
-    <script>
+    <script >
     $(document).ready(function(){
         $("#LogInBtn").click(function(){
             $("#LogInModal").modal();
@@ -43,13 +51,12 @@
     });
     </script>
 
-
   <body>
     <nav class="navbar navbar-fixed-top" style="background-color: white">
       <a class="navbar-brand" href="#" onclick="location.href='landingpage'"><img src="logo.png" style = "height:45px;"></a>
       <div class="collapse navbar-collapse col-md-offset-2" id="navbarNavAltMarkup">
         <div class="navbar-nav" style="width: 450px; padding-top: 25px;">
-          <a class="nav-item nav-link active" href="#" onclick="location.href='surfReview'" style="font-size: 20px;color: #0000FF; text-decoration: underline; text-decoration-color:#0000FF; " >瀏覽評論</a>
+          <a class="nav-item nav-link active" href="#" onclick="location.href='surfReview'" style="font-size: 20px;color: black; text-decoration: underline; text-decoration-color:#0000FF; " >瀏覽評論</a>
           <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black; " onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)">發表守則</a>
           <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)">關於我們</a>
         </div>
@@ -62,28 +69,79 @@
         </div>
       </div>
     </nav>
-    <section style="margin-top:120px;">
+    <section style="margin-top:120px;" class="container">
       <input placeholder="搜索類型..." type="search" name="searchType" style="background: url(search.png) no-repeat; background-size: 40px 30px; background-position:10px; height: 50px;width: 250px; padding-left: 60px; border-color:#0000FF;">
-
       <button style="background-color: white; color: black; margin-left: 5px;border-color: black; height: 40px;width:70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" >前端</button>
       <button style="background-color: white; color: black; margin-left: 5px; border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">後端</button>
       <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">攝影</button>
       <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px; font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">UI/UX</button>
     </section>
-    <section>
-      
+    <section class="container">
+      <a href="#" id="defaultOpen" style="font-size:30px; color: red; text-decoration: underline; text-decoration-color:red; position:absolute;left:200px;" onmouseover="Surfmouseover(this)" onmouseout="Surfmouseout(this)" onclick="openPost(event, 'hotPost')" >熱門評論</a>
+      <a href="#" style="font-size:30px; color: black;  position:absolute;left:500px;" onmouseover="Surfmouseover(this)" onmouseout="Surfmouseout(this)" onclick="openPost(event, 'lastPost')">最新評論</a>
+    </section>
+    <section class="container tabcontent" id="hotPost">
+      <div class="box">
+      熱門評論內容......
+      </div>
 
+      <div class="box">
+      熱門評論內容......
+      </div>
+
+      <div class="box">
+      熱門評論內容......
+      </div>
+
+      <div class="box">
+      熱門評論內容......
+      </div>
+    </section>
+    <section class="container tabcontent" id="lastPost">
+      <div class="box">
+      最新評論內容......
+      </div>
+
+      <div class="box">
+      最新評論內容......
+      </div>
+
+      <div class="box">
+      最新評論內容......
+      </div>
+
+      <div class="box">
+      最新評論內容......
+      </div>
+          <!-- tab切換用 -->
+      <script >
+        function openPost(evt, surfPostType) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(surfPostType).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+      </script>
     </section>
     <footer style="position:absolute; width:100%; left:0px;height:250px;">
         <div  class="col-md-4" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px; ">
           <p style="font-size: 30px; ">CaseBar</p> 
           <p style="font-size: 10px; ">接案酒吧</p> 
         </div>
-        <div  class="col-md-8" style="font-family:Microsoft JhengHei; color: white; font-weight:bold;"> 
-          <p style="font-size: 10px; ">關注我們</p>
-          <p style="font-size: 10px; ">我們在做什麼</p>
-          <p style="font-size: 10px; ">我們的特點</p>
-          <p style="font-size: 10px; ">我們是誰</p>
+        <div  class="col-md-8" style="font-family:Microsoft JhengHei; font-weight:bold;"> 
+          <a href="#"><p style="font-size: 10px; color: white;">關注我們</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們在做什麼</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們的特點</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們是誰</p></a>
         </div>
         <div  class="col-md-6" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px;"> 
           <a href="#"><img src="facebook-footer.png" style = "height:40px;"></a>
