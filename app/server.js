@@ -44,7 +44,9 @@ app.get('/landingpage', function(req, res){
 	res.render('landingpage', "");
 });
 
-
+app.get('/surfReview', function(req, res){
+	res.render('surfReview', "");
+});
 
 //index
 app.get('/', function(req, res){

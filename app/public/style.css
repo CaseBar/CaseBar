@@ -30,3 +30,10 @@ footer{
     border-top:10px solid #DDAA00;
     margin-top: 50px;
 }
+#search{
+    background-image: url("search.png") no-repeat 3px 3px;
+}
+input{
+    border-radius: 100px;
+    font-size: 20px;
+}
