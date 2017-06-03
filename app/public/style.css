@@ -37,3 +37,17 @@ input{
     border-radius: 100px;
     font-size: 20px;
 }
+
+.box {
+  display: inline-block;
+  width: 80%;
+  height: 100px;
+  margin: 1em;
+  border: 5px solid #0000FF;
+  color:#0000FF;
+}
+
+.tabcontent {
+    display: none;
+}
+
