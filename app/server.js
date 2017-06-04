@@ -171,7 +171,8 @@ app.get('/surfReview', function(req, res){
 					thisPostcontent: Post.postcontent,
 					thisPostowner: Post.postowner,
 					thisPostagree:Post.postagree,
-					thisPostdisagree:Post.postdisagree
+					thisPostdisagree:Post.postdisagree,
+					thisPosttype:Post.posttype
 				}
 			})
 		};
@@ -198,6 +199,7 @@ var defaultPost = true;
 					postagree: Post.postagree,
 					postdisagree: Post.postdisagree,
 					postowner: Post.postowner,
+					posttype:Post.posttype,
 					_id: Post._id,
 				}
 			})
@@ -245,7 +247,8 @@ app.get('/reviewDetail', function(req, res){
 					thisPostcontent: Post.postcontent,
 					thisPostowner: Post.postowner,
 					thisPostagree:Post.postagree,
-					thisPostdisagree:Post.postdisagree
+					thisPostdisagree:Post.postdisagree,
+					thisPosttype:Post.posttype
 				}
 			})
 		};
@@ -296,6 +299,7 @@ app.get('/reviewDetail', function(req, res){
 					postagree: Post.postagree,
 					postdisagree: Post.postdisagree,
 					postowner: Post.postowner,
+					posttype: rPost.posttype,
 					_id: Post._id,
 				}
 			})
@@ -422,6 +426,7 @@ app.post('/reviewPost', function(req, res){
 		  postcontent: req.body.postcontent,
 		  postagree: 0,
 		  postdisagree: 0,
+		  posttype: req.body.posttype,
 		  postowner: req.session.ownername },
 		{ upsert: true },
 		function(err){
