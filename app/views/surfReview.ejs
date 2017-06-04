@@ -24,12 +24,15 @@
       function Navmouseout(x){
         x.style.textDecoration = "none";
       }
-      // 熱門/最新評論 切換顏色
-      function Surfmouseover(x) {
-          x.style.color = "red";
+      function Mymouseover(x){
+        var color_ = x.style.color;
+        x.style.color = "white";
+        x.style.backgroundColor = color_;
       }
-      function Surfmouseout(x) {
-          x.style.color = "black";
+      function Mymouseout(x){
+        var color_ = x.style.backgroundColor;
+        x.style.color = color_;
+        x.style.backgroundColor = "rgba(1,1,1,0)";
       }
     </script>
 
@@ -50,7 +53,13 @@
         });
     });
     </script>
+    <style type="text/css">
+      h2{
+        font-weight: 10px;
+        padding-left: 2%;
+      }
 
+    </style>
   <body>
     <nav class="navbar navbar-fixed-top" style="background-color: white">
       <a class="navbar-brand" href="#" onclick="location.href='landingpage'"><img src="logo.png" style = "height:45px;"></a>
@@ -59,79 +68,323 @@
           <a class="nav-item nav-link active" href="#" onclick="location.href='surfReview'" style="font-size: 20px;color: black; text-decoration: underline; text-decoration-color:#0000FF; " >瀏覽評論</a>
           <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black; " onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)">發表守則</a>
           <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)">關於我們</a>
+          <!-- 登入才有的 -->
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)">我要發表</a>
         </div>
-        <div class="navbar-nav" style="width: 250px; padding-top: 25px; float: right;">
+        <div class="navbar-nav" style="width: 40%; padding-top: 25px; float: right;">
           <a href="#"><img src="facebook.png" style = "height:25px;"></a>
           <a href="#"><img src="instagram.png" style = "height:25px;"></a>
           <a href="#"><img src="twitter.png" style = "height:25px;"></a>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">登出</button>
         </div>
       </div>
     </nav>
-    <section style="margin-top:120px;" class="container">
-      <input placeholder="搜索類型..." type="search" name="searchType" style="background: url(search.png) no-repeat; background-size: 40px 30px; background-position:10px; height: 50px;width: 250px; padding-left: 60px; border-color:#0000FF;">
-      <button style="background-color: white; color: black; margin-left: 5px;border-color: black; height: 40px;width:70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" >前端</button>
-      <button style="background-color: white; color: black; margin-left: 5px; border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">後端</button>
-      <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">攝影</button>
-      <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px; font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">UI/UX</button>
-    </section>
-    <section class="container">
-      <a href="#" id="defaultOpen" style="font-size:30px; color: red; text-decoration: underline; text-decoration-color:red; position:absolute;left:200px;" onmouseover="Surfmouseover(this)" onmouseout="Surfmouseout(this)" onclick="openPost(event, 'hotPost')" >熱門評論</a>
-      <a href="#" style="font-size:30px; color: black;  position:absolute;left:500px;" onmouseover="Surfmouseover(this)" onmouseout="Surfmouseout(this)" onclick="openPost(event, 'lastPost')">最新評論</a>
-    </section>
-    <section class="container tabcontent" id="hotPost">
-      <div class="box">
-      熱門評論內容......
-      </div>
-
-      <div class="box">
-      熱門評論內容......
-      </div>
-
-      <div class="box">
-      熱門評論內容......
-      </div>
-
-      <div class="box">
-      熱門評論內容......
-      </div>
-    </section>
-    <section class="container tabcontent" id="lastPost">
-      <div class="box">
-      最新評論內容......
-      </div>
-
-      <div class="box">
-      最新評論內容......
-      </div>
-
-      <div class="box">
-      最新評論內容......
-      </div>
-
-      <div class="box">
-      最新評論內容......
-      </div>
-          <!-- tab切換用 -->
-      <script >
-        function openPost(evt, surfPostType) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(surfPostType).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-        // Get the element with id="defaultOpen" and click on it
-        document.getElementById("defaultOpen").click();
-      </script>
-    </section>
+    <div class="container">
+      <section style="margin-top:120px;">
+        <input placeholder="搜索類型..." type="search" name="searchType" style="background: url(search.png) no-repeat; background-size: 40px 30px; background-position:10px; height: 50px;width: 250px; padding-left: 60px; border-color:#0000FF;">
+        <button style="background-color: white; color: black; margin-left: 5px;border-color: black; height: 40px;width:70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" >前端</button>
+        <button style="background-color: white; color: black; margin-left: 5px; border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">後端</button>
+        <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">攝影</button>
+        <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px; font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">UI/UX</button>
+      </section>
+      <section>
+        <div class="card">
+          <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a data-toggle="tab" href="#hotPost" style="font-size: 30px; ">熱門評論</a></li>
+            <li><a data-toggle="tab" href="#newPost" style="font-size: 30px;color: ">最新評論</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="hotPost" class="tab-pane active">
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div id="newPost" class="tab-pane fade">
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" title="詳細情形">
+                <div class="box">
+                  <div class="reviewHeader">
+                    <h2>超雷設計</h2> <!-- 要改的 -->
+                  </div>
+                  <div class="review">
+                  <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+                  </div>
+                  <div class = "reviewFooter">
+                    <div class="col-md-3">
+                      <img src="留言.png" style="height: 80%; float: left;">
+                        <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="agree.png" style="height: 80%;float: left;">
+                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+                    </div>
+                    <div  class="col-md-3">
+                      <img src="disagree.png" style="height: 80%;float: left;">
+                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="圍觀.png" style="height: 80%;float: left;">
+                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>  
+          </div>
+        </div>  
+      </section>
+    </div>
     <footer style="position:absolute; width:100%; left:0px;height:250px;">
         <div  class="col-md-4" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px; ">
           <p style="font-size: 30px; ">CaseBar</p> 
