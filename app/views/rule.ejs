@@ -34,6 +34,14 @@
         x.style.color = color_;
         x.style.backgroundColor = "rgba(1,1,1,0)";
       }
+      function submitmouseover(x){
+        x.style.color = "white";
+        x.style.backgroundColor = "#0000FF";
+      }
+      function submitmouseout(x){
+        x.style.color = "#0000FF";
+        x.style.backgroundColor = "white";
+      }
     </script>
 
     <!-- 註冊modal用 -->
@@ -55,10 +63,14 @@
     </script>
     <style type="text/css">
       h2{
-        font-weight: 10px;
+        font-weight: 3px;
         padding-left: 2%;
+        text-align: left;
+        font-size: 25px;
       }
-      
+      p{
+        text-align: left;
+      }
     </style>
   <body>
     <nav class="navbar navbar-fixed-top" style="background-color: white">
@@ -66,10 +78,10 @@
       <div class="collapse navbar-collapse col-md-offset-2" id="navbarNavAltMarkup">
         <div class="navbar-nav" style="width: 450px; padding-top: 25px;">
           <a class="nav-item nav-link active" href="#" onclick="location.href='surfReview'" style="font-size: 20px;color: black;"onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)" >瀏覽評論</a>
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black; " onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='rule'">發表守則</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: #0000FF;  text-decoration: underline; text-decoration-color:#0000FF; ">發表守則</a>
           <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='aboutUs'">關於我們</a>
           <!-- 登入才有的 -->
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='reviewPost'">我要發表</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d; " onclick="location.href='reviewPost'">我要發表</a>
         </div>
         <div class="navbar-nav" style="width: 40%; padding-top: 25px; float: right;">
           <a href="#"><img src="facebook.png" style = "height:25px;"></a>
@@ -82,41 +94,27 @@
         </div>
       </div>
     </nav>
-    <div class="box container" style="margin-top: 10%; margin-left: 10%;">
-
-      <div class="reviewHeader">
-        <h2>超雷設計</h2> <!-- 要改的 -->
+    <section class="container" style="margin-top: 10%; text-align: center;">
+      <h1>發言規定</h1>
+      <div>
+        <h2>(一) 評論要屬實</h2>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所有的發言都應該是從個人經驗出發，並以誠實為前提。如果被檢舉不實，本平台將有刪除評論的權利，並把帳號列入黑名單之內。
+        </p>
       </div>
-      <div class="review">
-        <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+      <div>
+        <h2>(二) 要秉持公正</h2>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評論的時候，應保持公正的態度，這不只會讓自己的發言更具中立性，也給了其他使用者評估的空間，讓自身經驗更具參考性。
+        </p>
       </div>
-      <div class = "reviewFooter">
-        <div class="col-md-3">
-          <button style="float: left;border:none;">
-            <img src="留言.png" style="height: 70%;">
-          </button>
-          <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
-        </div>
-        <div  class="col-md-3">
-          <button style="float: left; border:none;">
-            <img src="agree.png" style="height: 70%;">
-          </button>
-          <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
-        </div>
-        <div  class="col-md-3">
-          <button style="float: left; border:none;">
-            <img src="disagree.png" style="height: 70%;">
-          </button>
-          <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
-        </div>
-        <div class="col-md-3">
-          <button style="float: left;border:none;">
-            <img src="圍觀.png" style="height: 70%;">
-          </button>
-          <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
-        </div>
+      <div>
+        <h2>(三) 要為自己的言論負責</h2>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本平台不為使用者的評論做任何負責，因此在書寫評論時，請三思後再書寫，避免讓自己捲入法律的糾紛。
+        </p>
       </div>
-    </div>
+    </section>
     <!-- 註冊modal -->
     <div class="container">
       <!-- Modal -->

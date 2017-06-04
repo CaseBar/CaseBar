@@ -56,6 +56,13 @@ app.get('/reviewPost', function(req, res){
 	res.render('reviewPost', "");
 });
 
+app.get('/rule', function(req, res){
+	res.render('rule', "");
+});
+
+app.get('/aboutUs', function(req, res){
+	res.render('aboutUs', "");
+});
 
 //index
 app.get('/', function(req, res){
