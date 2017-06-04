@@ -61,10 +61,15 @@
           <a href="#"><img src="facebook.png" style = "height:25px;"></a>
           <a href="#"><img src="instagram.png" style = "height:25px;"></a>
           <a href="#"><img src="twitter.png" style = "height:25px;"></a>
+
+          <%if (login){ %>
+          <span>Hi, <%=username%></span>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;"" onclick="location.href='logout_l'"">登出</button>
+          <% }else{%>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">登出</button>
+          <%}%>
         </div>
       </div>
     </nav>
@@ -118,16 +123,26 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">新會員註冊</p>
-              <form role="form">
+              <form id="signupForm" action="/signup" method="post" onSubmit="">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="暱稱">
+                  <input type="text" name="realname" required class="form-control" placeholder="姓名">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" class="form-control" placeholder="密碼">
                 </div>
+                <div class="form-group">
+                  <input type="password" name="" required class="form-control" placeholder="確認密碼">
+                </div>
+                <div class="form-group">
+                  <input type="date" name="birthday" required class="form-control" placeholder="生日">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="email" required class="form-control" placeholder="電子信箱">
+                </div>
+
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div >
@@ -158,12 +173,12 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">會員登入</p>
-              <form role="form">
+              <form id="loginForm" action="/login" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" required class="form-control" placeholder="密碼">
                 </div>
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>

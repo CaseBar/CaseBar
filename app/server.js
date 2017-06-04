@@ -41,9 +41,137 @@ var Post = require('./models/post.js');
 var Response = require('./models/response.js');
 
 app.get('/landingpage', function(req, res){
-	res.render('landingpage', "");
+	if (req.session.login == null)
+		var login = false;
+	else
+		var login = true;
+
+	var username = req.session.username;
+	var context = {
+		username: username,
+		login: login,
+	}
+	var context = {
+		login: login,
+		username: req.session.username,
+	};
+	res.render('landingpage', context);
+
 });
 
+// app.post('/landingpage', function(req, res){
+// 	username = req.body.username;
+// 	password = req.body.password;
+// 	User.find(function(err, user){
+// 		user = user.map(function(User){
+// 			if (username == User.username && password == User.password) {
+// 				req.session.username = username;
+// 				req.session.login = 'login';
+// 			}
+// 		});
+// 		if (req.session.login == null) {
+// 			var login = false;
+// 			res.redirect(303, 'landingpage');
+// 		}
+// 		else {
+// 				var login = true;
+// 			res.redirect(303, 'landingpage');
+// 		}
+// 	});
+
+// });
+
+app.get('/login', function(req, res){
+	if (req.session.login == null)
+		var login = false;
+	else
+		var login = true;
+	var username = req.session.username;
+	var context = {
+		username: username,
+		login: login,
+	}
+	res.render('login', context);
+});
+app.post('/login', function(req, res){
+	username = req.body.username;
+	password = req.body.password;
+	User.find(function(err, user){
+		user = user.map(function(User){
+			if (username == User.username && password == User.password) {
+				req.session.username = username;
+				req.session.login = 'login';
+			}
+		});
+		if (req.session.login == null) {
+			var login = false;
+			res.redirect(303, 'landingpage');
+		}
+		else {
+				var login = true;
+			res.redirect(303, 'landingpage');
+		}
+	});
+});
+
+app.get('/signup', function(req, res){
+	if (req.session.login == null)
+	var login = false;
+	else
+	var login = true;
+	var username = req.session.username;
+	var context = {
+		username: username,
+		login: login,
+	}
+	res.render('landingpage', context);
+});
+app.post('/signup', function(req, res){
+	User.update(
+		{ username: req.body.username },
+		{ realname: req.body.realname,
+		  password: req.body.password,
+		  birthday: req.body.birthday,
+		  email: req.body.email
+		},
+		{ upsert: true },
+		function(err){
+			if (err){
+				console.error(err.stack);
+				return res.redirect(303, 'landingpage');
+			}
+			if(User.username!=null){
+				req.session.username = req.body.username;
+				req.session.login = 'login';
+			}
+			return res.redirect(303, 'landingpage');
+		}
+	);
+});
+
+app.get('/logout_l', function(req, res){
+	delete req.session.username;
+	delete req.session.login;
+	//delete req.session.postId;
+	//delete req.session.ownername;
+	res.redirect(303, 'landingpage');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 app.get('/surfReview', function(req, res){
 	res.render('surfReview', "");
 });
@@ -258,83 +386,83 @@ else if (req.body.postId != null) {
 });
 
 //signup
-app.get('/signup', function(req, res){
-	if (req.session.login == null)
-	var login = false;
-	else
-	var login = true;
-	var username = req.session.username;
-	var context = {
-		username: username,
-		login: login,
-	}
-	res.render('signup', context);
-});
-app.post('/signup', function(req, res){
-	User.update(
-		{ username: req.body.username },
-		{ realname: req.body.realname,
-		  password: req.body.password,
-		  birthday: req.body.birthday,
-		  email: req.body.email
-		},
-		{ upsert: true },
-		function(err){
-			if (err){
-				console.error(err.stack);
-				return res.redirect(303, '/');
-			}
-			if(User.username!=null){
-				req.session.username = req.body.username;
-				req.session.login = 'login';
-			}
-			return res.redirect(303, '/');
-		}
-	);
-});
+// app.get('/signup', function(req, res){
+// 	if (req.session.login == null)
+// 	var login = false;
+// 	else
+// 	var login = true;
+// 	var username = req.session.username;
+// 	var context = {
+// 		username: username,
+// 		login: login,
+// 	}
+// 	res.render('signup', context);
+// });
+// app.post('/signup', function(req, res){
+// 	User.update(
+// 		{ username: req.body.username },
+// 		{ realname: req.body.realname,
+// 		  password: req.body.password,
+// 		  birthday: req.body.birthday,
+// 		  email: req.body.email
+// 		},
+// 		{ upsert: true },
+// 		function(err){
+// 			if (err){
+// 				console.error(err.stack);
+// 				return res.redirect(303, '/');
+// 			}
+// 			if(User.username!=null){
+// 				req.session.username = req.body.username;
+// 				req.session.login = 'login';
+// 			}
+// 			return res.redirect(303, '/');
+// 		}
+// 	);
+// });
 
 //login
-app.get('/login', function(req, res){
-	if (req.session.login == null)
-		var login = false;
-	else
-		var login = true;
-	var username = req.session.username;
-	var context = {
-		username: username,
-		login: login,
-	}
-	res.render('login', context);
-});
-app.post('/login', function(req, res){
-	username = req.body.username;
-	password = req.body.password;
-	User.find(function(err, user){
-		user = user.map(function(User){
-			if (username == User.username && password == User.password) {
-				req.session.username = username;
-				req.session.login = 'login';
-			}
-		});
-		if (req.session.login == null) {
-			var login = false;
-			res.redirect(303, 'login');
-		}
-		else {
-				var login = true;
-			res.redirect(303, '/');
-		}
-	});
-});
+// app.get('/login', function(req, res){
+// 	if (req.session.login == null)
+// 		var login = false;
+// 	else
+// 		var login = true;
+// 	var username = req.session.username;
+// 	var context = {
+// 		username: username,
+// 		login: login,
+// 	}
+// 	res.render('login', context);
+// });
+// app.post('/login', function(req, res){
+// 	username = req.body.username;
+// 	password = req.body.password;
+// 	User.find(function(err, user){
+// 		user = user.map(function(User){
+// 			if (username == User.username && password == User.password) {
+// 				req.session.username = username;
+// 				req.session.login = 'login';
+// 			}
+// 		});
+// 		if (req.session.login == null) {
+// 			var login = false;
+// 			res.redirect(303, 'login');
+// 		}
+// 		else {
+// 				var login = true;
+// 			res.redirect(303, '/');
+// 		}
+// 	});
+// });
 
 //logout
-app.get('/logout', function(req, res){
-	delete req.session.username;
-	delete req.session.login;
-	delete req.session.postId;
-	delete req.session.ownername;
-	res.redirect(303, '/');
-});
+// app.get('/logout', function(req, res){
+// 	delete req.session.username;
+// 	delete req.session.login;
+// 	delete req.session.postId;
+// 	delete req.session.ownername;
+// 	res.redirect(303, '/');
+// });
 
 //new post
 app.get('/newpost', function(req, res){
