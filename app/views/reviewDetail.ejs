@@ -87,9 +87,12 @@
       <div class="reviewHeader">
         <div class="row">
           <h2 class="col-md-9"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
+
           <div class="col-md-3" style="margin-top: 2.5%;">
+          <%if(thisPost[j].thisPostowner==username){%> 
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333; height: 40%;width: 40%;">編輯貼文</button>
-            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333; height: 40%;width: 40%;">刪除貼文</button>
+            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333; height: 40%;width: 40%;" name='postDelete' value='<%=thisPost[j]._id%>'>刪除貼文</button>
+            <%}%>
           </div>
         </div>
       </div>
@@ -124,16 +127,42 @@
       </div>
       <%}%>
       <div class="box container" style="margin-left: 0%; margin-top: 55%; height: 100%; width: 100%;">
+
+
+
+      <form action="/reviewDetail" method="POST">
       <div class="reviewHeader">
+              <%for(var j =0; j< responses.length;j++) {%>     
+        <div class="">
+          <div class="">
+            <a class="r"><%=responses[j].responseWriter%></a>
+            <div class="metadata">
+              <span class="date">Today at 5:42PM</span>
+            </div>
+            <div class="text">
+              <%=responses[j].response%>
+            </div>
+          </div>
+
+          <%if (responses[j].responseWriter==username){%>
+          <form action="/reviewDetails" method="POST">
+          <button type="submit" name='responseDelete' value='<%=responses[j]._id%>'>刪除
+            </button>
+          </form>
+          <%}%>
+        </div>
+
+        <%}%>
         <h2>我要留言</h2>
       </div>
       <div class="review">
-      <textarea style=" margin-top: 4%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
+      <textarea name='response' style=" margin-top: 4%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
       </div>
       <div class="reviewFooter">
         <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="margin-left: 40%; border-color: #FF3333;color:#FF3333; height: 60%;width: 10%;">取消</button>
         <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333; height: 60%;width: 10%;">送出</button>
       </div>
+      </form>
     </div>
     <!-- 註冊modal -->
     <div class="container">

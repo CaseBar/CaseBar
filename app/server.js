@@ -285,7 +285,7 @@ app.get('/reviewDetail', function(req, res){
 		var context = {
 			user: signupContext.users,
 			thisPost: thisPost.posts,
-			//responses: responseContext.responses,
+			responses: responseContext.responses,
 			defaultPost: defaultPost,
 			login: login,
 			username: req.session.username,
