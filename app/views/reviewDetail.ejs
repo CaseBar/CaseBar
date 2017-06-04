@@ -1,0 +1,139 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      function Typemouseover(x){
+        x.style.color = "white";
+        x.style.backgroundColor = "black";
+      }
+      function Typemouseout(x){
+        x.style.color = "black";
+        x.style.backgroundColor = "white";
+      }
+      function Navmouseover(x){
+        x.style.textDecoration = "underline";
+        x.style.textDecorationColor= "#0000FF";
+      }
+      function Navmouseout(x){
+        x.style.textDecoration = "none";
+      }
+      function Mymouseover(x){
+        var color_ = x.style.color;
+        x.style.color = "white";
+        x.style.backgroundColor = color_;
+      }
+      function Mymouseout(x){
+        var color_ = x.style.backgroundColor;
+        x.style.color = color_;
+        x.style.backgroundColor = "rgba(1,1,1,0)";
+      }
+    </script>
+
+    <!-- 註冊modal用 -->
+    <script>
+    $(document).ready(function(){
+        $("#signUpBtn").click(function(){
+            $("#signUpModal").modal();
+        });
+    });
+    </script>
+
+    <!-- 登入modal用 -->
+    <script >
+    $(document).ready(function(){
+        $("#LogInBtn").click(function(){
+            $("#LogInModal").modal();
+        });
+    });
+    </script>
+    <style type="text/css">
+      h2{
+        font-weight: 10px;
+        padding-left: 2%;
+      }
+      
+    </style>
+  <body>
+    <nav class="navbar navbar-fixed-top" style="background-color: white">
+      <a class="navbar-brand" href="#" onclick="location.href='landingpage'"><img src="logo.png" style = "height:45px;"></a>
+      <div class="collapse navbar-collapse col-md-offset-2" id="navbarNavAltMarkup">
+        <div class="navbar-nav" style="width: 450px; padding-top: 25px;">
+          <a class="nav-item nav-link active" href="#" onclick="location.href='surfReview'" style="font-size: 20px;color: black;"onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)" >瀏覽評論</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black; " onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)">發表守則</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)">關於我們</a>
+          <!-- 登入才有的 -->
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='reviewPost'">我要發表</a>
+        </div>
+        <div class="navbar-nav" style="width: 40%; padding-top: 25px; float: right;">
+          <a href="#"><img src="facebook.png" style = "height:25px;"></a>
+          <a href="#"><img src="instagram.png" style = "height:25px;"></a>
+          <a href="#"><img src="twitter.png" style = "height:25px;"></a>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">登出</button>
+        </div>
+      </div>
+    </nav>
+    <div class="box container" style="margin-top: 10%; margin-left: 10%;">
+      
+      <div class="reviewHeader">
+        <h2>超雷設計</h2> <!-- 要改的 -->
+      </div>
+      <div class="review">
+        <p>上次遇到超雷的公司，他們的案子真的超雷的...</p>
+      </div>
+      <div class = "reviewFooter">
+        <div class="col-md-3">
+          <button style="float: left;border:none;">
+            <img src="留言.png" style="height: 70%;">
+          </button>
+          <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+        </div>
+        <div  class="col-md-3">
+          <button style="float: left; border:none;">
+            <img src="agree.png" style="height: 70%;">
+          </button>
+          <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+        </div>
+        <div  class="col-md-3">
+          <button style="float: left; border:none;">
+            <img src="disagree.png" style="height: 70%;">
+          </button>
+          <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+        </div>
+        <div class="col-md-3">
+          <button style="float: left;border:none;">
+            <img src="圍觀.png" style="height: 70%;">
+          </button>
+          <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+        </div>
+      </div>
+    </div>
+    <footer style="position:absolute; width:100%; left:0px;height:250px;">
+        <div  class="col-md-4" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px; ">
+          <p style="font-size: 30px; ">CaseBar</p> 
+          <p style="font-size: 10px; ">接案酒吧</p> 
+        </div>
+        <div  class="col-md-8" style="font-family:Microsoft JhengHei; font-weight:bold;"> 
+          <a href="#"><p style="font-size: 10px; color: white;">關注我們</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們在做什麼</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們的特點</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們是誰</p></a>
+        </div>
+        <div  class="col-md-6" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px;"> 
+          <a href="#"><img src="facebook-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="instagram-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="twitter-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="letter-footer.png" style = "height:40px;"></a>
+        </div>
+    </footer>
+  </body>
+</html>

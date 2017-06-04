@@ -48,6 +48,15 @@ app.get('/surfReview', function(req, res){
 	res.render('surfReview', "");
 });
 
+app.get('/reviewDetail', function(req, res){
+	res.render('reviewDetail', "");
+});
+
+app.get('/reviewPost', function(req, res){
+	res.render('reviewPost', "");
+});
+
+
 //index
 app.get('/', function(req, res){
 	if (req.session.login == null)
