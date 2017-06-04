@@ -59,28 +59,6 @@ app.get('/landingpage', function(req, res){
 
 });
 
-// app.post('/landingpage', function(req, res){
-// 	username = req.body.username;
-// 	password = req.body.password;
-// 	User.find(function(err, user){
-// 		user = user.map(function(User){
-// 			if (username == User.username && password == User.password) {
-// 				req.session.username = username;
-// 				req.session.login = 'login';
-// 			}
-// 		});
-// 		if (req.session.login == null) {
-// 			var login = false;
-// 			res.redirect(303, 'landingpage');
-// 		}
-// 		else {
-// 				var login = true;
-// 			res.redirect(303, 'landingpage');
-// 		}
-// 	});
-
-// });
-
 app.get('/login', function(req, res){
 	if (req.session.login == null)
 		var login = false;
@@ -152,48 +130,92 @@ app.post('/signup', function(req, res){
 app.get('/logout_l', function(req, res){
 	delete req.session.username;
 	delete req.session.login;
-	//delete req.session.postId;
-	//delete req.session.ownername;
 	res.redirect(303, 'landingpage');
 });
 
+app.get('/logout', function(req, res){
+	delete req.session.username;
+	delete req.session.login;
+	delete req.session.postId;
+	delete req.session.ownername;
+	res.redirect(303, 'surfReview');
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 app.get('/surfReview', function(req, res){
-	res.render('surfReview', "");
+	if (req.session.login == null)
+		var login = false;
+	else
+		var login = true;
+
+	var username = req.session.username;
+	var context = {
+		username: username,
+		login: login,
+	}
+
+	User.find(function(err, users){
+		signupContext = {
+			users: users.map(function(User){
+				return {
+					user: User.username,
+				}
+			})
+		};
+	});
+
+	Post.find({ _id: req.session.postId }, function(err, posts){
+		thisPost = {
+			posts: posts.map(function(Post){
+				return {
+					thisPosttitle: Post.posttitle,
+					thisPostcontent: Post.postcontent,
+					thisPostowner: Post.postowner,
+					thisPostagree:Post.postagree,
+					thisPostdisagree:Post.postdisagree
+				}
+			})
+		};
+	});
+
+//預設文章
+var defaultPost = true;
+	//點選文章
+	if (req.session.postId != null)
+		defaultPost = false;
+	//所有文章
+	Post.find({ }, function(err, posts){
+		var context = {
+			user: signupContext.users,
+			thisPost: thisPost.posts,
+			//responses: responseContext.responses,
+			defaultPost: defaultPost,
+			login: login,
+			username: req.session.username,
+			posts: posts.map(function(Post){
+				return {
+					posttitle: Post.posttitle,
+					postcontent: Post.postcontent,
+					postagree: Post.postagree,
+					postdisagree: Post.postdisagree,
+					postowner: Post.postowner,
+					_id: Post._id,
+				}
+			})
+		};
+		res.render('surfReview', context);
+	});
+});
+
+app.post('/surfReview', function(req, res){
+
+	if (req.body.postId != null) {
+		req.session.postId = req.body.postId;
+		return res.redirect(303, '/reviewDetail');
+	}
+
 });
 
 app.get('/reviewDetail', function(req, res){
-	res.render('reviewDetail', "");
-});
-
-app.get('/reviewPost', function(req, res){
-	res.render('reviewPost', "");
-});
-
-app.get('/rule', function(req, res){
-	res.render('rule', "");
-});
-
-app.get('/aboutUs', function(req, res){
-	res.render('aboutUs', "");
-});
-
-//index
-app.get('/', function(req, res){
 	if (req.session.login == null)
 		var login = false;
 	else
@@ -263,7 +285,7 @@ app.get('/', function(req, res){
 		var context = {
 			user: signupContext.users,
 			thisPost: thisPost.posts,
-			responses: responseContext.responses,
+			//responses: responseContext.responses,
 			defaultPost: defaultPost,
 			login: login,
 			username: req.session.username,
@@ -278,15 +300,13 @@ app.get('/', function(req, res){
 				}
 			})
 		};
-		res.render('index', context);
+		res.render('reviewDetail', context);
 	});
 
 });
 
-//index
-app.post('/', function(req, res){
-
-///////////--------------------------------------------
+app.post('/reviewDetail', function(req, res){
+	///////////--------------------------------------------
 
  //var num = req.body.postAgreeNum;
 //文章同意
@@ -298,9 +318,9 @@ if (req.body.postAgree != null) {
 		function(err,Post){
 			if (err){
 				console.error(err.stack);
-				return res.redirect(303, '/');
+				return res.redirect(303, '/reviewDetail');
 			}
-			return res.redirect(303, '/');
+			return res.redirect(303, '/reviewDetail');
 		}
 
 	);
@@ -316,9 +336,9 @@ if (req.body.postDisagree != null) {
 		function(err,Post){
 			if (err){
 				console.error(err.stack);
-				return res.redirect(303, '/');
+				return res.redirect(303, '/reviewDetail');
 			}
-			return res.redirect(303, '/');
+			return res.redirect(303, '/reviewDetail');
 		}
 
 	);
@@ -339,10 +359,10 @@ else if (req.body.postDelete != null) {
 			if (err){
 				console.error(err.stack);
 				req.session.postId = null;
-				return res.redirect(303, '/');
+				return res.redirect(303, '/reviewDetail');
 			}
 			req.session.postId = null;
-			return res.redirect(303, '/');
+			return res.redirect(303, '/reviewDetail');
 		}
 	);
 }
@@ -353,9 +373,9 @@ else if (req.body.responseDelete != null) {
 		function(err){
 			if (err){
 				console.error(err.stack);
-				return res.redirect(303, '/');
+				return res.redirect(303, '/reviewDetail');
 			}
-			return res.redirect(303, '/');
+			return res.redirect(303, '/reviewDetail');
 		}
 	);
 }
@@ -370,9 +390,9 @@ else if (req.body.response != null) {
 		function(err){
 			if (err){
 				console.error(err.stack);
-				return res.redirect(303, '/');
+				return res.redirect(303, '/reviewDetail');
 			}
-			return res.redirect(303, '/');
+			return res.redirect(303, '/reviewDetail');
 		}
 	);
 }
@@ -380,10 +400,236 @@ else if (req.body.response != null) {
 //儲存點選文章
 else if (req.body.postId != null) {
 	req.session.postId = req.body.postId;
-	return res.redirect(303, '/');
+	return res.redirect(303, '/reviewDetail');
 }
-
 });
+
+app.get('/reviewPost', function(req, res){
+	if (req.session.login == null)
+		var login = false;
+	else
+		var login = true;
+	var context = {
+		login: login,
+		username: req.session.username,
+	};
+	res.render('reviewPost', context);
+});
+app.post('/reviewPost', function(req, res){
+	Post.update(
+		{ postdate: Date.now() },
+		{ posttitle: req.body.posttitle,
+		  postcontent: req.body.postcontent,
+		  postagree: 0,
+		  postdisagree: 0,
+		  postowner: req.session.ownername },
+		{ upsert: true },
+		function(err){
+			if (err){
+				console.error(err.stack);
+				delete req.session.postId;
+				return res.redirect(303, '/surfReview');
+			}
+			delete req.session.postId;
+			return res.redirect(303, '/surfReview');
+		}
+	);
+});
+
+
+
+//index
+// app.get('/', function(req, res){
+// 	if (req.session.login == null)
+// 		var login = false;
+// 	else
+// 		var login = true;
+
+// 	var username = req.session.username;
+// 	var context = {
+// 		username: username,
+// 		login: login,
+// 	}
+
+// 	User.find(function(err, users){
+// 		signupContext = {
+// 			users: users.map(function(User){
+// 				return {
+// 					user: User.username,
+// 				}
+// 			})
+// 		};
+// 	});
+
+// 	Post.find({ _id: req.session.postId }, function(err, posts){
+// 		thisPost = {
+// 			posts: posts.map(function(Post){
+// 				return {
+// 					thisPosttitle: Post.posttitle,
+// 					thisPostcontent: Post.postcontent,
+// 					thisPostowner: Post.postowner,
+// 					thisPostagree:Post.postagree,
+// 					thisPostdisagree:Post.postdisagree
+// 				}
+// 			})
+// 		};
+// 	});
+
+// 	//留言
+// 	Response.find({ responsePost: req.session.postId }, function(err,responses){
+// 		responseContext = {
+// 			responses: responses.map(function(Response){
+// 			if (Response.responseWriter != req.session.username) {
+// 			return {
+// 				response: Response.response,
+// 				responseWriter: Response.responseWriter,
+// 				responseWriterIsUser: false,
+// 				_id: Response._id,
+// 			}
+// 			}
+// 			else {
+// 				return {
+// 				response: Response.response,
+// 				responseWriter: Response.responseWriter,
+// 				responseWriterIsUser: true,
+// 				_id: Response._id,
+// 				}
+// 			}
+// 			})
+// 		};
+// 	});
+
+// //預設文章
+// 	var defaultPost = true;
+// 	//點選文章
+// 	if (req.session.postId != null)
+// 		defaultPost = false;
+// 	//所有文章
+// 	Post.find({ }, function(err, posts){
+// 		var context = {
+// 			user: signupContext.users,
+// 			thisPost: thisPost.posts,
+// 			responses: responseContext.responses,
+// 			defaultPost: defaultPost,
+// 			login: login,
+// 			username: req.session.username,
+// 			posts: posts.map(function(Post){
+// 				return {
+// 					posttitle: Post.posttitle,
+// 					postcontent: Post.postcontent,
+// 					postagree: Post.postagree,
+// 					postdisagree: Post.postdisagree,
+// 					postowner: Post.postowner,
+// 					_id: Post._id,
+// 				}
+// 			})
+// 		};
+// 		res.render('index', context);
+// 	});
+
+// });
+
+// //index
+// app.post('/', function(req, res){
+
+// ///////////--------------------------------------------
+
+//  //var num = req.body.postAgreeNum;
+// //文章同意
+// if (req.body.postAgree != null) {
+	
+// 	Post.update({_id: req.session.postId},
+// 		{ $inc : { postagree : 1 }},
+// 		{ upsert: true },
+// 		function(err,Post){
+// 			if (err){
+// 				console.error(err.stack);
+// 				return res.redirect(303, '/');
+// 			}
+// 			return res.redirect(303, '/');
+// 		}
+
+// 	);
+
+// }
+
+// //文章不同意
+// if (req.body.postDisagree != null) {
+	
+// 	Post.update({_id: req.session.postId},
+// 		{ $inc : { postdisagree : 1 }},
+// 		{ upsert: true },
+// 		function(err,Post){
+// 			if (err){
+// 				console.error(err.stack);
+// 				return res.redirect(303, '/');
+// 			}
+// 			return res.redirect(303, '/');
+// 		}
+
+// 	);
+
+// }
+
+// ///////////--------------------------------------------
+
+// //刪除文章
+// else if (req.body.postDelete != null) {
+// 	Response.remove({responsePost: req.session.postId},function(err){
+// 			if (err){
+// 				console.error(err.stack);
+// 			}
+// 		}
+// 	);
+// 	Post.remove({_id: req.session.postId},function(err){
+// 			if (err){
+// 				console.error(err.stack);
+// 				req.session.postId = null;
+// 				return res.redirect(303, '/');
+// 			}
+// 			req.session.postId = null;
+// 			return res.redirect(303, '/');
+// 		}
+// 	);
+// }
+// //刪除留言
+// else if (req.body.responseDelete != null) {
+// 	Response.remove(
+// 		{_id: req.body.responseDelete},
+// 		function(err){
+// 			if (err){
+// 				console.error(err.stack);
+// 				return res.redirect(303, '/');
+// 			}
+// 			return res.redirect(303, '/');
+// 		}
+// 	);
+// }
+// //留言
+// else if (req.body.response != null) {
+// 	Response.update(
+// 		{ responseDate: Date.now() },
+// 		{ response: req.body.response,
+// 		 responseWriter: req.session.username,
+// 		 responsePost: req.session.postId },
+// 		{ upsert: true },
+// 		function(err){
+// 			if (err){
+// 				console.error(err.stack);
+// 				return res.redirect(303, '/');
+// 			}
+// 			return res.redirect(303, '/');
+// 		}
+// 	);
+// }
+
+// //儲存點選文章
+// else if (req.body.postId != null) {
+// 	req.session.postId = req.body.postId;
+// 	return res.redirect(303, '/');
+// }
+
+// });
 
 //signup
 // app.get('/signup', function(req, res){
@@ -465,37 +711,37 @@ else if (req.body.postId != null) {
 // });
 
 //new post
-app.get('/newpost', function(req, res){
-	if (req.session.login == null)
-		var login = false;
-	else
-		var login = true;
-	var context = {
-		login: login,
-		username: req.session.username,
-	};
-	res.render('newpost', context);
-});
-app.post('/newpost', function(req, res){
-	Post.update(
-		{ postdate: Date.now() },
-		{ posttitle: req.body.posttitle,
-		  postcontent: req.body.postcontent,
-		  postagree: 0,
-		  postdisagree: 0,
-		  postowner: req.session.ownername },
-		{ upsert: true },
-		function(err){
-			if (err){
-				console.error(err.stack);
-				delete req.session.postId;
-				return res.redirect(303, '/');
-			}
-			delete req.session.postId;
-			return res.redirect(303, '/');
-		}
-	);
-});
+// app.get('/newpost', function(req, res){
+// 	if (req.session.login == null)
+// 		var login = false;
+// 	else
+// 		var login = true;
+// 	var context = {
+// 		login: login,
+// 		username: req.session.username,
+// 	};
+// 	res.render('newpost', context);
+// });
+// app.post('/newpost', function(req, res){
+// 	Post.update(
+// 		{ postdate: Date.now() },
+// 		{ posttitle: req.body.posttitle,
+// 		  postcontent: req.body.postcontent,
+// 		  postagree: 0,
+// 		  postdisagree: 0,
+// 		  postowner: req.session.ownername },
+// 		{ upsert: true },
+// 		function(err){
+// 			if (err){
+// 				console.error(err.stack);
+// 				delete req.session.postId;
+// 				return res.redirect(303, '/');
+// 			}
+// 			delete req.session.postId;
+// 			return res.redirect(303, '/');
+// 		}
+// 	);
+// });
 
 //編輯文章
 app.get('/updatepost', function(req, res){
@@ -532,6 +778,15 @@ app.post('/updatepost', function(req, res){
 				return res.redirect(303, '/');
 			}
 			);
+});
+
+
+app.get('/rule', function(req, res){
+	res.render('rule', "");
+});
+
+app.get('/aboutUs', function(req, res){
+	res.render('aboutUs', "");
 });
 
 app.use(function(req, res, next){
