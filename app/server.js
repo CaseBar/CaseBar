@@ -224,6 +224,7 @@ app.post('/surfReview', function(req, res){
 
 });
 
+
 app.get('/reviewDetail', function(req, res){
 	if (req.session.login == null)
 		var login = false;
@@ -245,7 +246,7 @@ app.get('/reviewDetail', function(req, res){
 			})
 		};
 	});
-
+	setTimeout(function() {
 	Post.find({ _id: req.session.postId }, function(err, posts){
 		thisPost = {
 			posts: posts.map(function(Post){
@@ -260,7 +261,9 @@ app.get('/reviewDetail', function(req, res){
 			})
 		};
 	});
+	}, 1000 );
 
+	setTimeout(function() {
 	//留言
 	Response.find({ responsePost: req.session.postId }, function(err,responses){
 		console.log("111")
@@ -284,37 +287,33 @@ app.get('/reviewDetail', function(req, res){
 				}
 			})
 		};
-	});
 
+	});
+	}, 3000 );
 //預設文章
 	var defaultPost = true;
 	//點選文章
 	if (req.session.postId != null)
 		defaultPost = false;
 	//所有文章
-	Post.find({ }, function(err, posts){
-		console.log("222")
+
+	//Post.find({ }, function(err, posts){
+	//	console.log("222")
+	setTimeout(function() {
+    console.log( "c" )
+
 		var context = {
-			user: signupContext.users,
+			//user: signupContext.users,
 			thisPost: thisPost.posts,
 			responses: responseContext.responses,
 			defaultPost: defaultPost,
 			login: login,
 			username: req.session.username,
-			posts: posts.map(function(Post){
-				return {
-					posttitle: Post.posttitle,
-					postcontent: Post.postcontent,
-					postagree: Post.postagree,
-					postdisagree: Post.postdisagree,
-					postowner: Post.postowner,
-					posttype: Post.posttype,
-					_id: Post._id,
-				}
-			})
 		};
 		res.render('reviewDetail', context);
-	});
+	}, 5000 );
+	//});
+	
 
 });
 
