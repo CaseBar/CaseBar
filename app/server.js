@@ -163,20 +163,24 @@ app.get('/surfReview', function(req, res){
 		};
 	});
 
-	Post.find({ _id: req.session.postId }, function(err, posts){
-		thisPost = {
-			posts: posts.map(function(Post){
-				return {
-					thisPosttitle: Post.posttitle,
-					thisPostcontent: Post.postcontent,
-					thisPostowner: Post.postowner,
-					thisPostagree:Post.postagree,
-					thisPostdisagree:Post.postdisagree,
-					thisPosttype:Post.posttype
-				}
-			})
-		};
-	});
+// if (req.session.postId != null) {
+// 	Post.find({ _id: req.session.postId }, function(err, posts){
+// 		thisPost = {
+// 			posts: posts.map(function(Post){
+// 				return {
+// 					thisPosttitle: Post.posttitle,
+// 					thisPostcontent: Post.postcontent,
+// 					thisPostowner: Post.postowner,
+// 					thisPostagree:Post.postagree,
+// 					thisPostdisagree:Post.postdisagree,
+// 					thisPosttype:Post.posttype
+// 				}
+// 			})
+// 		};
+// 	});
+// 	thisPost: thisPost.posts;
+// 	console.log("ttttt")
+// }
 
 //預設文章
 var defaultPost = true;
@@ -187,8 +191,7 @@ var defaultPost = true;
 	Post.find({ }, function(err, posts){
 		var context = {
 			user: signupContext.users,
-			thisPost: thisPost.posts,
-			//responses: responseContext.responses,
+			//thisPost: thisPost.posts,
 			defaultPost: defaultPost,
 			login: login,
 			username: req.session.username,
@@ -256,24 +259,25 @@ app.get('/reviewDetail', function(req, res){
 
 	//留言
 	Response.find({ responsePost: req.session.postId }, function(err,responses){
+		console.log("111")
 		responseContext = {
 			responses: responses.map(function(Response){
-			if (Response.responseWriter != req.session.username) {
-			return {
-				response: Response.response,
-				responseWriter: Response.responseWriter,
-				responseWriterIsUser: false,
-				_id: Response._id,
-			}
-			}
-			else {
-				return {
-				response: Response.response,
-				responseWriter: Response.responseWriter,
-				responseWriterIsUser: true,
-				_id: Response._id,
+				if (Response.responseWriter != req.session.username) {
+					return {
+						response: Response.response,
+						responseWriter: Response.responseWriter,
+						responseWriterIsUser: false,
+						_id: Response._id,
+					}
 				}
-			}
+				else {
+					return {
+						response: Response.response,
+						responseWriter: Response.responseWriter,
+						responseWriterIsUser: true,
+						_id: Response._id,
+					}
+				}
 			})
 		};
 	});
@@ -285,6 +289,7 @@ app.get('/reviewDetail', function(req, res){
 		defaultPost = false;
 	//所有文章
 	Post.find({ }, function(err, posts){
+		console.log("222")
 		var context = {
 			user: signupContext.users,
 			thisPost: thisPost.posts,
@@ -299,7 +304,7 @@ app.get('/reviewDetail', function(req, res){
 					postagree: Post.postagree,
 					postdisagree: Post.postdisagree,
 					postowner: Post.postowner,
-					posttype: rPost.posttype,
+					posttype: Post.posttype,
 					_id: Post._id,
 				}
 			})
