@@ -5,6 +5,20 @@ var userSchema = mongoose.Schema({
 	password: String,
 	birthday: Date,
 	email: String,
+	google: {
+		id: String,
+		token: String,
+		name: String,
+		email: String
+	},
+	agreeposts:{
+		type: Array,
+		default: []
+	},
+	disagreeposts:{
+		type: Array,
+		default: []
+	},
 });
 var User = mongoose.model('User', userSchema);
 module.exports = User;

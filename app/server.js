@@ -308,7 +308,7 @@ app.get('/reviewDetail', function(req, res){
 			})
 		};
 	});
-	}, 1000 );
+	}, 100 );
 
 	setTimeout(function() {
 	//留言
@@ -336,7 +336,7 @@ app.get('/reviewDetail', function(req, res){
 		};
 
 	});
-	}, 3000 );
+	}, 7000 );
 //預設文章
 	var defaultPost = true;
 	//點選文章
@@ -358,7 +358,7 @@ app.get('/reviewDetail', function(req, res){
 			username: req.session.username,
 		};
 		res.render('reviewDetail', context);
-	}, 5000 );
+	}, 8000 );
 	//});
 	
 
@@ -370,24 +370,79 @@ app.post('/reviewDetail', function(req, res){
  //var num = req.body.postAgreeNum;
 //文章同意
 if (req.body.postAgree != null) {
-	
-	Post.update({_id: req.session.postId},
-		{ $inc : { postagree : 1 }},
-		{ upsert: true },
-		function(err,Post){
-			if (err){
-				console.error(err.stack);
+
+	setTimeout(function() {
+		var temp = false;
+		var done = false;
+		User.find(function(err, user){
+			user = user.map(function(User){
+				if(req.session.username == User.username){
+					console.log(User.username)
+					console.log(User.agreeposts)
+		//console.log(User.agreeposts[0])
+		console.log(User.agreeposts.length)
+		if(User.agreeposts!=null){
+
+
+			for (var i = User.agreeposts.length - 1; i >= 0; i--) {
+				if (User.agreeposts[i] == req.session.postId) {
+					temp = true;
+					console.log(req.session.postId);
+					console.log(User.agreeposts[i]);
+					console.log("has");
+				}
+				if(i == 0){
+					done = true;
+				}
+				console.log(done);
+				console.log(temp);
+				console.log(i);
+			}
+		}
+		}
+		console.log("aaaa");
+		});
+					console.log("bbbb");
+
+				})
+			}, 1000 );
+
+	setTimeout(function() {
+		
+		User.update({ username: req.session.username},
+			{ "$push": { "agreeposts": req.session.postId } },
+			{ new: true, upsert: true }, 
+			function(err,User){
+				if (err){
+					console.error(err.stack);
+					return res.redirect(303, '/reviewDetail');
+				}
+				return res.redirect(303, '/reviewDetail');
+			});
+console.log("cccc");
+	}, 2000 );
+
+	setTimeout(function() {
+		
+		Post.update({_id: req.session.postId},
+			{ $inc : { postagree : 1 }},
+			{ upsert: true },
+			function(err,Post){
+				if (err){
+					console.error(err.stack);
+					return res.redirect(303, '/reviewDetail');
+				}
 				return res.redirect(303, '/reviewDetail');
 			}
-			return res.redirect(303, '/reviewDetail');
-		}
 
-	);
+			);
+console.log("dddd");
+	}, 3000 );
 
 }
 
 //文章不同意
-if (req.body.postDisagree != null) {
+else if (req.body.postDisagree != null) {
 	
 	Post.update({_id: req.session.postId},
 		{ $inc : { postdisagree : 1 }},
@@ -457,10 +512,10 @@ else if (req.body.response != null) {
 }
 
 //儲存點選文章
-else if (req.body.postId != null) {
-	req.session.postId = req.body.postId;
-	return res.redirect(303, '/reviewDetail');
-}
+// else if (req.body.postId != null) {
+// 	req.session.postId = req.body.postId;
+// 	return res.redirect(303, '/reviewDetail');
+// }
 });
 
 app.get('/reviewPost', function(req, res){

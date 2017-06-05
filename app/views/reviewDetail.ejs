@@ -100,6 +100,7 @@
         <p><%=thisPost[j].thisPostcontent%></p>
       </div>
       <div class = "reviewFooter">
+      <form action="/reviewDetail" method="POST">
         <div class="col-md-3">
           <button style="float: left;border:none;">
             <img src="留言.png" style="height: 70%;">
@@ -107,10 +108,10 @@
           <p class="commentNumber" style="padding-left: 3%; font-size: 30px;">10</p> 
         </div>
         <div  class="col-md-3">
-          <button style="float: left; border:none;">
+          <button name="postAgree" style="float: left; border:none;">
             <img src="agree.png" style="height: 70%;">
           </button>
-          <p class="agreeNumber" style="padding-left: 3%; font-size: 30px;">20</p>
+          <p class="agreeNumber" style="padding-left: 3%; font-size: 30px;"><%=thisPost[j].thisPostagree%></p>
         </div>
         <div  class="col-md-3">
           <button style="float: left; border:none;">
@@ -124,6 +125,7 @@
           </button>
           <p class="seeNumber" style="padding-left: 3%; font-size: 30px;">30</p>
         </div>
+        </form>
       </div>
       <%}%>
       <div>
