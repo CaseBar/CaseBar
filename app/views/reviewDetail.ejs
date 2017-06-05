@@ -89,10 +89,10 @@
           <h2 class="col-md-9"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
 
           <div class="col-md-3" style="margin-top: 2.5%;">
-          <%if(thisPost[j].thisPostowner==username){%> 
-            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333; height: 40%;width: 40%;">編輯貼文</button>
-            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333; height: 40%;width: 40%;" name='postDelete' value='<%=thisPost[j]._id%>'>刪除貼文</button>
-            <%}%>
+          
+            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;" onclick="location.href='reviseReview'">編輯貼文</button>
+            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;" name='postDelete' value='<%=thisPost[j]._id%>'>刪除貼文</button>
+            
           </div>
         </div>
       </div>
@@ -104,67 +104,64 @@
           <button style="float: left;border:none;">
             <img src="留言.png" style="height: 70%;">
           </button>
-          <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
+          <p class="commentNumber" style="padding-left: 3%; font-size: 30px;">10</p> 
         </div>
         <div  class="col-md-3">
           <button style="float: left; border:none;">
             <img src="agree.png" style="height: 70%;">
           </button>
-          <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
+          <p class="agreeNumber" style="padding-left: 3%; font-size: 30px;">20</p>
         </div>
         <div  class="col-md-3">
           <button style="float: left; border:none;">
             <img src="disagree.png" style="height: 70%;">
           </button>
-          <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
+          <p class="disagreeNumber" style="padding-left: 3%; font-size: 30px;">2</p>
         </div>
         <div class="col-md-3">
           <button style="float: left;border:none;">
             <img src="圍觀.png" style="height: 70%;">
           </button>
-          <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
+          <p class="seeNumber" style="padding-left: 3%; font-size: 30px;">30</p>
         </div>
       </div>
       <%}%>
-      <div class="box container" style="margin-left: 0%; margin-top: 55%; height: 100%; width: 100%;">
-
-
-
-      <form action="/reviewDetail" method="POST">
-      <div class="reviewHeader">
+      <div>
+        <form action="/reviewDetail" method="POST">
+          <div style="border-top:1px solid #FF3333; border-bottom:1px solid #FF3333">
               <%for(var j =0; j< responses.length;j++) {%>     
-        <div class="">
-          <div class="">
-            <a class="r"><%=responses[j].responseWriter%></a>
-            <div class="metadata">
-              <span class="date">Today at 5:42PM</span>
+            <div style="border-top:1px solid #FF3333; border-bottom:1px solid #FF3333">
+              <a class="r" style="font-size: 20px;"><%=responses[j].responseWriter%></a>
+             
+              
+              <div class="metadata">
+                <span class="date">Today at 5:42PM</span>
+              </div>
+              <div class="text" style="font-size: 20px;">
+                <%=responses[j].response%>
+              </div>
+            <%if (responses[j].responseWriter==username){%>
+              <form action="/reviewDetails" method="POST">  
+                <button type="submit" name='responseDelete' value='<%=responses[j]._id%>' style="border-color: #0000FF;color:#0000FF;margin-bottom: 1%;margin-top: 2%;"onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)">刪除留言
+                </button>
+                
+              </form>
+              <%}%>
             </div>
-            <div class="text">
-              <%=responses[j].response%>
-            </div>
+              <%}%>
           </div>
 
-          <%if (responses[j].responseWriter==username){%>
-          <form action="/reviewDetails" method="POST">
-          <button type="submit" name='responseDelete' value='<%=responses[j]._id%>'>刪除
-            </button>
-          </form>
-          <%}%>
-        </div>
-
-        <%}%>
-        <h2>我要留言</h2>
+          <div style="text-align: center;">
+            <h2 >我要留言</h2>
+            <textarea name='response' style=" margin-top: 1%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
+            <br>
+            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;width:8%;margin-bottom: 1%; ">取消</button>
+            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;width:8%; margin-bottom: 1%;">送出</button>
+          </div>
+        </form>
       </div>
-      <div class="review">
-      <textarea name='response' style=" margin-top: 4%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
-      </div>
-      <div class="reviewFooter">
-        <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="margin-left: 40%; border-color: #FF3333;color:#FF3333; height: 60%;width: 10%;">取消</button>
-        <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333; height: 60%;width: 10%;">送出</button>
-      </div>
-      </form>
     </div>
-    <!-- 註冊modal -->
+     <!-- 註冊modal -->
     <div class="container">
       <!-- Modal -->
       <div class="modal fade" id="signUpModal" role="dialog">
@@ -177,16 +174,26 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">新會員註冊</p>
-              <form role="form">
+              <form id="signupForm" action="/signup" method="post" onSubmit="">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="暱稱">
+                  <input type="text" name="realname" required class="form-control" placeholder="姓名">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" class="form-control" placeholder="密碼">
                 </div>
+                <div class="form-group">
+                  <input type="password" name="" required class="form-control" placeholder="確認密碼">
+                </div>
+                <div class="form-group">
+                  <input type="date" name="birthday" required class="form-control" placeholder="生日">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="email" required class="form-control" placeholder="電子信箱">
+                </div>
+
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div >
@@ -217,12 +224,12 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">會員登入</p>
-              <form role="form">
+              <form id="loginForm" action="/login" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" required class="form-control" placeholder="密碼">
                 </div>
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>

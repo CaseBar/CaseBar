@@ -132,24 +132,7 @@
       <button type="submit" style="border-color: #0000FF; height: 8%;width: 10%; margin-top: 3%;font-size: 25px; color: #0000FF;" onmouseover="submitmouseover(this)" onmouseout="submitmouseout(this)" >提交</button>
       </form>
     </section>
-    <footer style="position:absolute; width:100%; left:0px;height:250px;">
-        <div  class="col-md-4" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px; ">
-          <p style="font-size: 30px; ">CaseBar</p> 
-          <p style="font-size: 10px; ">接案酒吧</p> 
-        </div>
-        <div  class="col-md-8" style="font-family:Microsoft JhengHei; font-weight:bold;"> 
-          <a href="#"><p style="font-size: 10px; color: white;">關注我們</p></a>
-          <a href="#"><p style="font-size: 10px; color: white;">我們在做什麼</p></a>
-          <a href="#"><p style="font-size: 10px; color: white;">我們的特點</p></a>
-          <a href="#"><p style="font-size: 10px; color: white;">我們是誰</p></a>
-        </div>
-        <div  class="col-md-6" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px;"> 
-          <a href="#"><img src="facebook-footer.png" style = "height:40px;"></a>
-          <a href="#"><img src="instagram-footer.png" style = "height:40px;"></a>
-          <a href="#"><img src="twitter-footer.png" style = "height:40px;"></a>
-          <a href="#"><img src="letter-footer.png" style = "height:40px;"></a>
-        </div>
-        <!-- 註冊modal -->
+    <!-- 註冊modal -->
     <div class="container">
       <!-- Modal -->
       <div class="modal fade" id="signUpModal" role="dialog">
@@ -162,16 +145,26 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">新會員註冊</p>
-              <form role="form">
+              <form id="signupForm" action="/signup" method="post" onSubmit="">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="暱稱">
+                  <input type="text" name="realname" required class="form-control" placeholder="姓名">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" class="form-control" placeholder="密碼">
                 </div>
+                <div class="form-group">
+                  <input type="password" name="" required class="form-control" placeholder="確認密碼">
+                </div>
+                <div class="form-group">
+                  <input type="date" name="birthday" required class="form-control" placeholder="生日">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="email" required class="form-control" placeholder="電子信箱">
+                </div>
+
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div >
@@ -202,12 +195,12 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">會員登入</p>
-              <form role="form">
+              <form id="loginForm" action="/login" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" required class="form-control" placeholder="密碼">
                 </div>
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>
@@ -226,6 +219,24 @@
         </div>
       </div> 
     </div>
+    <footer style="position:absolute; width:100%; left:0px;height:250px;">
+        <div  class="col-md-4" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px; ">
+          <p style="font-size: 30px; ">CaseBar</p> 
+          <p style="font-size: 10px; ">接案酒吧</p> 
+        </div>
+        <div  class="col-md-8" style="font-family:Microsoft JhengHei; font-weight:bold;"> 
+          <a href="#"><p style="font-size: 10px; color: white;">關注我們</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們在做什麼</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們的特點</p></a>
+          <a href="#"><p style="font-size: 10px; color: white;">我們是誰</p></a>
+        </div>
+        <div  class="col-md-6" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:200px;"> 
+          <a href="#"><img src="facebook-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="instagram-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="twitter-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="letter-footer.png" style = "height:40px;"></a>
+        </div>
+        
     </footer>
   </body>
 </html>

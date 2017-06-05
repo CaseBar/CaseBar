@@ -128,16 +128,26 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">新會員註冊</p>
-              <form role="form">
+              <form id="signupForm" action="/signup" method="post" onSubmit="">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="暱稱">
+                  <input type="text" name="realname" required class="form-control" placeholder="姓名">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" class="form-control" placeholder="密碼">
                 </div>
+                <div class="form-group">
+                  <input type="password" name="" required class="form-control" placeholder="確認密碼">
+                </div>
+                <div class="form-group">
+                  <input type="date" name="birthday" required class="form-control" placeholder="生日">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="email" required class="form-control" placeholder="電子信箱">
+                </div>
+
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div >
@@ -168,12 +178,12 @@
             </div>
             <div class="modal-body" style="background-color:#FF7F50; height:450px;">
               <p  style="font-size:30px; text-align:center; color:white; ">會員登入</p>
-              <form role="form">
+              <form id="loginForm" action="/login" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" required class="form-control" placeholder="密碼">
                 </div>
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>

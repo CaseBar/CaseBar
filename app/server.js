@@ -40,6 +40,10 @@ var User = require('./models/user.js');
 var Post = require('./models/post.js');
 var Response = require('./models/response.js');
 
+app.get('/reviseReview', function(req, res){
+	res.render('reviseReview', "");
+});
+
 app.get('/landingpage', function(req, res){
 	if (req.session.login == null)
 		var login = false;
