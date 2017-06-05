@@ -40,9 +40,56 @@ var User = require('./models/user.js');
 var Post = require('./models/post.js');
 var Response = require('./models/response.js');
 
+
 app.get('/reviseReview', function(req, res){
-	res.render('reviseReview', "");
+	if (req.session.login == null)
+		var login = false;
+	else
+		var login = true;
+	Post.find({ _id: req.session.postId }, function(err, posts){
+		var thisPost = {
+			login: login,
+			username: req.session.username,
+			posts: posts.map(function(Post){
+				return {
+					thisPosttitle: Post.posttitle,
+					thisPostcontent: Post.postcontent,
+				}
+			})
+		};
+		res.render('reviseReview', thisPost);
+	});
 });
+app.post('/reviseReview', function(req, res){
+	Post.update(
+		{ _id: req.session.postId },
+		{ postdate: Date.now(),
+			posttitle: req.body.posttitle,
+			posttext: req.body.posttext },
+			{ upsert: true },
+			function(err){
+				if (err){
+					console.error(err.stack);
+					return res.redirect(303, '/reviewDetail');
+				}
+				return res.redirect(303, '/reviewDetail');
+			}
+			);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/landingpage', function(req, res){
 	if (req.session.login == null)
@@ -757,41 +804,41 @@ app.post('/reviewPost', function(req, res){
 // });
 
 //編輯文章
-app.get('/updatepost', function(req, res){
-	if (req.session.login == null)
-		var login = false;
-	else
-		var login = true;
-	Post.find({ _id: req.session.postId }, function(err, posts){
-		var thisPost = {
-			login: login,
-			username: req.session.username,
-			posts: posts.map(function(Post){
-				return {
-					thisPosttitle: Post.posttitle,
-					thisPostcontent: Post.postcontent,
-				}
-			})
-		};
-		res.render('updatepost', thisPost);
-	});
-});
-app.post('/updatepost', function(req, res){
-	Post.update(
-		{ _id: req.session.postId },
-		{ postdate: Date.now(),
-			posttitle: req.body.posttitle,
-			posttext: req.body.posttext },
-			{ upsert: true },
-			function(err){
-				if (err){
-					console.error(err.stack);
-					return res.redirect(303, '/');
-				}
-				return res.redirect(303, '/');
-			}
-			);
-});
+// app.get('/updatepost', function(req, res){
+// 	if (req.session.login == null)
+// 		var login = false;
+// 	else
+// 		var login = true;
+// 	Post.find({ _id: req.session.postId }, function(err, posts){
+// 		var thisPost = {
+// 			login: login,
+// 			username: req.session.username,
+// 			posts: posts.map(function(Post){
+// 				return {
+// 					thisPosttitle: Post.posttitle,
+// 					thisPostcontent: Post.postcontent,
+// 				}
+// 			})
+// 		};
+// 		res.render('updatepost', thisPost);
+// 	});
+// });
+// app.post('/updatepost', function(req, res){
+// 	Post.update(
+// 		{ _id: req.session.postId },
+// 		{ postdate: Date.now(),
+// 			posttitle: req.body.posttitle,
+// 			posttext: req.body.posttext },
+// 			{ upsert: true },
+// 			function(err){
+// 				if (err){
+// 					console.error(err.stack);
+// 					return res.redirect(303, '/');
+// 				}
+// 				return res.redirect(303, '/');
+// 			}
+// 			);
+// });
 
 
 app.get('/rule', function(req, res){
