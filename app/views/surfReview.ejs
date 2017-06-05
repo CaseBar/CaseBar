@@ -9,51 +9,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-
-          ///////////暫時寫死的文章分類
-          function getf2ePost(){
-            $('#frontend_posts').show();
-            $('#backend_posts').hide();
-            $('#uiux_posts').hide();
-            $('#photography_posts').hide();
-            $('#hotPostAll').hide();
-            $('#NewPostAll').hide();
-          }
-
-          function getbackPost(){
-            $('#backend_posts').show();
-            $('#uiux_posts').hide();
-            $('#photography_posts').hide();
-            $('#frontend_posts').hide();
-            $('#hotPostAll').hide();
-            $('#NewPostAll').hide();
-          }
-
-          function getuiuxPost(){
-            $('#frontend_posts').hide();
-            $('#backend_posts').hide();
-            $('#uiux_posts').show();
-            $('#photography_posts').hide();
-            $('#hotPostAll').hide();
-            $('#NewPostAll').hide();
-          }
-
-          function getphotoPost(){
-            $('#backend_posts').hide();
-            $('#uiux_posts').hide();
-            $('#photography_posts').show();
-            $('#frontend_posts').hide();
-            $('#hotPostAll').hide();
-            $('#NewPostAll').hide();
-          }
-          function getallPost(){
-            $('#backend_posts').hide();
-            $('#uiux_posts').hide();
-            $('#photography_posts').hide();
-            $('#frontend_posts').hide();
-            $('#hotPostAll').show();
-            $('#NewPostAll').show();
-          }
       function Typemouseover(x){
         x.style.color = "white";
         x.style.backgroundColor = "black";
@@ -122,7 +77,7 @@
           <a href="#"><img src="twitter.png" style = "height:25px;"></a>
           <%if (login){ %>
           <span>Hi, <%=username%></span>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: auto; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;"" onclick="location.href='logout'"">登出</button>
           <% }else{%>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
@@ -134,11 +89,10 @@
     <div class="container">
       <section style="margin-top:120px;">
         <input placeholder="搜索類型..." type="search" name="searchType" style="background: url(search.png) no-repeat; background-size: 40px 30px; background-position:10px; height: 50px;width: 250px; padding-left: 60px; border-color:#0000FF;">
-        <button style="background-color: white; color: black; margin-left: 5px;border-color: black; height: 40px;width:70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" onclick="getf2ePost()">前端</button>
-        <button style="background-color: white; color: black; margin-left: 5px; border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" onclick="getbackPost()">後端</button>
-        <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" onclick="getphotoPost()">攝影</button>
-        <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px; font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" onclick="getuiuxPost()">UI/UX</button>
-        <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px; font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" onclick="getallPost()">全部文章</button>
+        <button style="background-color: white; color: black; margin-left: 5px;border-color: black; height: 40px;width:70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" >前端</button>
+        <button style="background-color: white; color: black; margin-left: 5px; border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">後端</button>
+        <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">攝影</button>
+        <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px; font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)">UI/UX</button>
       </section>
       <section>
         <div class="card">
@@ -148,7 +102,6 @@
           </ul>
           <div class="tab-content">
             <div id="hotPost" class="tab-pane active">
-            <div id="hotPostAll">
               <%for(var i =0; i< posts.length;i++) {%>
               <form action="/surfReview" method="POST">
                 <button onclick="location.href='reviewDetail'" style="border-radius: 0px; margin-left: 10%; margin-bottom: 5%; text-align: left;" type="submit" name='postId' class="box" value=<%=posts[i]._id%> >
@@ -181,76 +134,8 @@
               </form>
 
               <%}%>
-              <div>
-                <div id="backend_posts" hidden>
-                  <%for(var i =0; i< posts.length;i++) {%>
-                  <%if(posts[i].posttype=="backend"){%>
-                  <a class="item">
-                    <i class="right triangle icon"></i>
-                    <div class="content">
-                      <form action="/" method="POST">
-                        <button class="postbutton" type="submit" name='postId'
-                        value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-                      </form>
-                    </div>
-                  </a>
-                  <%}%>
-                  <%}%>
-                </div>
-
-                <div id="frontend_posts" hidden>
-                  <%for(var i =0; i< posts.length;i++) {%>
-                  <%if(posts[i].posttype=="frontend"){%>
-                  <a class="item">
-                    <i class="right triangle icon"></i>
-                    <div class="content">
-                      <form action="/" method="POST">
-                        <button class="postbutton" type="submit" name='postId'
-                        value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-                      </form>
-                    </div>
-                  </a>
-                  <%}%>
-                  <%}%>
-                </div>
-
-                <div id="uiux_posts" hidden>
-                  <%for(var i =0; i< posts.length;i++) {%>
-                  <%if(posts[i].posttype=="uiux"){%>
-                  <a class="item">
-                    <i class="right triangle icon"></i>
-                    <div class="content">
-                      <form action="/" method="POST">
-                        <button class="postbutton" type="submit" name='postId'
-                        value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-                      </form>
-                    </div>
-                  </a>
-                  <%}%>
-                  <%}%>
-                </div>
-
-                <div id="photography_posts" hidden>
-                  <%for(var i =0; i< posts.length;i++) {%>
-                  <%if(posts[i].posttype=="photography"){%>
-                  <a class="item">
-                    <i class="right triangle icon"></i>
-                    <div class="content">
-                      <form action="/" method="POST">
-                        <button class="postbutton" type="submit" name='postId'
-                        value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-                      </form>
-                    </div>
-                  </a>
-                  <%}%>
-                  <%}%>
-                </div>
-
-
-              </div> 
-
+            </div> 
             <div id="newPost" class="tab-pane fade">
-            <div id="NewPostAll">
               <%for(var i =0; i< posts.length;i++) {%>
               <form action="/surfReview" method="POST">
                 <button onclick="location.href='reviewDetail'" style="border-radius: 0px; margin-left: 10%; margin-bottom: 5%; text-align: left;" type="submit" name='postId' class="box" value=<%=posts[i]._id%> >
@@ -282,92 +167,6 @@
                 </button>
               </form>
               <%}%>
-            </div>
-            <div id="backend_posts" hidden>
-
-             <%for(var i =0; i< posts.length;i++) {%>
-             <%if(posts[i].posttype=="backend"){%>
-              <form action="/surfReview" method="POST">
-                <button onclick="location.href='reviewDetail'" style="border-radius: 0px; margin-left: 10%; margin-bottom: 5%; text-align: left;" type="submit" name='postId' class="box" value=<%=posts[i]._id%> >
-                  <div class="reviewHeader " style="text-align: center;">
-                    <h2><%=posts[i].posttitle %></h2> <!-- 要改的 -->
-                  </div>
-                  <div class="review">
-                    <p><%=posts[i].postcontent %>
-                    </p>
-                  </div>
-                  <div class = "reviewFooter">
-                    <div class="col-md-3">
-                      <img src="留言.png" style="height: 80%; float: left;">
-                      <p class="commentNumber" style="padding-top: 3%; font-size: 30px;">10</p> 
-                    </div>
-                    <div  class="col-md-3">
-                      <img src="agree.png" style="height: 80%;float: left;">
-                      <p class="agreeNumber" style="padding-top: 3%; font-size: 30px;">20</p>
-                    </div>
-                    <div  class="col-md-3">
-                      <img src="disagree.png" style="height: 80%;float: left;">
-                      <p class="disagreeNumber" style="padding-top: 3%; font-size: 30px;">2</p>
-                    </div>
-                    <div class="col-md-3">
-                      <img src="圍觀.png" style="height: 80%;float: left;">
-                      <p class="seeNumber" style="padding-top: 3%; font-size: 30px;">30</p>
-                    </div>
-                  </div>          
-                </button>
-              </form>
-              <%}%>
-              <%}%>
-            </div>
-
-            <div id="frontend_posts" hidden>
-              <%for(var i =0; i< posts.length;i++) {%>
-              <%if(posts[i].posttype=="frontend"){%>
-              <a class="item">
-                <i class="right triangle icon"></i>
-                <div class="content">
-                  <form action="/" method="POST">
-                    <button class="postbutton" type="submit" name='postId'
-                    value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-                  </form>
-                </div>
-              </a>
-              <%}%>
-              <%}%>
-            </div>
-
-            <div id="uiux_posts" hidden>
-              <%for(var i =0; i< posts.length;i++) {%>
-              <%if(posts[i].posttype=="uiux"){%>
-              <a class="item">
-                <i class="right triangle icon"></i>
-                <div class="content">
-                  <form action="/" method="POST">
-                    <button class="postbutton" type="submit" name='postId'
-                    value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-                  </form>
-                </div>
-              </a>
-              <%}%>
-              <%}%>
-            </div>
-
-            <div id="photography_posts" hidden>
-              <%for(var i =0; i< posts.length;i++) {%>
-              <%if(posts[i].posttype=="photography"){%>
-              <a class="item">
-                <i class="right triangle icon"></i>
-                <div class="content">
-                  <form action="/" method="POST">
-                    <button class="postbutton" type="submit" name='postId'
-                    value=<%=posts[i]._id%>><%=posts[i].posttitle %></button>
-                  </form>
-                </div>
-              </a>
-              <%}%>
-              <%}%>
-            </div>
-
             </div> 
           </div>
         </div>  
@@ -468,8 +267,5 @@
           <a href="#"><img src="letter-footer.png" style = "height:40px;"></a>
         </div>
     </footer>
-
-
-
   </body>
 </html>
