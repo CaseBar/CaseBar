@@ -19,6 +19,10 @@ var userSchema = mongoose.Schema({
 		type: Array,
 		default: []
 	},
+	neutralposts:{
+		type: Array,
+		default: []
+	},
 });
 var User = mongoose.model('User', userSchema);
 module.exports = User;

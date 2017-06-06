@@ -252,6 +252,7 @@ var defaultPost = true;
 					postcontent: Post.postcontent,
 					postagree: Post.postagree,
 					postdisagree: Post.postdisagree,
+					postneutral: Post.postneutral,
 					postowner: Post.postowner,
 					posttype:Post.posttype,
 					_id: Post._id,
@@ -294,21 +295,23 @@ app.get('/reviewDetail', function(req, res){
 		};
 	});
 	setTimeout(function() {
-	Post.find({ _id: req.session.postId }, function(err, posts){
-		thisPost = {
-			posts: posts.map(function(Post){
-				return {
-					thisPosttitle: Post.posttitle,
-					thisPostcontent: Post.postcontent,
-					thisPostowner: Post.postowner,
-					thisPostagree:Post.postagree,
-					thisPostdisagree:Post.postdisagree,
-					thisPosttype:Post.posttype
-				}
-			})
-		};
-	});
-	}, 100 );
+		console.log("222")
+		Post.find({ _id: req.session.postId }, function(err, posts){
+			thisPost = {
+				posts: posts.map(function(Post){
+					return {
+						thisPosttitle: Post.posttitle,
+						thisPostcontent: Post.postcontent,
+						thisPostowner: Post.postowner,
+						thisPostagree:Post.postagree,
+						thisPostdisagree:Post.postdisagree,
+						thisPosttype:Post.posttype,
+						thisPostneutral: Post.postneutral
+					}
+				})
+			};
+		});
+	}, 6000 );
 
 	setTimeout(function() {
 	//留言
@@ -319,6 +322,7 @@ app.get('/reviewDetail', function(req, res){
 				if (Response.responseWriter != req.session.username) {
 					return {
 						response: Response.response,
+						responseTime: Response.responseDate,
 						responseWriter: Response.responseWriter,
 						responseWriterIsUser: false,
 						_id: Response._id,
@@ -327,6 +331,7 @@ app.get('/reviewDetail', function(req, res){
 				else {
 					return {
 						response: Response.response,
+						responseTime: Response.responseDate,
 						responseWriter: Response.responseWriter,
 						responseWriterIsUser: true,
 						_id: Response._id,
@@ -336,18 +341,17 @@ app.get('/reviewDetail', function(req, res){
 		};
 
 	});
-	}, 7000 );
+}, 7000 );
 //預設文章
-	var defaultPost = true;
+var defaultPost = true;
 	//點選文章
 	if (req.session.postId != null)
 		defaultPost = false;
 	//所有文章
 
-	//Post.find({ }, function(err, posts){
-	//	console.log("222")
+
 	setTimeout(function() {
-    console.log( "c" )
+		console.log( "c" )
 
 		var context = {
 			//user: signupContext.users,
@@ -359,53 +363,37 @@ app.get('/reviewDetail', function(req, res){
 		};
 		res.render('reviewDetail', context);
 	}, 8000 );
-	//});
-	
 
 });
 
 app.post('/reviewDetail', function(req, res){
-	///////////--------------------------------------------
 
- //var num = req.body.postAgreeNum;
 //文章同意
 if (req.body.postAgree != null) {
 
 	setTimeout(function() {
-		var temp = false;
-		var done = false;
+
 		User.find(function(err, user){
 			user = user.map(function(User){
 				if(req.session.username == User.username){
-					console.log(User.username)
-					console.log(User.agreeposts)
-		//console.log(User.agreeposts[0])
-		console.log(User.agreeposts.length)
-		if(User.agreeposts!=null){
 
+					if(User.agreeposts!=null){
+						for (var i = User.agreeposts.length - 1; i >= 0; i--) {
+							if (User.agreeposts[i] == req.session.postId) {
 
-			for (var i = User.agreeposts.length - 1; i >= 0; i--) {
-				if (User.agreeposts[i] == req.session.postId) {
-					temp = true;
-					console.log(req.session.postId);
-					console.log(User.agreeposts[i]);
-					console.log("has");
+								console.log(req.session.postId);
+								console.log(User.agreeposts[i]);
+								console.log("has");
+							}
+						}
+					}
 				}
-				if(i == 0){
-					done = true;
-				}
-				console.log(done);
-				console.log(temp);
-				console.log(i);
-			}
-		}
-		}
-		console.log("aaaa");
-		});
-					console.log("bbbb");
+				console.log("aaaa");
+			});
+			console.log("bbbb");
 
-				})
-			}, 1000 );
+		})
+	}, 1000 );
 
 	setTimeout(function() {
 		
@@ -417,9 +405,9 @@ if (req.body.postAgree != null) {
 					console.error(err.stack);
 					return res.redirect(303, '/reviewDetail');
 				}
-				return res.redirect(303, '/reviewDetail');
+				//res.redirect(303, '/reviewDetail');
 			});
-console.log("cccc");
+		console.log("cccc");
 	}, 2000 );
 
 	setTimeout(function() {
@@ -432,34 +420,143 @@ console.log("cccc");
 					console.error(err.stack);
 					return res.redirect(303, '/reviewDetail');
 				}
-				return res.redirect(303, '/reviewDetail');
+				//res.redirect(303, '/reviewDetail');
 			}
 
 			);
-console.log("dddd");
+		console.log("dddd");
 	}, 3000 );
+
+return res.redirect(303, '/reviewDetail');
 
 }
 
 //文章不同意
 else if (req.body.postDisagree != null) {
 	
-	Post.update({_id: req.session.postId},
-		{ $inc : { postdisagree : 1 }},
-		{ upsert: true },
-		function(err,Post){
-			if (err){
-				console.error(err.stack);
-				return res.redirect(303, '/reviewDetail');
-			}
-			return res.redirect(303, '/reviewDetail');
-		}
+	setTimeout(function() {
 
-	);
+		User.find(function(err, user){
+			user = user.map(function(User){
+				if(req.session.username == User.username){
+
+					if(User.disagreeposts!=null){
+						for (var i = User.disagreeposts.length - 1; i >= 0; i--) {
+							if (User.disagreeposts[i] == req.session.postId) {
+
+								console.log(req.session.postId);
+								console.log(User.disagreeposts[i]);
+								console.log("has");
+							}
+						}
+					}
+				}
+				console.log("aaaa");
+			});
+			console.log("bbbb");
+
+		})
+	}, 1000 );
+
+	setTimeout(function() {
+		
+		User.update({ username: req.session.username},
+			{ "$push": { "disagreeposts": req.session.postId } },
+			{ new: true, upsert: true }, 
+			function(err,User){
+				if (err){
+					console.error(err.stack);
+					return res.redirect(303, '/reviewDetail');
+				}
+				//res.redirect(303, '/reviewDetail');
+			});
+		console.log("cccc");
+	}, 2000 );
+
+	setTimeout(function() {
+		
+		Post.update({_id: req.session.postId},
+			{ $inc : { postdisagree : 1 }},
+			{ upsert: true },
+			function(err,Post){
+				if (err){
+					console.error(err.stack);
+					return res.redirect(303, '/reviewDetail');
+				}
+				//res.redirect(303, '/reviewDetail');
+			}
+
+			);
+		console.log("dddd");
+	}, 3000 );
+
+return res.redirect(303, '/reviewDetail');
 
 }
 
-///////////--------------------------------------------
+//文章圍觀
+else if (req.body.postNeutral != null) {
+	
+	setTimeout(function() {
+
+		User.find(function(err, user){
+			user = user.map(function(User){
+				if(req.session.username == User.username){
+
+					if(User.neutralposts!=null){
+						for (var i = User.neutralposts.length - 1; i >= 0; i--) {
+							if (User.neutralposts[i] == req.session.postId) {
+
+								console.log(req.session.postId);
+								console.log(User.neutralposts[i]);
+								console.log("has");
+							}
+						}
+					}
+				}
+				console.log("aaaa");
+			});
+			console.log("bbbb");
+
+		})
+	}, 1000 );
+
+	setTimeout(function() {
+		
+		User.update({ username: req.session.username},
+			{ "$push": { "neutralposts": req.session.postId } },
+			{ new: true, upsert: true }, 
+			function(err,User){
+				if (err){
+					console.error(err.stack);
+					return res.redirect(303, '/reviewDetail');
+				}
+				//res.redirect(303, '/reviewDetail');
+			});
+		console.log("cccc");
+	}, 2000 );
+
+	setTimeout(function() {
+		
+		Post.update({_id: req.session.postId},
+			{ $inc : { postneutral : 1 }},
+			{ upsert: true },
+			function(err,Post){
+				if (err){
+					console.error(err.stack);
+					return res.redirect(303, '/reviewDetail');
+				}
+				//res.redirect(303, '/reviewDetail');
+			}
+
+			);
+		console.log("dddd");
+	}, 3000 );
+
+return res.redirect(303, '/reviewDetail');
+
+}
+
 
 //刪除文章
 else if (req.body.postDelete != null) {
@@ -480,6 +577,7 @@ else if (req.body.postDelete != null) {
 		}
 	);
 }
+
 //刪除留言
 else if (req.body.responseDelete != null) {
 	Response.remove(
@@ -493,6 +591,7 @@ else if (req.body.responseDelete != null) {
 		}
 	);
 }
+
 //留言
 else if (req.body.response != null) {
 	Response.update(
@@ -516,6 +615,7 @@ else if (req.body.response != null) {
 // 	req.session.postId = req.body.postId;
 // 	return res.redirect(303, '/reviewDetail');
 // }
+
 });
 
 app.get('/reviewPost', function(req, res){
@@ -536,6 +636,7 @@ app.post('/reviewPost', function(req, res){
 		  postcontent: req.body.postcontent,
 		  postagree: 0,
 		  postdisagree: 0,
+		  postneutral: 0,
 		  posttype: req.body.posttype,
 		  postowner: req.session.ownername },
 		{ upsert: true },

@@ -117,13 +117,13 @@
           <button style="float: left; border:none;">
             <img src="disagree.png" style="height: 70%;">
           </button>
-          <p class="disagreeNumber" style="padding-left: 3%; font-size: 30px;">2</p>
+          <p class="disagreeNumber" style="padding-left: 3%; font-size: 30px;"><%=thisPost[j].thisPostdisagree%></p>
         </div>
         <div class="col-md-3">
-          <button style="float: left;border:none;">
+          <button name="postNeutral" style="float: left;border:none;">
             <img src="圍觀.png" style="height: 70%;">
           </button>
-          <p class="seeNumber" style="padding-left: 3%; font-size: 30px;">30</p>
+          <p class="seeNumber" style="padding-left: 3%; font-size: 30px;"><%=thisPost[j].thisPostneutral%></p>
         </div>
         </form>
       </div>
@@ -137,7 +137,7 @@
              
               
               <div class="metadata">
-                <span class="date">Today at 5:42PM</span>
+                <span class="date"><%=new Date(responses[j].responseTime)%></span>
               </div>
               <div class="text" style="font-size: 20px;">
                 <%=responses[j].response%>
