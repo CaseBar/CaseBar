@@ -23,6 +23,10 @@ var userSchema = mongoose.Schema({
 		type: Array,
 		default: []
 	},
+	// adnposts:{
+	// 	type: Array,
+	// 	default: []
+	// },
 });
 var User = mongoose.model('User', userSchema);
 module.exports = User;
