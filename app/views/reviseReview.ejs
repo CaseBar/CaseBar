@@ -79,7 +79,7 @@
           <!-- 登入才有的 -->
           <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d; text-decoration: underline; text-decoration-color:#f74a3d; " >我要發表</a>
         </div>
-        <div class="navbar-nav" style="width: 40%; padding-top: 25px; float: right;">
+        <div class="navbar-nav" style="width: 30%; padding-top: 25px; float: right;">
           <a href="#"><img src="facebook.png" style = "height:25px;"></a>
           <a href="#"><img src="instagram.png" style = "height:25px;"></a>
           <a href="#"><img src="twitter.png" style = "height:25px;"></a>
@@ -88,7 +88,7 @@
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;"" onclick="location.href='logout_l'"">登出</button>
           <% }else{%>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="margin-left: 20%;height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
           <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
           <%}%>
         </div>
@@ -97,7 +97,7 @@
 
     <section class="container" style="margin-top: 10%; text-align: center; padding-bottom: 5%;border:3px solid #0000FF; width: 80%;">
     <form class="" action="/reviseReview" method="post">
-    <% if (login) {%>
+    
     <%for(var j =0; j< thisPost.length;j++) {%>
     <h2>標題</h2>
       <textarea rows="8" cols="50" type="text" maxlength='16' name="posttitle" value=<%=posts[i].thisPosttitle%>><%=thisPost[j].thisPosttitle%></textarea>
@@ -108,11 +108,7 @@
       <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;width:8%;margin-bottom: 1%; ">取消</button>
       <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;width:8%; margin-bottom: 1%;">送出</button>
       </form>
-      <%}else{%>
-        <h3>請先登入以繼續</h3>
-        <a href='/'>回首頁</a>
-        <a href='/login'>登入</a>
-        <%}%>
+      
     </section>
     <!-- 註冊modal -->
     <div class="container">

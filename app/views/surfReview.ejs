@@ -31,8 +31,21 @@
       }
       function Mymouseout(x){
         var color_ = x.style.backgroundColor;
+
         x.style.color = color_;
         x.style.backgroundColor = "rgba(1,1,1,0)";
+      }
+      function Reviewmouseover(x){
+        
+        x.style.boxShadow = "20px 20px 20px  #444444";
+        x.style.transition = "box-shadow 0.8s,width 2s,height 2s";
+        x.style.width = "80%";
+        
+      }
+      function Reviewmouseout(x){
+        x.style.boxShadow = "none";
+        x.style.width = "79%";
+        
       }
     </script>
 
@@ -62,26 +75,27 @@
     </style>
   <body>
     <nav class="navbar navbar-fixed-top" style="background-color: white">
-      <a class="navbar-brand" href="#" onclick="location.href='landingpage'"><img src="logo.png" style = "height:45px;"></a>
+       <a class="navbar-brand" href="#" onclick="location.href='landingpage'"><img src="logo.png" style = "height:50px;"></a>
       <div class="collapse navbar-collapse col-md-offset-2" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="width: 450px; padding-top: 25px;">
-          <a class="nav-item nav-link active" href="#" onclick="location.href='surfReview'" style="font-size: 20px;color: #0000FF; text-decoration: underline; text-decoration-color:#0000FF; " >瀏覽評論</a>
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black; " onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)" onclick="location.href='rule'">發表守則</a>
+        <div class="navbar-nav" style="width: 450px; padding-top: 35px;">
+          <a class="nav-item nav-link active" href="#"  style="font-size: 20px;color: #0000FF;" >瀏覽評論</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black;"onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="javascript:location.href='rule'">發表守則</a>
           <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='aboutUs'">關於我們</a>
           <!-- 登入才有的 -->
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='reviewPost'">我要發表</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d; " onclick="location.href='reviewPost'">我要發表</a>
         </div>
-        <div class="navbar-nav" style="width: 40%; padding-top: 25px; float: right;">
+        <div class="navbar-nav" style="width: 30%; padding-top: 25px; float: right;">
           <a href="#"><img src="facebook.png" style = "height:25px;"></a>
           <a href="#"><img src="instagram.png" style = "height:25px;"></a>
           <a href="#"><img src="twitter.png" style = "height:25px;"></a>
+
           <%if (login){ %>
           <span>Hi, <%=username%></span>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: auto; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;"" onclick="location.href='logout'"">登出</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; margin-left: 2%;">我的檔案</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;margin-left: 2%;" onclick="location.href='logout_l'">登出</button>
           <% }else{%>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="margin-left: 20%;height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="margin-left: 2%;height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
           <%}%>
         </div>
       </div>
@@ -104,7 +118,7 @@
             <div id="hotPost" class="tab-pane active">
               <%for(var i =0; i< posts.length;i++) {%>
               <form action="/surfReview" method="POST">
-                <button onclick="location.href='reviewDetail'" style="border-radius: 0px; margin-left: 10%; margin-bottom: 5%; text-align: left;" type="submit" name='postId' class="box" value=<%=posts[i]._id%> >
+                <button onmouseover="Reviewmouseover(this)" onmouseout="Reviewmouseout(this)" onclick="location.href='reviewDetail'" style="border-radius: 0px; margin-left: 10%; margin-bottom: 5%; text-align: left;" type="submit" name='postId' class="box" value=<%=posts[i]._id%> >
                   <div class="reviewHeader " style="text-align: center;">
                     <h2><%=posts[i].posttitle %>　文章類別：　<%=posts[i].posttype %></h2> <!-- 要改的 -->
                   </div>

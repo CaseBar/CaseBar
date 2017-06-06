@@ -280,6 +280,7 @@ app.get('/reviewDetail', function(req, res){
 		var login = true;
 
 	var username = req.session.username;
+	console.log(username);
 	var context = {
 		username: username,
 		login: login,
@@ -638,7 +639,7 @@ app.post('/reviewPost', function(req, res){
 		  postdisagree: 0,
 		  postneutral: 0,
 		  posttype: req.body.posttype,
-		  postowner: req.session.ownername },
+		  postowner:req.session.username},
 		{ upsert: true },
 		function(err){
 			if (err){
@@ -1011,7 +1012,16 @@ app.get('/rule', function(req, res){
 });
 
 app.get('/aboutUs', function(req, res){
-	res.render('aboutUs', "");
+	if (req.session.login == null)
+	var login = false;
+	else
+	var login = true;
+	var username = req.session.username;
+	var context = {
+		username: username,
+		login: login,
+	}
+	res.render('aboutUs', context);
 });
 
 app.use(function(req, res, next){
