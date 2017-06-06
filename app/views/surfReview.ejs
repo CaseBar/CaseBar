@@ -358,7 +358,7 @@
         <form action="/surfReview" method="POST">
           <button onclick="location.href='reviewDetail'" style="border-radius: 0px; margin-left: 10%; margin-bottom: 5%; text-align: left;" type="submit" name='postId' class="box" value=<%=posts[i]._id%> >
             <div class="reviewHeader " style="text-align: center;">
-              <h2><%=posts[i].posttitle %></h2> <!-- 要改的 -->
+              <h2><%=posts[i].posttitle %> 文章類別：　<%=posts[i].posttype %></h2> <!-- 要改的 -->
             </div>
             <div class="review">
               <p><%=posts[i].postcontent %>

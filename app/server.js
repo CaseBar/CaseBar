@@ -247,10 +247,14 @@ var defaultPost = true;
 					posttype:Post.posttype,
 					_id: Post._id,
 				}
-			})
+			}).sort({postdate: -1}),
+
+//.sort({postresponsenum: -1})
+
 		};
 		res.render('surfReview', context);
-	}).sort({postdate: -1});
+	});
+
 });
 
 app.post('/surfReview', function(req, res){
