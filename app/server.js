@@ -998,7 +998,16 @@ app.post('/reviewPost', function(req, res){
 
 
 app.get('/rule', function(req, res){
-	res.render('rule', "");
+	if (req.session.login == null)
+	var login = false;
+	else
+	var login = true;
+	var username = req.session.username;
+	var context = {
+		username: username,
+		login: login,
+	}
+	res.render('rule', context);
 });
 
 app.get('/aboutUs', function(req, res){
