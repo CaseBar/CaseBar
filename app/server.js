@@ -40,6 +40,41 @@ var User = require('./models/user.js');
 var Post = require('./models/post.js');
 var Response = require('./models/response.js');
 
+var passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
+    // =====================================
+    // GOOGLE ROUTES =======================
+    // =====================================
+    // send to google to do the authentication
+    // profile gets us their basic information including their name
+    // email gets their emails
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] })
+
+    	);
+
+    // the callback after google has authenticated the user
+    app.get('/auth/google/callback',
+    	passport.authenticate('google', {
+    		successRedirect : '/googlelogin',
+    		failureRedirect : '/'
+    	})
+
+
+    	);
+
+    app.get('/googlelogin', function(req, res,user){
+    	req.session.login = true;
+    	req.session.username = req.user.google.name;
+	//console.log(req.session.login);
+	//console.log(req.session.username);
+	res.redirect(303, '/landingpage');
+
+});
+
+
 
 app.get('/reviseReview', function(req, res){
 	if (req.session.login == null)
