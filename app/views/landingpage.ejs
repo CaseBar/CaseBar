@@ -8,44 +8,43 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/ee324bca70.js"></script>
     <script type="text/javascript">
-      function Mymouseover(x){
-        var color_ = x.style.color;
-        x.style.color = "white";
-        x.style.backgroundColor = color_;
-      }
-      function Mymouseout(x){
-        var color_ = x.style.backgroundColor;
-        x.style.color = color_;
-        x.style.backgroundColor = "rgba(1,1,1,0)";
-      }
-      function Navmouseover(x){
-        x.style.textDecoration = "underline";
-        x.style.textDecorationColor= "#0000FF";
-      }
-      function Navmouseout(x){
-        x.style.textDecoration = "none";
-      }
-    </script>
-    <!-- 註冊modal用 -->
-    <script>
+
+      // function Mymouseover(x){
+      //   var color_ = x.style.color;
+      //   x.style.color = "white";
+      //   x.style.backgroundColor = color_;
+      // }
+
+      // function Mymouseout(x){
+      //   var color_ = x.style.backgroundColor;
+      //   x.style.color = color_;
+      //   x.style.backgroundColor = "rgba(1,1,1,0)";
+      // }
+
+      // function Navmouseover(x){
+      //   x.style.textDecorationColor= "#0000FF";
+      //   x.style.textDecoration="none";
+      // }
+      // function Navmouseout(x){
+      //   x.style.textDecoration = "none";
+      // }
+
+    // <!-- 註冊modal用 -->
     $(document).ready(function(){
         $("#signUpBtn").click(function(){
             $("#signUpModal").modal();
         });
     });
-    </script>
 
-    <!-- 登入modal用 -->
-    <script>
+    // <!-- 登入modal用 -->
     $(document).ready(function(){
         $("#LogInBtn").click(function(){
             $("#LogInModal").modal();
         });
     });
 
-    </script>
-<script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1920871271260221',
@@ -65,67 +64,98 @@
 </script>
 
   <body>
-    <nav class="navbar navbar-fixed-top" style="background-color: white">
-      <a class="navbar-brand" href="#" onclick="javascript:location.href='landingpage'"><img src="logo.png" style = "height:50px;"></a>
-      <div class="collapse navbar-collapse col-md-offset-2" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="width: 500px; padding-top: 35px;">
-          <a class="nav-item nav-link" href="#" style="font-size: 20px;color: black;margin-left: 5%;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="javascript:location.href='surfReview'" >瀏覽評論</a>
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black; " onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)" onclick="location.href='rule'">發表守則</a>
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)" onclick="javascript:location.href='aboutUs'">關於我們</a>
-          <!-- 登入才有的 -->
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)" onclick="javascript:location.href='reviewPost'">我要發表</a>
+    <nav class="navbar navbar-fixed-top">
+        <!-- logo  -->
+        <div class="nav-logo">
+        <a class="navbar-brand" href="#" onclick="javascript:location.href='landingpage'"><img src="logo/logo_new.png" alt="logo"></a>
         </div>
-        <div class="navbar-nav" style="width: 30%; padding-top: 25px; float: right;">
-          <a href="#"><img src="facebook.png" style = "height:25px;"></a>
-          <a href="#"><img src="instagram.png" style = "height:25px;"></a>
-          <a href="#"><img src="twitter.png" style = "height:25px;"></a>
-
-          <%if (login){ %>
-          <span>Hi, <%=username%></span>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; ">我的檔案</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;"" onclick="location.href='logout_l'"">登出</button>
-          <% }else{%>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="margin-left: 20%; height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
-          <%}%>
+        <!-- 按鈕選單 -->
+      <div class="try" id="navbarNavAltMarkup">
+        <div class="navbar-nav nav-btn">
+          <a class="nav-item nav-link" href="#" onclick="javascript:location.href='surfReview'" >瀏覽評論</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" onclick="location.href='rule'">發表守則</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" onclick="javascript:location.href='aboutUs'">關於我們</a>
+          <!-- 登入才有的 -->
+          <a class="nav-item nav-link col-md-offset-1" href="#" id="userPost" onclick="javascript:location.href='reviewPost'">我要發表</a>
+        </div>
+        <div class="nav-flex">
+        <div class="navbar-nav nav-right nav-line">
+          <div class="nav-social nav-line">
+            <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true"></i></a>
+          </div>
+          <div class="nav-line">
+            <%if (login){ %>
+            <span>Hi, <%=username%></span>
+            <button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>
+            <button class="nav-line myLogin" id="signUpBtn" onclick="location.href='logout_l'"> 登出 </button>
+            <% }else{%>
+            <button class="nav-line myLogin" id="signUpBtn"> 註冊 </button>
+            <button class="nav-line myLogin" id="LogInBtn"> 登入 </button>
+            <%}%>
+          </div>
+        </div>
         </div>
       </div>
     </nav>
-    <header>
-      <h2  align="center" style="font-family:Microsoft JhengHei; color: white; padding-top:230px; font-size: 40px;font-weight:bold;">找尋最合理的接案行情</h2>
-      <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style="border-color:#33FFFF; width:150px; height: 50px;font-weight:bold; font-size: 20px; color:#33FFFF;position:absolute;left:460px; top:350px;"onclick="javascript:location.href='surfReview'">立即瀏覽</button>
 
-      <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style="border-color:#FF3333; width:150px; height: 50px;font-weight:bold; font-size: 20px; color:#FF3333; position:absolute;left:660px;top:350px;"onclick="javascript:location.href='reviewPost'">我要發表</button>
+    <header>
+      <div class="shade">
+        <h2>找尋最合理的接案行情</h2>
+        <div class="header-btn">
+          <button class="jpn-btn" onclick="javascript:location.href='surfReview'">立即瀏覽</button>
+          <button class="jpn-btn2" onclick="javascript:location.href='reviewPost'">我要發表</button>
+        </div>
+      </div>
     </header>
+
     <div class="container">
       <section>
-        <h1>我們在做什麼?</h1> 
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;台灣有131萬接案族，雖然金額與項目多數依照合約，也有同業行情、過往經驗參考，但有些案主出爾反爾、追加不合理要求，或者是不斷的要求，卻只換來低報酬。</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我們是一個接案資訊討論平台，讓行情資訊透明化、揭露雷案主，同時讓接案者能夠彼此討論、認識，甚至合作。
-        </p>
-        <img src="我們在做什麼.png" style="height: 300px; padding-left: 290px;padding-top: 50px;" >
+        <div class="do-flex">
+          <h1>我們在做什麼?</h1> 
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;台灣有131萬接案族，雖然金額與項目多數依照合約，也有同業行情、過往經驗參考，但有些案主出爾反爾、追加不合理要求，或者是不斷的要求，卻只換來低報酬。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我們是一個接案資訊討論平台，讓行情資訊透明化、揭露雷案主，同時讓接案者能夠彼此討論、認識，甚至合作。
+          </p>
+          <img id="do" src="我們在做什麼.png" alt="do">
+        </div>
       </section>
-      <section style="border-color: #0000FF; border-style:solid;">
-        <h1 style="">我們的特點</h1>
-        <img src="我們的特點.png" style="height: 400px; padding-left: 80px; ">
-      </section>
+
       <section>
-        <h1>我們是誰？</h1>
-        <img src="關於我們.png" style="height: 300px; padding-left: 250px; padding-top: 30px;">
-        <br>
-        <button class="col-md-offset-4" onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style=" margin-top:10px; border-color:#0000FF; width:150px; height: 50px;font-weight:bold; font-size: 20px; color:#0000FF;" onclick="location.href='surfReview'">立即瀏覽</button>
-        <button class="col-md-offset-1" onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style="margin-top:10px;border-color:#FF3333; width:150px; height: 50px;font-weight:bold; font-size: 20px; color:#FF3333;" onclick="location.href='reviewPost'">我要發表</button>
+        <h1>我們的特點</h1>
+          <div  class="feature-flex blue-frame">
+            <img class="feature-us" src="image/feature-1.png" alt="feature-1">
+            <img class="feature-us" src="image/feature-2.png" alt="feature-2">
+            <img class="feature-us" src="image/feature-3.png" alt="feature-3">
+        </div>
       </section>
+
+      <section>
+        <div class="about-flex">
+          <h1>我們是誰？</h1>
+          <img id="about" src="關於我們.png">
+          <img id="about_2" src="image/about-v.png">
+          <br>
+          <div class="btn-flex">
+            <button id="browse" class="col-md-offset-4" onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" onclick="location.href='surfReview'">立即瀏覽</button>
+            <button id="post" class="col-md-offset-1" onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" onclick="location.href='reviewPost'">我要發表</button>
+          </div>
+        </div>
+      </section>
+
       <section>
         <div style="text-align:center;">
           <p style="font-size: 10px; display:inline;">關注我們</p>
-          <a href="#"><img src="facebook.png" style = "height:40px;"></a>
-          <a href="#"><img src="instagram.png" style = "height:40px;"></a>
-          <a href="#"><img src="twitter.png" style = "height:40px;"></a>
+          <div class="nav-social nav-line">
+            <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true" style="font-size:40px;margin: 20px" ></i></a>
+            <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true" style="font-size:40px;margin: 20px"></i></a>
+            <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true" style="font-size:40px;margin: 20px"></i></a>
+          </div>
           <p style="font-size: 10px; display:inline;">聯絡我們</p>
-          <a href="#"><img src="letter.png" style = "height:40px;"></a>
+          <a href="#"><img src="letter.png" style = "height:20px;"></a>
         </div>
       </section>
+
     </div>
 
     <!-- 註冊modal -->
@@ -203,7 +233,7 @@
                 </div >
                   <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">登入</button><br>
                   </form>
-                  <a href="/auth/facebook"><button class="col-md-6" style="margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;""> <span class="fa fa-facebook"></span>以Facebook登入</button></a>
+                  <a href="/auth/facebook"><button class="col-md-6" style="margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span class="fa fa-facebook"></span>以Facebook登入</button></a>
 
                   <br>
                   <a href="/auth/google"><button class="col-md-6" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google登入</button><a>
@@ -220,21 +250,23 @@
     </div>
 
 
-    <footer style="position:absolute; width:100%; left:0px;height:250px;">
-        <div  class="col-md-4" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:10%; ">
-          <p style="margin-left: -7%;font-size: 40px; ">CaseBar</p> 
-          <p style="font-size: 25px; ">接案酒吧</p>
-          <br>
-           <a href="#"><img src="facebook-footer.png" style = " margin-left: -8%; height:40px;"></a>
-          <a href="#"><img src="instagram-footer.png" style = "height:40px;"></a>
-          <a href="#"><img src="twitter-footer.png" style = "height:40px;"></a>
-          <a href="#"><img src="letter-footer.png" style = "height:40px;"></a> 
-        </div>
-        <div  class="col-md-8" style="margin-top:  2%; font-family:Microsoft JhengHei; font-weight:bold;left:10%;"> 
-          <a href="#"><p style="font-size: 15px; color: white;">關注我們</p></a>
-          <a href="#"><p style="font-size: 15px; color: white;">我們在做什麼</p></a>
-          <a href="#"><p style="font-size: 15px; color: white;">我們的特點</p></a>
-          <a href="#"><p style="font-size: 15px; color: white;">我們是誰</p></a>
+    <footer>
+      <div class="divide">
+          <div id="brand" class="col-md-4">
+            <h3 id="brand-title">CaseBar</p> 
+            <h3 id="brand-title-ch">接案酒吧</p>
+            <div class="nav-social nav-line">
+              <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true" style="font-size:40px;margin: 0 20px" ></i></a>
+              <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true" style="font-size:40px;margin: 0 20px"></i></a>
+              <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true" style="font-size:40px;margin: 0 20px"></i></a>
+            </div>
+          </div>
+          <div id="footer-list-up" class="col-md-8" style="font-family:Microsoft JhengHei;"> 
+            <a href="#"><p class="footer-list" >關注我們</p></a>
+            <a href="#"><p class="footer-list" >我們在做什麼</p></a>
+            <a href="#"><p class="footer-list" >我們的特點</p></a>
+            <a href="#"><p class="footer-list" >我們是誰</p></a>
+          </div>
         </div>
     </footer>
   </body>
