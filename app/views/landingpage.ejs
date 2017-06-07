@@ -43,8 +43,26 @@
             $("#LogInModal").modal();
         });
     });
-    </script>
 
+    </script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1920871271260221',
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 
   <body>
     <nav class="navbar navbar-fixed-top" style="background-color: white">
@@ -121,7 +139,7 @@
             <label style="margin-top:10px; font-size:70px;color:#0000FF;"><span ><img class="col-md-6" src="logo2.png" style = "width:150px; height:auto"></span>CaseBar</label>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body" style="background-color:#FF7F50; height:450px;">
+            <div class="modal-body" style="background-color:#FF7F50; height:100%;">
               <p  style="font-size:30px; text-align:center; color:white; ">新會員註冊</p>
               <form id="signupForm" action="/signup" method="post" onSubmit="">
                 <div class="form-group">
@@ -185,7 +203,9 @@
                 </div >
                   <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">登入</button><br>
                   </form>
-                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span><img class="col-md-6" src="facebook-modal.png" style = "height:25px;width:auto"></span>以facebook登入</button><br>
+                  <a href="/auth/facebook"><button class="col-md-6" style="margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;""> <span class="fa fa-facebook"></span>以Facebook登入</button></a>
+
+                  <br>
                   <a href="/auth/google"><button class="col-md-6" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google登入</button><a>
                 
             </div>

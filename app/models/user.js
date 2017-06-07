@@ -11,6 +11,12 @@ var userSchema = mongoose.Schema({
 		name: String,
 		email: String
 	},
+	facebook: {
+		id: String,
+		token: String,
+		name: String,
+		email: String
+	},
 	agreeposts:{
 		type: Array,
 		default: []

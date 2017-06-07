@@ -59,7 +59,7 @@ require('./config/passport')(passport);
     app.get('/auth/google/callback',
     	passport.authenticate('google', {
     		successRedirect : '/googlelogin',
-    		failureRedirect : '/'
+    		failureRedirect : '/landingpage'
     	})
 
 
@@ -75,7 +75,35 @@ require('./config/passport')(passport);
 });
 
 
+        // route for facebook authentication and login
+        app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['profile','email'] }));
 
+        // handle the callback after facebook has authenticated the user
+        app.get('/auth/facebook/callback',
+            passport.authenticate('facebook', {
+                successRedirect : '/facebooklogin',
+                failureRedirect : '/landingpage'
+            }));
+
+    app.get('/facebooklogin', function(req, res,user){
+    	req.session.login = true;
+    	req.session.username = req.user.google.name;
+	console.log(req.session.login);
+	console.log(req.session.username);
+	res.redirect(303, '/landingpage');
+
+});
+
+
+        // route for logging out
+        app.get('/logout', function(req, res) {
+            req.logout();
+            res.redirect('/landingpage');
+        });
+
+
+
+////////
 app.get('/reviseReview', function(req, res){
 	if (req.session.login == null)
 		var login = false;
@@ -282,13 +310,13 @@ var defaultPost = true;
 					posttype:Post.posttype,
 					_id: Post._id,
 				}
-			}).sort({postdate: -1}),
+			})
 
 //.sort({postresponsenum: -1})
 
 		};
 		res.render('surfReview', context);
-	});
+	}).sort({postdate: -1});
 
 });
 
