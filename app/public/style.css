@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 button {
@@ -58,16 +59,16 @@ nav {
     text-decoration: none;
 }
 
-.navbar-nav #userPost {
+#userPost {
     color: #f74a3d;
 }
 
-.navbar-nav #userPost:hover {
+#userPost:hover {
     color: brown;
     text-decoration: none;
 }
 
-.nav-right .nav-line {
+.nav-line {
     display: inline;
 }
 
@@ -75,20 +76,20 @@ nav {
     margin-right: 20px;
 }
 
-.nav-right .nav-sma {
+.nav-sma {
     font-size: 20px;
     color: black;
     margin: 0 7px;
 }
 
-.nav-right .nav-sma:hover {
+.nav-sma:hover {
     color: blue;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
     transition: 0.2s;
 }
 
-.nav-right .myLogin {
+.myLogin {
     padding: 5px 20px;
     margin: 0px 5px;
     border-color: #FF3333;
@@ -96,9 +97,20 @@ nav {
     transition: 0.2s;
 }
 
+.myLogin:hover {
+    color: white;
+    border-color: #FF3333;
+    background-color: #ff3333;
+}
+
+.try {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .nav-flex {
     display: flex;
-    justify-content: flex-end;
 }
 
 
@@ -109,6 +121,7 @@ header {
     height: 550px;
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100%;
 }
 
 .shade {
@@ -199,9 +212,9 @@ p {
 }
 
 #do {
-    height: 250px;
-    width: auto;
-    margin: 20px auto;
+    height: 190px;
+    margin: auto;
+    margin-top: 30px;
 }
 
 
@@ -212,11 +225,7 @@ p {
     /*flex-direction: column;*/
     justify-content: center;
     align-content: center;
-}
-
-.blue-frame {
     border: solid #0000FF 2px;
-    margin: 30px 20%;
 }
 
 .feature-us {
@@ -258,6 +267,12 @@ p {
     font-size: 20px;
     padding: 10px 30px;
     margin: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+#browse:hover {
+    background-color: #0000FF;
+    color: white;
 }
 
 #post {
@@ -266,6 +281,12 @@ p {
     font-size: 20px;
     padding: 10px 30px;
     margin: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+#post:hover {
+    background-color: #FF3333;
+    color: white;
 }
 
 
@@ -393,7 +414,7 @@ footer {
     padding-top: 2%;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 873px) {
     nav {
         height: 220px;
     }
@@ -401,8 +422,14 @@ footer {
         display: flex;
         justify-content: center;
     }
+    .try {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
     .nav-btn {
-        margin-top: 50px;
+        margin-top: 70px;
         text-align: center;
     }
     .nav-flex {

@@ -11,25 +11,25 @@
     <script src="https://use.fontawesome.com/ee324bca70.js"></script>
     <script type="text/javascript">
 
-      // function Mymouseover(x){
-      //   var color_ = x.style.color;
-      //   x.style.color = "white";
-      //   x.style.backgroundColor = color_;
-      // }
+      function Mymouseover(x){
+        var color_ = x.style.color;
+        x.style.color = "white";
+        x.style.backgroundColor = color_;
+      }
 
-      // function Mymouseout(x){
-      //   var color_ = x.style.backgroundColor;
-      //   x.style.color = color_;
-      //   x.style.backgroundColor = "rgba(1,1,1,0)";
-      // }
+      function Mymouseout(x){
+        var color_ = x.style.backgroundColor;
+        x.style.color = color_;
+        x.style.backgroundColor = "rgba(1,1,1,0)";
+      }
 
-      // function Navmouseover(x){
-      //   x.style.textDecorationColor= "#0000FF";
-      //   x.style.textDecoration="none";
-      // }
-      // function Navmouseout(x){
-      //   x.style.textDecoration = "none";
-      // }
+      function Navmouseover(x){
+        x.style.textDecorationColor= "#0000FF";
+        x.style.textDecoration="none";
+      }
+      function Navmouseout(x){
+        x.style.textDecoration = "none";
+      }
 
     // <!-- 註冊modal用 -->
     $(document).ready(function(){
@@ -65,11 +65,13 @@
 
   <body>
     <nav class="navbar navbar-fixed-top">
-        <!-- logo  -->
-        <div class="nav-logo">
-        <a class="navbar-brand" href="#" onclick="javascript:location.href='landingpage'"><img src="logo/logo_new.png" alt="logo"></a>
+      <!-- logo  -->
+              <div class="nav-logo">
+          <a class="navbar-brand" href="#" onclick="javascript:location.href='landingpage'">
+            <img src="logo/logo_new.png" alt="logo">
+          </a>
         </div>
-        <!-- 按鈕選單 -->
+      <!-- 按鈕選單 -->
       <div class="try" id="navbarNavAltMarkup">
         <div class="navbar-nav nav-btn">
           <a class="nav-item nav-link" href="#" onclick="javascript:location.href='surfReview'" >瀏覽評論</a>
@@ -78,24 +80,27 @@
           <!-- 登入才有的 -->
           <a class="nav-item nav-link col-md-offset-1" href="#" id="userPost" onclick="javascript:location.href='reviewPost'">我要發表</a>
         </div>
+
         <div class="nav-flex">
-        <div class="navbar-nav nav-right nav-line">
-          <div class="nav-social nav-line">
-            <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true"></i></a>
+
+          <div class="navbar-nav nav-right nav-line">
+            <div class="nav-social nav-line">
+              <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="nav-line">
+              <%if (login){ %>
+              <span>Hi, <%=username%></span>
+              <button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>
+              <button class="nav-line myLogin" id="signUpBtn" onclick="location.href='logout_l'"> 登出 </button>
+              <% }else{%>
+              <button class="nav-line myLogin" id="signUpBtn"> 註冊 </button>
+              <button class="nav-line myLogin" id="LogInBtn"> 登入 </button>
+              <%}%>
+            </div>
           </div>
-          <div class="nav-line">
-            <%if (login){ %>
-            <span>Hi, <%=username%></span>
-            <button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>
-            <button class="nav-line myLogin" id="signUpBtn" onclick="location.href='logout_l'"> 登出 </button>
-            <% }else{%>
-            <button class="nav-line myLogin" id="signUpBtn"> 註冊 </button>
-            <button class="nav-line myLogin" id="LogInBtn"> 登入 </button>
-            <%}%>
-          </div>
-        </div>
         </div>
       </div>
     </nav>
@@ -123,7 +128,7 @@
 
       <section>
         <h1>我們的特點</h1>
-          <div  class="feature-flex blue-frame">
+          <div  class="feature-flex">
             <img class="feature-us" src="image/feature-1.png" alt="feature-1">
             <img class="feature-us" src="image/feature-2.png" alt="feature-2">
             <img class="feature-us" src="image/feature-3.png" alt="feature-3">
@@ -151,8 +156,10 @@
             <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true" style="font-size:40px;margin: 20px"></i></a>
             <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true" style="font-size:40px;margin: 20px"></i></a>
           </div>
-          <p style="font-size: 10px; display:inline;">聯絡我們</p>
-          <a href="#"><img src="letter.png" style = "height:20px;"></a>
+          <div style="margin-top:20px;">
+            <p style="font-size: 10px; display:inline;">聯絡我們</p>
+            <a href="#"><img src="letter.png" style = "height:20px;"></a>
+          </div>
         </div>
       </section>
 
@@ -256,9 +263,9 @@
             <h3 id="brand-title">CaseBar</p> 
             <h3 id="brand-title-ch">接案酒吧</p>
             <div class="nav-social nav-line">
-              <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true" style="font-size:40px;margin: 0 20px" ></i></a>
-              <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true" style="font-size:40px;margin: 0 20px"></i></a>
-              <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true" style="font-size:40px;margin: 0 20px"></i></a>
+              <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true" style="font-size:30px;margin: 0 20px;color:white;" ></i></a>
+              <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true" style="font-size:30px;margin: 0 20px;color:white;"></i></a>
+              <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true" style="font-size:30px;margin: 0 20px;color:white;"></i></a>
             </div>
           </div>
           <div id="footer-list-up" class="col-md-8" style="font-family:Microsoft JhengHei;"> 
