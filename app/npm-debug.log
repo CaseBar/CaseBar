@@ -1,0 +1,692 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'passport-local' ]
+2 info using npm@3.10.8
+3 info using node@v6.9.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData passport-local
+8 silly fetchNamedPackageData passport-local
+9 silly mapToRegistry name passport-local
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'passport-local',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'passport-local',
+12 silly mapToRegistry   name: 'passport-local',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/passport-local
+14 verbose request uri https://registry.npmjs.org/passport-local
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 14:31:07
+17 verbose request id 370d196ced9efed0
+18 verbose etag W/"59230b13-3849"
+19 verbose lastModified Mon, 22 May 2017 16:00:19 GMT
+20 http request GET https://registry.npmjs.org/passport-local
+21 http 304 https://registry.npmjs.org/passport-local
+22 verbose headers { date: 'Wed, 07 Jun 2017 06:31:08 GMT',
+22 verbose headers   via: '1.1 varnish',
+22 verbose headers   'cache-control': 'max-age=300',
+22 verbose headers   etag: 'W/"59230b13-3849"',
+22 verbose headers   age: '117',
+22 verbose headers   connection: 'keep-alive',
+22 verbose headers   'x-served-by': 'cache-itm7427-ITM',
+22 verbose headers   'x-cache': 'HIT',
+22 verbose headers   'x-cache-hits': '1',
+22 verbose headers   'x-timer': 'S1496817068.049427,VS0,VE0',
+22 verbose headers   vary: 'Accept-Encoding' }
+23 silly get cb [ 304,
+23 silly get   { date: 'Wed, 07 Jun 2017 06:31:08 GMT',
+23 silly get     via: '1.1 varnish',
+23 silly get     'cache-control': 'max-age=300',
+23 silly get     etag: 'W/"59230b13-3849"',
+23 silly get     age: '117',
+23 silly get     connection: 'keep-alive',
+23 silly get     'x-served-by': 'cache-itm7427-ITM',
+23 silly get     'x-cache': 'HIT',
+23 silly get     'x-cache-hits': '1',
+23 silly get     'x-timer': 'S1496817068.049427,VS0,VE0',
+23 silly get     vary: 'Accept-Encoding' } ]
+24 verbose etag https://registry.npmjs.org/passport-local from cache
+25 verbose get saving passport-local to /Users/lisa/.npm/registry.npmjs.org/passport-local/.cache.json
+26 verbose correctMkdir /Users/lisa/.npm correctMkdir not in flight; initializing
+27 silly install normalizeTree
+28 silly loadCurrentTree Finishing
+29 silly loadIdealTree Starting
+30 silly install loadIdealTree
+31 silly cloneCurrentTree Starting
+32 silly install cloneCurrentTreeToIdealTree
+33 silly cloneCurrentTree Finishing
+34 silly loadShrinkwrap Starting
+35 silly install loadShrinkwrap
+36 silly loadShrinkwrap Finishing
+37 silly loadAllDepsIntoIdealTree Starting
+38 silly install loadAllDepsIntoIdealTree
+39 silly resolveWithNewModule passport-local@1.0.0 checking installable status
+40 silly cache add args [ 'passport-local', null ]
+41 verbose cache add spec passport-local
+42 silly cache add parsed spec Result {
+42 silly cache add   raw: 'passport-local',
+42 silly cache add   scope: null,
+42 silly cache add   escapedName: 'passport-local',
+42 silly cache add   name: 'passport-local',
+42 silly cache add   rawSpec: '',
+42 silly cache add   spec: 'latest',
+42 silly cache add   type: 'tag' }
+43 silly addNamed passport-local@latest
+44 verbose addNamed "latest" is being treated as a dist-tag for passport-local
+45 info addNameTag [ 'passport-local', 'latest' ]
+46 silly mapToRegistry name passport-local
+47 silly mapToRegistry using default registry
+48 silly mapToRegistry registry https://registry.npmjs.org/
+49 silly mapToRegistry data Result {
+49 silly mapToRegistry   raw: 'passport-local',
+49 silly mapToRegistry   scope: null,
+49 silly mapToRegistry   escapedName: 'passport-local',
+49 silly mapToRegistry   name: 'passport-local',
+49 silly mapToRegistry   rawSpec: '',
+49 silly mapToRegistry   spec: 'latest',
+49 silly mapToRegistry   type: 'tag' }
+50 silly mapToRegistry uri https://registry.npmjs.org/passport-local
+51 verbose addNameTag registry:https://registry.npmjs.org/passport-local not in flight; fetching
+52 verbose get https://registry.npmjs.org/passport-local not expired, no request
+53 silly addNameTag next cb for passport-local with tag latest
+54 silly addNamed passport-local@1.0.0
+55 verbose addNamed "1.0.0" is a plain semver version for passport-local
+56 silly cache afterAdd passport-local@1.0.0
+57 verbose afterAdd /Users/lisa/.npm/passport-local/1.0.0/package/package.json not in flight; writing
+58 verbose correctMkdir /Users/lisa/.npm correctMkdir not in flight; initializing
+59 verbose afterAdd /Users/lisa/.npm/passport-local/1.0.0/package/package.json written
+60 silly fetchNamedPackageData passport-strategy
+61 silly mapToRegistry name passport-strategy
+62 silly mapToRegistry using default registry
+63 silly mapToRegistry registry https://registry.npmjs.org/
+64 silly mapToRegistry data Result {
+64 silly mapToRegistry   raw: 'passport-strategy',
+64 silly mapToRegistry   scope: null,
+64 silly mapToRegistry   escapedName: 'passport-strategy',
+64 silly mapToRegistry   name: 'passport-strategy',
+64 silly mapToRegistry   rawSpec: '',
+64 silly mapToRegistry   spec: 'latest',
+64 silly mapToRegistry   type: 'tag' }
+65 silly mapToRegistry uri https://registry.npmjs.org/passport-strategy
+66 verbose request uri https://registry.npmjs.org/passport-strategy
+67 verbose request no auth needed
+68 info attempt registry request try #1 at 14:31:08
+69 verbose etag W/"59230aec-14c8"
+70 verbose lastModified Mon, 22 May 2017 15:59:40 GMT
+71 http request GET https://registry.npmjs.org/passport-strategy
+72 http 304 https://registry.npmjs.org/passport-strategy
+73 verbose headers { date: 'Wed, 07 Jun 2017 06:31:08 GMT',
+73 verbose headers   via: '1.1 varnish',
+73 verbose headers   'cache-control': 'max-age=300',
+73 verbose headers   etag: 'W/"59230aec-14c8"',
+73 verbose headers   age: '99',
+73 verbose headers   connection: 'keep-alive',
+73 verbose headers   'x-served-by': 'cache-itm7427-ITM',
+73 verbose headers   'x-cache': 'HIT',
+73 verbose headers   'x-cache-hits': '13',
+73 verbose headers   'x-timer': 'S1496817068.238767,VS0,VE0',
+73 verbose headers   vary: 'Accept-Encoding' }
+74 silly get cb [ 304,
+74 silly get   { date: 'Wed, 07 Jun 2017 06:31:08 GMT',
+74 silly get     via: '1.1 varnish',
+74 silly get     'cache-control': 'max-age=300',
+74 silly get     etag: 'W/"59230aec-14c8"',
+74 silly get     age: '99',
+74 silly get     connection: 'keep-alive',
+74 silly get     'x-served-by': 'cache-itm7427-ITM',
+74 silly get     'x-cache': 'HIT',
+74 silly get     'x-cache-hits': '13',
+74 silly get     'x-timer': 'S1496817068.238767,VS0,VE0',
+74 silly get     vary: 'Accept-Encoding' } ]
+75 verbose etag https://registry.npmjs.org/passport-strategy from cache
+76 verbose get saving passport-strategy to /Users/lisa/.npm/registry.npmjs.org/passport-strategy/.cache.json
+77 verbose correctMkdir /Users/lisa/.npm correctMkdir not in flight; initializing
+78 silly resolveWithNewModule passport-strategy@1.0.0 checking installable status
+79 silly cache add args [ 'passport-strategy@1.x.x', null ]
+80 verbose cache add spec passport-strategy@1.x.x
+81 silly cache add parsed spec Result {
+81 silly cache add   raw: 'passport-strategy@1.x.x',
+81 silly cache add   scope: null,
+81 silly cache add   escapedName: 'passport-strategy',
+81 silly cache add   name: 'passport-strategy',
+81 silly cache add   rawSpec: '1.x.x',
+81 silly cache add   spec: '>=1.0.0 <2.0.0',
+81 silly cache add   type: 'range' }
+82 silly addNamed passport-strategy@>=1.0.0 <2.0.0
+83 verbose addNamed ">=1.0.0 <2.0.0" is a valid semver range for passport-strategy
+84 silly addNameRange { name: 'passport-strategy',
+84 silly addNameRange   range: '>=1.0.0 <2.0.0',
+84 silly addNameRange   hasData: false }
+85 silly mapToRegistry name passport-strategy
+86 silly mapToRegistry using default registry
+87 silly mapToRegistry registry https://registry.npmjs.org/
+88 silly mapToRegistry data Result {
+88 silly mapToRegistry   raw: 'passport-strategy',
+88 silly mapToRegistry   scope: null,
+88 silly mapToRegistry   escapedName: 'passport-strategy',
+88 silly mapToRegistry   name: 'passport-strategy',
+88 silly mapToRegistry   rawSpec: '',
+88 silly mapToRegistry   spec: 'latest',
+88 silly mapToRegistry   type: 'tag' }
+89 silly mapToRegistry uri https://registry.npmjs.org/passport-strategy
+90 verbose addNameRange registry:https://registry.npmjs.org/passport-strategy not in flight; fetching
+91 verbose get https://registry.npmjs.org/passport-strategy not expired, no request
+92 silly addNameRange number 2 { name: 'passport-strategy',
+92 silly addNameRange   range: '>=1.0.0 <2.0.0',
+92 silly addNameRange   hasData: true }
+93 silly addNameRange versions [ 'passport-strategy', [ '1.0.0' ] ]
+94 silly addNamed passport-strategy@1.0.0
+95 verbose addNamed "1.0.0" is a plain semver version for passport-strategy
+96 silly cache afterAdd passport-strategy@1.0.0
+97 verbose afterAdd /Users/lisa/.npm/passport-strategy/1.0.0/package/package.json not in flight; writing
+98 verbose correctMkdir /Users/lisa/.npm correctMkdir not in flight; initializing
+99 verbose afterAdd /Users/lisa/.npm/passport-strategy/1.0.0/package/package.json written
+100 silly loadAllDepsIntoIdealTree Finishing
+101 silly loadIdealTree Finishing
+102 silly currentTree app@1.0.0
+102 silly currentTree ├── accepts@1.3.3
+102 silly currentTree ├── after@0.8.2
+102 silly currentTree ├── arraybuffer.slice@0.0.6
+102 silly currentTree ├── backo2@1.0.2
+102 silly currentTree ├── base64-arraybuffer@0.1.5
+102 silly currentTree ├── base64id@1.0.0
+102 silly currentTree ├── better-assert@1.0.2
+102 silly currentTree ├── blob@0.0.4
+102 silly currentTree ├─┬ body-parser@1.17.1
+102 silly currentTree │ ├── bytes@2.4.0
+102 silly currentTree │ ├── content-type@1.0.2
+102 silly currentTree │ ├─┬ debug@2.6.1
+102 silly currentTree │ │ └── ms@0.7.2
+102 silly currentTree │ ├── depd@1.1.0
+102 silly currentTree │ ├─┬ http-errors@1.6.1
+102 silly currentTree │ │ ├── inherits@2.0.3
+102 silly currentTree │ │ ├── setprototypeof@1.0.3
+102 silly currentTree │ │ └── statuses@1.3.1
+102 silly currentTree │ ├── iconv-lite@0.4.15
+102 silly currentTree │ ├─┬ on-finished@2.3.0
+102 silly currentTree │ │ └── ee-first@1.1.1
+102 silly currentTree │ ├── qs@6.4.0
+102 silly currentTree │ ├─┬ raw-body@2.2.0
+102 silly currentTree │ │ └── unpipe@1.0.0
+102 silly currentTree │ └─┬ type-is@1.6.15
+102 silly currentTree │   ├── media-typer@0.3.0
+102 silly currentTree │   └─┬ mime-types@2.1.15
+102 silly currentTree │     └── mime-db@1.27.0
+102 silly currentTree ├── callsite@1.0.0
+102 silly currentTree ├── component-bind@1.0.0
+102 silly currentTree ├── component-emitter@1.2.1
+102 silly currentTree ├── component-inherit@0.0.3
+102 silly currentTree ├─┬ cookie-parser@1.4.3
+102 silly currentTree │ ├── cookie-signature@1.0.6
+102 silly currentTree │ └── cookie@0.3.1
+102 silly currentTree ├── cookie@0.3.1
+102 silly currentTree ├── debug@2.6.8
+102 silly currentTree ├── ejs@2.5.6
+102 silly currentTree ├── engine.io-client@3.1.1
+102 silly currentTree ├── engine.io-parser@2.1.1
+102 silly currentTree ├── engine.io@3.1.0
+102 silly currentTree ├─┬ express-session@1.15.2
+102 silly currentTree │ ├── cookie-signature@1.0.6
+102 silly currentTree │ ├── cookie@0.3.1
+102 silly currentTree │ ├── crc@3.4.4
+102 silly currentTree │ ├─┬ debug@2.6.3
+102 silly currentTree │ │ └── ms@0.7.2
+102 silly currentTree │ ├── depd@1.1.0
+102 silly currentTree │ ├── on-headers@1.0.1
+102 silly currentTree │ ├── parseurl@1.3.1
+102 silly currentTree │ ├─┬ uid-safe@2.1.4
+102 silly currentTree │ │ └── random-bytes@1.0.0
+102 silly currentTree │ └── utils-merge@1.0.0
+102 silly currentTree ├─┬ express@4.15.2
+102 silly currentTree │ ├─┬ accepts@1.3.3
+102 silly currentTree │ │ ├─┬ mime-types@2.1.15
+102 silly currentTree │ │ │ └── mime-db@1.27.0
+102 silly currentTree │ │ └── negotiator@0.6.1
+102 silly currentTree │ ├── array-flatten@1.1.1
+102 silly currentTree │ ├── content-disposition@0.5.2
+102 silly currentTree │ ├── content-type@1.0.2
+102 silly currentTree │ ├── cookie-signature@1.0.6
+102 silly currentTree │ ├── cookie@0.3.1
+102 silly currentTree │ ├─┬ debug@2.6.1
+102 silly currentTree │ │ └── ms@0.7.2
+102 silly currentTree │ ├── depd@1.1.0
+102 silly currentTree │ ├── encodeurl@1.0.1
+102 silly currentTree │ ├── escape-html@1.0.3
+102 silly currentTree │ ├── etag@1.8.0
+102 silly currentTree │ ├─┬ finalhandler@1.0.2
+102 silly currentTree │ │ ├─┬ debug@2.6.4
+102 silly currentTree │ │ │ └── ms@0.7.3
+102 silly currentTree │ │ └── unpipe@1.0.0
+102 silly currentTree │ ├── fresh@0.5.0
+102 silly currentTree │ ├── merge-descriptors@1.0.1
+102 silly currentTree │ ├── methods@1.1.2
+102 silly currentTree │ ├─┬ on-finished@2.3.0
+102 silly currentTree │ │ └── ee-first@1.1.1
+102 silly currentTree │ ├── parseurl@1.3.1
+102 silly currentTree │ ├── path-to-regexp@0.1.7
+102 silly currentTree │ ├─┬ proxy-addr@1.1.4
+102 silly currentTree │ │ ├── forwarded@0.1.0
+102 silly currentTree │ │ └── ipaddr.js@1.3.0
+102 silly currentTree │ ├── qs@6.4.0
+102 silly currentTree │ ├── range-parser@1.2.0
+102 silly currentTree │ ├─┬ send@0.15.1
+102 silly currentTree │ │ ├── destroy@1.0.4
+102 silly currentTree │ │ ├─┬ http-errors@1.6.1
+102 silly currentTree │ │ │ └── inherits@2.0.3
+102 silly currentTree │ │ ├── mime@1.3.4
+102 silly currentTree │ │ └── ms@0.7.2
+102 silly currentTree │ ├── serve-static@1.12.1
+102 silly currentTree │ ├── setprototypeof@1.0.3
+102 silly currentTree │ ├── statuses@1.3.1
+102 silly currentTree │ ├─┬ type-is@1.6.15
+102 silly currentTree │ │ ├── media-typer@0.3.0
+102 silly currentTree │ │ └─┬ mime-types@2.1.15
+102 silly currentTree │ │   └── mime-db@1.27.0
+102 silly currentTree │ ├── utils-merge@1.0.0
+102 silly currentTree │ └── vary@1.1.1
+102 silly currentTree ├── has-binary2@1.0.2
+102 silly currentTree ├── has-cors@1.1.0
+102 silly currentTree ├── indexof@0.0.1
+102 silly currentTree ├── isarray@2.0.1
+102 silly currentTree ├── mime-db@1.27.0
+102 silly currentTree ├── mime-types@2.1.15
+102 silly currentTree ├─┬ mongodb@2.2.26
+102 silly currentTree │ ├── es6-promise@3.2.1
+102 silly currentTree │ ├─┬ mongodb-core@2.1.10
+102 silly currentTree │ │ ├── bson@1.0.4
+102 silly currentTree │ │ └─┬ require_optional@1.0.0
+102 silly currentTree │ │   ├── resolve-from@2.0.0
+102 silly currentTree │ │   └── semver@5.3.0
+102 silly currentTree │ └─┬ readable-stream@2.2.7
+102 silly currentTree │   ├── buffer-shims@1.0.0
+102 silly currentTree │   ├── core-util-is@1.0.2
+102 silly currentTree │   ├── inherits@2.0.3
+102 silly currentTree │   ├── isarray@1.0.0
+102 silly currentTree │   ├── process-nextick-args@1.0.7
+102 silly currentTree │   ├── string_decoder@1.0.0
+102 silly currentTree │   └── util-deprecate@1.0.2
+102 silly currentTree ├─┬ mongoose@4.9.7
+102 silly currentTree │ ├─┬ async@2.1.4
+102 silly currentTree │ │ └── lodash@4.17.4
+102 silly currentTree │ ├── bson@1.0.4
+102 silly currentTree │ ├── hooks-fixed@2.0.0
+102 silly currentTree │ ├── kareem@1.4.1
+102 silly currentTree │ ├── mpath@0.2.1
+102 silly currentTree │ ├── mpromise@0.5.5
+102 silly currentTree │ ├─┬ mquery@2.3.0
+102 silly currentTree │ │ ├── bluebird@2.10.2
+102 silly currentTree │ │ ├─┬ debug@2.2.0
+102 silly currentTree │ │ │ └── ms@0.7.1
+102 silly currentTree │ │ └── sliced@0.0.5
+102 silly currentTree │ ├── ms@0.7.2
+102 silly currentTree │ ├── muri@1.2.1
+102 silly currentTree │ ├── regexp-clone@0.0.1
+102 silly currentTree │ └── sliced@1.0.1
+102 silly currentTree ├── ms@2.0.0
+102 silly currentTree ├── negotiator@0.6.1
+102 silly currentTree ├── oauth
+102 silly currentTree ├── object-assign@4.1.1
+102 silly currentTree ├── object-component@0.0.3
+102 silly currentTree ├── parsejson@0.0.3
+102 silly currentTree ├── parseqs@0.0.5
+102 silly currentTree ├── parseuri@0.0.5
+102 silly currentTree ├─┬ passport-facebook@2.1.1
+102 silly currentTree │ ├── oauth@0.9.15
+102 silly currentTree │ ├── passport-oauth2@1.4.0
+102 silly currentTree │ ├── passport-strategy@1.0.0
+102 silly currentTree │ ├── uid2@0.0.3
+102 silly currentTree │ └── utils-merge@1.0.0
+102 silly currentTree ├─┬ passport-google-oauth@1.0.0
+102 silly currentTree │ ├── oauth@0.9.15
+102 silly currentTree │ ├── passport-google-oauth1@1.0.0
+102 silly currentTree │ ├── passport-google-oauth20@1.0.0
+102 silly currentTree │ ├── passport-oauth1@1.1.0
+102 silly currentTree │ ├── passport-oauth2@1.4.0
+102 silly currentTree │ ├── passport-strategy@1.0.0
+102 silly currentTree │ ├── uid2@0.0.3
+102 silly currentTree │ └── utils-merge@1.0.0
+102 silly currentTree ├── passport-oauth2
+102 silly currentTree ├── passport-strategy
+102 silly currentTree ├─┬ passport@0.3.2
+102 silly currentTree │ └── passport-strategy@1.0.0
+102 silly currentTree ├── pause@0.0.1
+102 silly currentTree ├── safe-buffer@5.0.1
+102 silly currentTree ├─┬ socket.io-adapter@1.1.0
+102 silly currentTree │ ├── debug@2.3.3
+102 silly currentTree │ └── ms@0.7.2
+102 silly currentTree ├─┬ socket.io-client@2.0.1
+102 silly currentTree │ ├── debug@2.6.4
+102 silly currentTree │ └── ms@0.7.3
+102 silly currentTree ├── socket.io-parser@3.1.2
+102 silly currentTree ├── socket.io@2.0.1
+102 silly currentTree ├── to-array@0.1.4
+102 silly currentTree ├── uid2
+102 silly currentTree ├── ultron@1.1.0
+102 silly currentTree ├── utils-merge
+102 silly currentTree ├── uws@0.14.5
+102 silly currentTree ├── ws@2.3.1
+102 silly currentTree ├── xmlhttprequest-ssl@1.5.3
+102 silly currentTree └── yeast@0.1.2
+103 silly idealTree app@1.0.0
+103 silly idealTree ├── accepts@1.3.3
+103 silly idealTree ├── after@0.8.2
+103 silly idealTree ├── arraybuffer.slice@0.0.6
+103 silly idealTree ├── backo2@1.0.2
+103 silly idealTree ├── base64-arraybuffer@0.1.5
+103 silly idealTree ├── base64id@1.0.0
+103 silly idealTree ├── better-assert@1.0.2
+103 silly idealTree ├── blob@0.0.4
+103 silly idealTree ├─┬ body-parser@1.17.1
+103 silly idealTree │ ├── bytes@2.4.0
+103 silly idealTree │ ├── content-type@1.0.2
+103 silly idealTree │ ├─┬ debug@2.6.1
+103 silly idealTree │ │ └── ms@0.7.2
+103 silly idealTree │ ├── depd@1.1.0
+103 silly idealTree │ ├─┬ http-errors@1.6.1
+103 silly idealTree │ │ ├── inherits@2.0.3
+103 silly idealTree │ │ ├── setprototypeof@1.0.3
+103 silly idealTree │ │ └── statuses@1.3.1
+103 silly idealTree │ ├── iconv-lite@0.4.15
+103 silly idealTree │ ├─┬ on-finished@2.3.0
+103 silly idealTree │ │ └── ee-first@1.1.1
+103 silly idealTree │ ├── qs@6.4.0
+103 silly idealTree │ ├─┬ raw-body@2.2.0
+103 silly idealTree │ │ └── unpipe@1.0.0
+103 silly idealTree │ └─┬ type-is@1.6.15
+103 silly idealTree │   ├── media-typer@0.3.0
+103 silly idealTree │   └─┬ mime-types@2.1.15
+103 silly idealTree │     └── mime-db@1.27.0
+103 silly idealTree ├── callsite@1.0.0
+103 silly idealTree ├── component-bind@1.0.0
+103 silly idealTree ├── component-emitter@1.2.1
+103 silly idealTree ├── component-inherit@0.0.3
+103 silly idealTree ├─┬ cookie-parser@1.4.3
+103 silly idealTree │ ├── cookie-signature@1.0.6
+103 silly idealTree │ └── cookie@0.3.1
+103 silly idealTree ├── cookie@0.3.1
+103 silly idealTree ├── debug@2.6.8
+103 silly idealTree ├── ejs@2.5.6
+103 silly idealTree ├── engine.io-client@3.1.1
+103 silly idealTree ├── engine.io-parser@2.1.1
+103 silly idealTree ├── engine.io@3.1.0
+103 silly idealTree ├─┬ express-session@1.15.2
+103 silly idealTree │ ├── cookie-signature@1.0.6
+103 silly idealTree │ ├── cookie@0.3.1
+103 silly idealTree │ ├── crc@3.4.4
+103 silly idealTree │ ├─┬ debug@2.6.3
+103 silly idealTree │ │ └── ms@0.7.2
+103 silly idealTree │ ├── depd@1.1.0
+103 silly idealTree │ ├── on-headers@1.0.1
+103 silly idealTree │ ├── parseurl@1.3.1
+103 silly idealTree │ ├─┬ uid-safe@2.1.4
+103 silly idealTree │ │ └── random-bytes@1.0.0
+103 silly idealTree │ └── utils-merge@1.0.0
+103 silly idealTree ├─┬ express@4.15.2
+103 silly idealTree │ ├─┬ accepts@1.3.3
+103 silly idealTree │ │ ├─┬ mime-types@2.1.15
+103 silly idealTree │ │ │ └── mime-db@1.27.0
+103 silly idealTree │ │ └── negotiator@0.6.1
+103 silly idealTree │ ├── array-flatten@1.1.1
+103 silly idealTree │ ├── content-disposition@0.5.2
+103 silly idealTree │ ├── content-type@1.0.2
+103 silly idealTree │ ├── cookie-signature@1.0.6
+103 silly idealTree │ ├── cookie@0.3.1
+103 silly idealTree │ ├─┬ debug@2.6.1
+103 silly idealTree │ │ └── ms@0.7.2
+103 silly idealTree │ ├── depd@1.1.0
+103 silly idealTree │ ├── encodeurl@1.0.1
+103 silly idealTree │ ├── escape-html@1.0.3
+103 silly idealTree │ ├── etag@1.8.0
+103 silly idealTree │ ├─┬ finalhandler@1.0.2
+103 silly idealTree │ │ ├─┬ debug@2.6.4
+103 silly idealTree │ │ │ └── ms@0.7.3
+103 silly idealTree │ │ └── unpipe@1.0.0
+103 silly idealTree │ ├── fresh@0.5.0
+103 silly idealTree │ ├── merge-descriptors@1.0.1
+103 silly idealTree │ ├── methods@1.1.2
+103 silly idealTree │ ├─┬ on-finished@2.3.0
+103 silly idealTree │ │ └── ee-first@1.1.1
+103 silly idealTree │ ├── parseurl@1.3.1
+103 silly idealTree │ ├── path-to-regexp@0.1.7
+103 silly idealTree │ ├─┬ proxy-addr@1.1.4
+103 silly idealTree │ │ ├── forwarded@0.1.0
+103 silly idealTree │ │ └── ipaddr.js@1.3.0
+103 silly idealTree │ ├── qs@6.4.0
+103 silly idealTree │ ├── range-parser@1.2.0
+103 silly idealTree │ ├─┬ send@0.15.1
+103 silly idealTree │ │ ├── destroy@1.0.4
+103 silly idealTree │ │ ├─┬ http-errors@1.6.1
+103 silly idealTree │ │ │ └── inherits@2.0.3
+103 silly idealTree │ │ ├── mime@1.3.4
+103 silly idealTree │ │ └── ms@0.7.2
+103 silly idealTree │ ├── serve-static@1.12.1
+103 silly idealTree │ ├── setprototypeof@1.0.3
+103 silly idealTree │ ├── statuses@1.3.1
+103 silly idealTree │ ├─┬ type-is@1.6.15
+103 silly idealTree │ │ ├── media-typer@0.3.0
+103 silly idealTree │ │ └─┬ mime-types@2.1.15
+103 silly idealTree │ │   └── mime-db@1.27.0
+103 silly idealTree │ ├── utils-merge@1.0.0
+103 silly idealTree │ └── vary@1.1.1
+103 silly idealTree ├── has-binary2@1.0.2
+103 silly idealTree ├── has-cors@1.1.0
+103 silly idealTree ├── indexof@0.0.1
+103 silly idealTree ├── isarray@2.0.1
+103 silly idealTree ├── mime-db@1.27.0
+103 silly idealTree ├── mime-types@2.1.15
+103 silly idealTree ├─┬ mongodb@2.2.26
+103 silly idealTree │ ├── es6-promise@3.2.1
+103 silly idealTree │ ├─┬ mongodb-core@2.1.10
+103 silly idealTree │ │ ├── bson@1.0.4
+103 silly idealTree │ │ └─┬ require_optional@1.0.0
+103 silly idealTree │ │   ├── resolve-from@2.0.0
+103 silly idealTree │ │   └── semver@5.3.0
+103 silly idealTree │ └─┬ readable-stream@2.2.7
+103 silly idealTree │   ├── buffer-shims@1.0.0
+103 silly idealTree │   ├── core-util-is@1.0.2
+103 silly idealTree │   ├── inherits@2.0.3
+103 silly idealTree │   ├── isarray@1.0.0
+103 silly idealTree │   ├── process-nextick-args@1.0.7
+103 silly idealTree │   ├── string_decoder@1.0.0
+103 silly idealTree │   └── util-deprecate@1.0.2
+103 silly idealTree ├─┬ mongoose@4.9.7
+103 silly idealTree │ ├─┬ async@2.1.4
+103 silly idealTree │ │ └── lodash@4.17.4
+103 silly idealTree │ ├── bson@1.0.4
+103 silly idealTree │ ├── hooks-fixed@2.0.0
+103 silly idealTree │ ├── kareem@1.4.1
+103 silly idealTree │ ├── mpath@0.2.1
+103 silly idealTree │ ├── mpromise@0.5.5
+103 silly idealTree │ ├─┬ mquery@2.3.0
+103 silly idealTree │ │ ├── bluebird@2.10.2
+103 silly idealTree │ │ ├─┬ debug@2.2.0
+103 silly idealTree │ │ │ └── ms@0.7.1
+103 silly idealTree │ │ └── sliced@0.0.5
+103 silly idealTree │ ├── ms@0.7.2
+103 silly idealTree │ ├── muri@1.2.1
+103 silly idealTree │ ├── regexp-clone@0.0.1
+103 silly idealTree │ └── sliced@1.0.1
+103 silly idealTree ├── ms@2.0.0
+103 silly idealTree ├── negotiator@0.6.1
+103 silly idealTree ├── oauth
+103 silly idealTree ├── object-assign@4.1.1
+103 silly idealTree ├── object-component@0.0.3
+103 silly idealTree ├── parsejson@0.0.3
+103 silly idealTree ├── parseqs@0.0.5
+103 silly idealTree ├── parseuri@0.0.5
+103 silly idealTree ├─┬ passport-facebook@2.1.1
+103 silly idealTree │ ├── oauth@0.9.15
+103 silly idealTree │ ├── passport-oauth2@1.4.0
+103 silly idealTree │ ├── passport-strategy@1.0.0
+103 silly idealTree │ ├── uid2@0.0.3
+103 silly idealTree │ └── utils-merge@1.0.0
+103 silly idealTree ├─┬ passport-google-oauth@1.0.0
+103 silly idealTree │ ├── oauth@0.9.15
+103 silly idealTree │ ├── passport-google-oauth1@1.0.0
+103 silly idealTree │ ├── passport-google-oauth20@1.0.0
+103 silly idealTree │ ├── passport-oauth1@1.1.0
+103 silly idealTree │ ├── passport-oauth2@1.4.0
+103 silly idealTree │ ├── passport-strategy@1.0.0
+103 silly idealTree │ ├── uid2@0.0.3
+103 silly idealTree │ └── utils-merge@1.0.0
+103 silly idealTree ├─┬ passport-local@1.0.0
+103 silly idealTree │ └── passport-strategy@1.0.0
+103 silly idealTree ├── passport-oauth2
+103 silly idealTree ├── passport-strategy
+103 silly idealTree ├─┬ passport@0.3.2
+103 silly idealTree │ └── passport-strategy@1.0.0
+103 silly idealTree ├── pause@0.0.1
+103 silly idealTree ├── safe-buffer@5.0.1
+103 silly idealTree ├─┬ socket.io-adapter@1.1.0
+103 silly idealTree │ ├── debug@2.3.3
+103 silly idealTree │ └── ms@0.7.2
+103 silly idealTree ├─┬ socket.io-client@2.0.1
+103 silly idealTree │ ├── debug@2.6.4
+103 silly idealTree │ └── ms@0.7.3
+103 silly idealTree ├── socket.io-parser@3.1.2
+103 silly idealTree ├── socket.io@2.0.1
+103 silly idealTree ├── to-array@0.1.4
+103 silly idealTree ├── uid2
+103 silly idealTree ├── ultron@1.1.0
+103 silly idealTree ├── utils-merge
+103 silly idealTree ├── uws@0.14.5
+103 silly idealTree ├── ws@2.3.1
+103 silly idealTree ├── xmlhttprequest-ssl@1.5.3
+103 silly idealTree └── yeast@0.1.2
+104 silly generateActionsToTake Starting
+105 silly install generateActionsToTake
+106 silly generateActionsToTake Finishing
+107 silly diffTrees action count 2
+108 silly diffTrees add passport-strategy@1.0.0
+109 silly diffTrees add passport-local@1.0.0
+110 silly decomposeActions action count 16
+111 silly decomposeActions fetch passport-strategy@1.0.0
+112 silly decomposeActions extract passport-strategy@1.0.0
+113 silly decomposeActions test passport-strategy@1.0.0
+114 silly decomposeActions preinstall passport-strategy@1.0.0
+115 silly decomposeActions build passport-strategy@1.0.0
+116 silly decomposeActions install passport-strategy@1.0.0
+117 silly decomposeActions postinstall passport-strategy@1.0.0
+118 silly decomposeActions finalize passport-strategy@1.0.0
+119 silly decomposeActions fetch passport-local@1.0.0
+120 silly decomposeActions extract passport-local@1.0.0
+121 silly decomposeActions test passport-local@1.0.0
+122 silly decomposeActions preinstall passport-local@1.0.0
+123 silly decomposeActions build passport-local@1.0.0
+124 silly decomposeActions install passport-local@1.0.0
+125 silly decomposeActions postinstall passport-local@1.0.0
+126 silly decomposeActions finalize passport-local@1.0.0
+127 silly runTopLevelLifecycles Starting
+128 silly executeActions Starting
+129 silly install executeActions
+130 silly doSerial global-install 0
+131 silly doParallel fetch 2
+132 verbose correctMkdir /Users/lisa/.npm/_locks correctMkdir not in flight; initializing
+133 verbose lock using /Users/lisa/.npm/_locks/staging-9724f0fbd6b1a0dd.lock for /Users/lisa/Desktop/CaseBar/app/node_modules/.staging
+134 silly doParallel extract 2
+135 silly extract passport-strategy@1.0.0
+136 silly extract passport-local@1.0.0
+137 verbose unbuild node_modules/.staging/passport-local-acbf900f
+138 verbose unbuild node_modules/.staging/passport-strategy-b6d2b92e
+139 silly gentlyRm /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f is being purged from base /Users/lisa/Desktop/CaseBar/app
+140 verbose gentlyRm don't care about contents; nuking /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f
+141 silly gentlyRm /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e is being purged from base /Users/lisa/Desktop/CaseBar/app
+142 verbose gentlyRm don't care about contents; nuking /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e
+143 verbose tar unpack /Users/lisa/.npm/passport-local/1.0.0/package.tgz
+144 verbose tar unpacking to /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f
+145 silly gentlyRm /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f is being purged
+146 verbose gentlyRm don't care about contents; nuking /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f
+147 verbose tar unpack /Users/lisa/.npm/passport-strategy/1.0.0/package.tgz
+148 verbose tar unpacking to /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e
+149 silly gentlyRm /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e is being purged
+150 verbose gentlyRm don't care about contents; nuking /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e
+151 silly gunzTarPerm modes [ '755', '644' ]
+152 silly gunzTarPerm modes [ '755', '644' ]
+153 silly gunzTarPerm extractEntry package.json
+154 silly gunzTarPerm extractEntry package.json
+155 silly gunzTarPerm extractEntry README.md
+156 silly gunzTarPerm extractEntry LICENSE
+157 silly gunzTarPerm extractEntry README.md
+158 silly gunzTarPerm extractEntry LICENSE
+159 silly gunzTarPerm extractEntry .jshintrc
+160 silly gunzTarPerm extractEntry .travis.yml
+161 silly gunzTarPerm extractEntry lib/index.js
+162 silly gunzTarPerm extractEntry lib/strategy.js
+163 silly gunzTarPerm extractEntry lib/utils.js
+164 silly gunzTarPerm extractEntry lib/index.js
+165 silly gunzTarPerm extractEntry lib/strategy.js
+166 silly gentlyRm /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f/node_modules is being purged
+167 verbose gentlyRm don't care about contents; nuking /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f/node_modules
+168 silly gentlyRm /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e/node_modules is being purged
+169 verbose gentlyRm don't care about contents; nuking /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e/node_modules
+170 silly doParallel preinstall 2
+171 silly preinstall passport-strategy@1.0.0 /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-strategy-b6d2b92e
+172 info lifecycle passport-strategy@1.0.0~preinstall: passport-strategy@1.0.0
+173 silly preinstall passport-local@1.0.0 /Users/lisa/Desktop/CaseBar/app/node_modules/.staging/passport-local-acbf900f
+174 info lifecycle passport-local@1.0.0~preinstall: passport-local@1.0.0
+175 silly lifecycle passport-strategy@1.0.0~preinstall: no script for preinstall, continuing
+176 silly lifecycle passport-local@1.0.0~preinstall: no script for preinstall, continuing
+177 silly doReverseSerial remove 0
+178 silly doSerial move 0
+179 silly doSerial finalize 2
+180 silly finalize /Users/lisa/Desktop/CaseBar/app/node_modules/passport-local/node_modules/passport-strategy
+181 silly finalize /Users/lisa/Desktop/CaseBar/app/node_modules/passport-local
+182 verbose unlock done using /Users/lisa/.npm/_locks/staging-9724f0fbd6b1a0dd.lock for /Users/lisa/Desktop/CaseBar/app/node_modules/.staging
+183 silly rollbackFailedOptional Starting
+184 silly rollbackFailedOptional Finishing
+185 silly runTopLevelLifecycles Finishing
+186 silly install printInstalled
+187 warn enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/oauth/package.json'
+188 verbose enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/oauth/package.json'
+188 verbose enoent This is most likely not a problem with npm itself
+188 verbose enoent and is related to npm not being able to find a file.
+189 warn enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/passport-oauth2/package.json'
+190 verbose enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/passport-oauth2/package.json'
+190 verbose enoent This is most likely not a problem with npm itself
+190 verbose enoent and is related to npm not being able to find a file.
+191 warn enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/passport-strategy/package.json'
+192 verbose enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/passport-strategy/package.json'
+192 verbose enoent This is most likely not a problem with npm itself
+192 verbose enoent and is related to npm not being able to find a file.
+193 warn enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/uid2/package.json'
+194 verbose enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/uid2/package.json'
+194 verbose enoent This is most likely not a problem with npm itself
+194 verbose enoent and is related to npm not being able to find a file.
+195 warn enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/utils-merge/package.json'
+196 verbose enoent ENOENT: no such file or directory, open '/Users/lisa/Desktop/CaseBar/app/node_modules/utils-merge/package.json'
+196 verbose enoent This is most likely not a problem with npm itself
+196 verbose enoent and is related to npm not being able to find a file.
+197 warn app@1.0.0 No description
+198 verbose If you need help, you may report this error at:
+198 verbose     <https://github.com/npm/npm/issues>
+199 warn app@1.0.0 No repository field.
+200 verbose If you need help, you may report this error at:
+200 verbose     <https://github.com/npm/npm/issues>
+201 verbose stack Error: ENOTEMPTY: directory not empty, rename '/Users/lisa/Desktop/CaseBar/app/node_modules/passport-local' -> '/Users/lisa/Desktop/CaseBar/app/node_modules/.passport-local.DELETE'
+201 verbose stack     at moveAway (/usr/local/lib/node_modules/npm/lib/install/action/finalize.js:38:5)
+201 verbose stack     at destStatted (/usr/local/lib/node_modules/npm/lib/install/action/finalize.js:27:7)
+201 verbose stack     at FSReqWrap.oncomplete (fs.js:123:15)
+201 verbose stack
+201 verbose stack Error: ENOTEMPTY: directory not empty, rename '/Users/lisa/Desktop/CaseBar/app/node_modules/passport-local' -> '/Users/lisa/Desktop/CaseBar/app/node_modules/.passport-local.DELETE'
+201 verbose stack     at Error (native)
+202 verbose cwd /Users/lisa/Desktop/CaseBar/app
+203 error Darwin 16.4.0
+204 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "passport-local"
+205 error node v6.9.1
+206 error npm  v3.10.8
+207 error path /Users/lisa/Desktop/CaseBar/app/node_modules/passport-local
+208 error code ENOTEMPTY
+209 error errno -66
+210 error syscall rename
+211 error ENOTEMPTY: directory not empty, rename '/Users/lisa/Desktop/CaseBar/app/node_modules/passport-local' -> '/Users/lisa/Desktop/CaseBar/app/node_modules/.passport-local.DELETE'
+212 error If you need help, you may report this error at:
+212 error     <https://github.com/npm/npm/issues>
+213 verbose exit [ -66, true ]

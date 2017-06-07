@@ -1,0 +1,228 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      function Typemouseover(x){
+        x.style.color = "white";
+        x.style.backgroundColor = "black";
+      }
+      function Typemouseout(x){
+        x.style.color = "black";
+        x.style.backgroundColor = "white";
+      }
+      function Navmouseover(x){
+        x.style.textDecoration = "underline";
+        x.style.textDecorationColor= "#0000FF";
+      }
+      function Navmouseout(x){
+        x.style.textDecoration = "none";
+      }
+      function Mymouseover(x){
+        var color_ = x.style.color;
+        x.style.color = "white";
+        x.style.backgroundColor = color_;
+      }
+      function Mymouseout(x){
+        var color_ = x.style.backgroundColor;
+        x.style.color = color_;
+        x.style.backgroundColor = "rgba(1,1,1,0)";
+      }
+      function submitmouseover(x){
+        x.style.color = "white";
+        x.style.backgroundColor = "#0000FF";
+      }
+      function submitmouseout(x){
+        x.style.color = "#0000FF";
+        x.style.backgroundColor = "white";
+      }
+    </script>
+
+    <!-- 註冊modal用 -->
+    <script>
+    $(document).ready(function(){
+        $("#signUpBtn").click(function(){
+            $("#signUpModal").modal();
+        });
+    });
+    </script>
+
+    <!-- 登入modal用 -->
+    <script >
+    $(document).ready(function(){
+        $("#LogInBtn").click(function(){
+            $("#LogInModal").modal();
+        });
+    });
+    </script>
+    <style type="text/css">
+      h2{
+        font-weight: 3px;
+        padding-left: 2%;
+        text-align: left;
+        font-size: 25px;
+      }
+      p{
+        text-align: left;
+      }
+    </style>
+  <body>
+    <nav class="navbar navbar-fixed-top" style="background-color: white">
+      <a class="navbar-brand" href="#" onclick="location.href='landingpage'"><img src="logo.png" style = "height:50px;"></a>
+      <div class="collapse navbar-collapse col-md-offset-2" id="navbarNavAltMarkup">
+        <div class="navbar-nav" style="width: 500px; padding-top: 35px;">
+          <a class="nav-item nav-link active" href="#" onclick="location.href='surfReview'" style="font-size: 20px;color: black;margin-left: 5%;"onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)" >瀏覽評論</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: #0000FF; ">發表守則</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='aboutUs'">關於我們</a>
+          <!-- 登入才有的 -->
+          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d; " onclick="location.href='reviewPost'">我要發表</a>
+        </div>
+        <div class="navbar-nav" style="width: 30%; padding-top: 25px; float: right;">
+          <a href="#"><img src="facebook.png" style = "height:25px;"></a>
+          <a href="#"><img src="instagram.png" style = "height:25px;"></a>
+          <a href="#"><img src="twitter.png" style = "height:25px;"></a>
+
+          <%if (login){ %>
+          <span>Hi, <%=username%></span>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; margin-left: 2%;">我的檔案</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;margin-left: 2%;" onclick="location.href='logout_l'">登出</button>
+          <% }else{%>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="margin-left: 20%;height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="margin-left: 2%;height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
+          <%}%>
+        </div>
+      </div>
+    </nav>
+    <section class="container" style="margin-top: 10%; text-align: center;">
+      <h1>發言規定</h1>
+      <div>
+        <h2><strong>(一) 評論要屬實</strong></h2>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所有的發言都應該是從個人經驗出發，並以誠實為前提。如果被檢舉不實，本平台將有刪除評論的權利，並把帳號列入黑名單之內。
+        </p>
+      </div>
+      <div>
+        <h2><strong>(二) 要秉持公正</strong></h2>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評論的時候，應保持公正的態度，這不只會讓自己的發言更具中立性，也給了其他使用者評估的空間，讓自身經驗更具參考性。
+        </p>
+      </div>
+      <div>
+        <h2><strong>(三) 要為自己的言論負責</strong></h2>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本平台不為使用者的評論做任何負責，因此在書寫評論時，請三思後再書寫，避免讓自己捲入法律的糾紛。
+        </p>
+      </div>
+    </section>
+    <!-- 註冊modal -->
+    <div class="container">
+      <!-- Modal -->
+      <div class="modal fade" id="signUpModal" role="dialog">
+        <div class="modal-dialog">   
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px; ">
+            <label style="margin-top:10px; font-size:70px;color:#0000FF;"><span ><img class="col-md-6" src="logo2.png" style = "width:150px; height:auto"></span>CaseBar</label>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="background-color:#FF7F50; height:450px;">
+              <p  style="font-size:30px; text-align:center; color:white; ">新會員註冊</p>
+              <form id="signupForm" action="/signup" method="post" onSubmit="">
+                <div class="form-group">
+                  <input type="text" name="realname" required class="form-control" placeholder="姓名">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="密碼">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="" required class="form-control" placeholder="確認密碼">
+                </div>
+                <div class="form-group">
+                  <input type="date" name="birthday" required class="form-control" placeholder="生日">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="email" required class="form-control" placeholder="電子信箱">
+                </div>
+
+                <div class="checkbox">
+                  <label><input type="checkbox" value="" checked>Remember me</label>
+                </div >
+                  <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">註冊</button><br>
+                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span><img class="col-md-6" src="facebook-modal.png" style = "height:25px;width:auto"></span>以facebook註冊</button><br>
+                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google註冊</button>
+              </form>
+            </div>
+            <div style="background-color: #f9f9f9" class="modal-footer">
+              <p>已經註冊了? <a href="#">登入</a></p>
+            </div>
+          </div>
+          
+        </div>
+      </div> 
+    </div>
+
+   <!-- 登入modal -->
+    <div class="container">
+      <!-- Modal -->
+      <div class="modal fade" id="LogInModal" role="dialog">
+        <div class="modal-dialog">   
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px; ">
+            <label style="margin-top:10px; font-size:70px;color:#0000FF;"><span ><img class="col-md-6" src="logo2.png" style = "width:150px; height:auto"></span>CaseBar</label>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="background-color:#FF7F50; height:450px;">
+              <p  style="font-size:30px; text-align:center; color:white; ">會員登入</p>
+              <form id="loginForm" action="/login" method="post">
+                <div class="form-group">
+                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" required class="form-control" placeholder="密碼">
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="" checked>Remember me</label>
+                </div >
+                  <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">登入</button><br>
+                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span><img class="col-md-6" src="facebook-modal.png" style = "height:25px;width:auto"></span>以facebook登入</button><br>
+                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google登入</button>
+              </form>
+            </div>
+            <div style="background-color:#f9f9f9; margin:auto;" class="modal-footer">
+              <a href="#" class="col-md-offset-2"  >新會員註冊</a>
+              <a href="#" class="col-md-offset-2"  >忘記密碼</a>
+            </div>
+          </div>
+          
+        </div>
+      </div> 
+    </div>
+    <footer style="position:absolute; width:100%; left:0px;height:250px;">
+        <div  class="col-md-4" style="font-family:Microsoft JhengHei; color: white; font-weight:bold; left:10%; ">
+          <p style="margin-left: -7%;font-size: 40px; ">CaseBar</p> 
+          <p style="font-size: 25px; ">接案酒吧</p>
+          <br>
+           <a href="#"><img src="facebook-footer.png" style = " margin-left: -8%; height:40px;"></a>
+          <a href="#"><img src="instagram-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="twitter-footer.png" style = "height:40px;"></a>
+          <a href="#"><img src="letter-footer.png" style = "height:40px;"></a> 
+        </div>
+        <div  class="col-md-8" style="margin-top:  2%; font-family:Microsoft JhengHei; font-weight:bold;left:10%;"> 
+          <a href="#"><p style="font-size: 15px; color: white;">關注我們</p></a>
+          <a href="#"><p style="font-size: 15px; color: white;">我們在做什麼</p></a>
+          <a href="#"><p style="font-size: 15px; color: white;">我們的特點</p></a>
+          <a href="#"><p style="font-size: 15px; color: white;">我們是誰</p></a>
+        </div>
+    </footer>
+  </body>
+</html>

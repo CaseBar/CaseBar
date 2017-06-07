@@ -1,0 +1,79 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+
+</head>
+
+<body>
+	<div class="ui three column grid">
+		<div class="row"></div>
+		<div class="row">
+			<div class="column"></div>
+			<div class="column ui segment">
+				<% if (login) {%>
+				<h3 class="title">新增文章</h3>
+				<form id="newpostForm" class="ui form" action="/newpost" method="post">
+					<div class="field">
+						<label>標題</label>
+						<input type="text" maxlength='16' name="posttitle" required >
+					</div>
+					<div class="field">
+						<label>內文</label>
+						<textarea type="text" cols="30" rows="8" name='postcontent' required ></textarea>
+					</div>
+					<div class="grouped fields">
+						<label>選擇文章分類</label>
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" name="posttype" value="frontend" required >
+								<label>前端工程師</label>
+							</div>
+						</div>
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" name="posttype" value="backend" required>
+								<label>後端工程師</label>
+							</div>
+						</div>
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" name="posttype" value="uiux" required>
+								<label>UI/UX</label>
+							</div>
+						</div>
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" name="posttype" value="photography" required>
+								<label>攝影</label>
+							</div>
+						</div>
+
+					</div>
+					<div class="ui buttons">
+						<button class="ui button">取消</button>
+						<div class="or"></div>
+						<button class="ui positive button" type="submit" onclick="">新增</button>
+					</div>
+
+				</form>
+				<%}else{%>
+				<h3>請先登入以繼續</h3>
+				<a href='/'>回首頁</a>
+				<a href='/login'>登入</a>
+				<%}%>
+
+			</div>
+			<div class="column"></div>
+		</div>
+	</div>
+<script type="text/javascript">
+	$('.ui.checkbox').checkbox();
+</script>
+
+</body>
+</html>
