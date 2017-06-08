@@ -291,6 +291,8 @@ var defaultPost = true;
 	if (req.session.postId != null)
 		defaultPost = false;
 	//所有文章
+
+	setTimeout(function() {
 	Post.find({ }, function(err, posts){
 		var context = {
 			user: signupContext.users,
@@ -317,6 +319,8 @@ var defaultPost = true;
 		};
 		res.render('surfReview', context);
 	}).sort({postdate: -1});
+}, 1500 );
+
 
 });
 
@@ -619,7 +623,7 @@ else if (req.body.postDelete != null) {
 			}
 		}
 	);
-	}, 500 );
+	}, 1000 );
 
 	setTimeout(function() {
 	Post.remove({_id: req.session.postId},function(err){
@@ -632,7 +636,7 @@ else if (req.body.postDelete != null) {
 			//return res.redirect(303, '/reviewDetail');
 		}
 	);
-	}, 1000 );
+	}, 500 );
 	return res.redirect(303, '/surfReview');
 }
 
