@@ -95,8 +95,11 @@
 
           <div class="col-md-3" style="margin-top: 2.5%;">
           <%if(thisPost[j].thisPostowner==username){%> 
-            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;" onclick="location.href='reviseReview'">編輯貼文</button>
+          <form action="/reviewDetail" method="POST">
+            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style=" border-color: #FF3333;color:#FF3333;" onclick="location.href='reviseReview'">編輯貼文</button>
+            
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;" name='postDelete' value='<%=thisPost[j]._id%>'>刪除貼文</button>
+            </form>
           <%}%>  
           </div>
         </div>

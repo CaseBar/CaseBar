@@ -612,22 +612,28 @@ return res.redirect(303, '/reviewDetail');
 
 //刪除文章
 else if (req.body.postDelete != null) {
+	setTimeout(function() {
 	Response.remove({responsePost: req.session.postId},function(err){
 			if (err){
 				console.error(err.stack);
 			}
 		}
 	);
+	}, 500 );
+
+	setTimeout(function() {
 	Post.remove({_id: req.session.postId},function(err){
 			if (err){
 				console.error(err.stack);
 				req.session.postId = null;
-				return res.redirect(303, '/reviewDetail');
+				return res.redirect(303, '/surfReview');
 			}
 			req.session.postId = null;
-			return res.redirect(303, '/reviewDetail');
+			//return res.redirect(303, '/reviewDetail');
 		}
 	);
+	}, 1000 );
+	return res.redirect(303, '/surfReview');
 }
 
 //刪除留言
