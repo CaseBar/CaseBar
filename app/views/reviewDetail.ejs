@@ -34,6 +34,7 @@
         x.style.color = color_;
         x.style.backgroundColor = "rgba(1,1,1,0)";
       }
+
     </script>
 
     <!-- 註冊modal用 -->
@@ -41,6 +42,13 @@
     $(document).ready(function(){
         $("#signUpBtn").click(function(){
             $("#signUpModal").modal();
+        });
+        $('#opinionForm').submit(function() {
+          if(<%=login%>===false){
+            alert("請先登入以繼續");
+            return false;
+          }
+
         });
     });
     </script>
@@ -108,7 +116,7 @@
         <p><%=thisPost[j].thisPostcontent%></p>
       </div>
       <div class = "reviewFooter">
-      <form action="/reviewDetail" method="POST">
+      <form id="opinionForm" action="/reviewDetail" method="POST">
         <div class="col-md-3">
           <button style="float: left;border:none;">
             <img src="留言.png" style="height: 70%;">
@@ -116,7 +124,7 @@
           <p class="commentNumber" style="padding-left: 3%; font-size: 30px;"><%=thisPost[j].thisPostresponsenum%></p> 
         </div>
         <div  class="col-md-3">
-          <button name="postAgree" style="float: left; border:none;">
+          <button name="postAgree" style="float: left; border:none;" >
             <img src="agree.png" style="height: 70%;">
           </button>
           <p class="agreeNumber" style="padding-left: 3%; font-size: 30px;"><%=thisPost[j].thisPostagree%></p>
@@ -137,17 +145,6 @@
       </div>
       <%}%>
       <div>
-
-
-      <script type="text/javascript">
-        // function test(){
-        //   if(has){
-        //     alert("你已經按過");
-        //   }
-        // }
-      </script>
-
-
 
         <form action="/reviewDetail" method="POST">
           <div style="border-top:1px solid #FF3333; border-bottom:1px solid #FF3333">
@@ -172,7 +169,7 @@
             </div>
               <%}%>
           </div>
-
+<%if (login){ %>
           <div style="text-align: center;">
             <h2 >我要留言</h2>
             <textarea name='response' style=" margin-top: 1%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
@@ -180,7 +177,14 @@
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;width:8%;margin-bottom: 1%; ">取消</button>
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;width:8%; margin-bottom: 1%;">送出</button>
           </div>
+                    <% }else{%>
+<h2>請先登入以留言</h2>
+    <%}%>
         </form>
+
+
+
+
       </div>
     </div>
      <!-- 註冊modal -->
