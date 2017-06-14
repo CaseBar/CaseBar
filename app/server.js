@@ -73,17 +73,41 @@ require('./config/passport')(passport);
 	res.redirect(303, '/landingpage');
 
 });
+app.get('/auth/facebook',
+    passport.authenticate('facebook', {session: false, scope : ['email'] })
+);
+// handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook',  { session: false, failureRedirect : '/'}),
+    
+    // on succes
+    function(req,res) {
+        // return the token or you would wish otherwise give eg. a succes message
+        res.render('json', {data: JSON.stringify(req.user.access_token)});
+    },
+    
+    // on error; likely to be something FacebookTokenError token invalid or already used token,
+    // these errors occur when the user logs in twice with the same token
+    function(err,req,res,next) {
+        // You could put your own behavior in here, fx: you could force auth again...
+        // res.redirect('/auth/facebook/');
+        if(err) {
+            res.status(400);
+            res.render('error', {message: err.message});
+        }
+    }
+);
 
 
         // route for facebook authentication and login
-        app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['profile','email'] }));
+     //   app.get('/auth/facebook', passport.authenticate('facebook'));
 
         // handle the callback after facebook has authenticated the user
-        app.get('/auth/facebook/callback',
-            passport.authenticate('facebook', {
-                successRedirect : '/facebooklogin',
-                failureRedirect : '/landingpage'
-            }));
+       // app.get('/auth/facebook/callback',
+           // passport.authenticate('facebook', {
+         //       successRedirect : '/facebooklogin',
+             //   failureRedirect : '/landingpage'
+           // }));
 
     app.get('/facebooklogin', function(req, res,user){
     	req.session.login = true;
