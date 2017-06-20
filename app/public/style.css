@@ -121,7 +121,10 @@ header {
     height: 550px;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
     width: 100%;
+    text-align: center;
 }
 
 .shade {
@@ -220,17 +223,37 @@ p {
 
 /*feature*/
 
+.feature-bg {
+    padding: 30px;
+    background-image: url('sky.jpg');
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
+    padding-bottom: 60px;
+    /*border: solid #0000FF 3px;*/
+    border-radius: 50px;
+}
+
+.feature-bg h1 {
+    color: white;
+}
+
 .feature-flex {
     display: flex;
     /*flex-direction: column;*/
     justify-content: center;
     align-content: center;
-    border: solid #0000FF 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 35px;
 }
 
 .feature-us {
     height: 240px;
     margin: 15px;
+    opacity: 0.8;
 }
 
 
