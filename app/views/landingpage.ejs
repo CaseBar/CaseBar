@@ -181,38 +181,39 @@
         <div class="modal-dialog">   
           <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header" style="padding:35px 50px; ">
-            <label style="margin-top:10px; font-size:70px;color:#0000FF;"><span ><img class="col-md-6" src="logo2.png" style = "width:150px; height:auto"></span>CaseBar</label>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" style="font-size:40px; color:red;">&times;</button>
+              <div style="text-align:center;"><img class="login-bottle" src="logo/logo_new.png" /></div>
             </div>
-            <div class="modal-body" style="background-color:#FF7F50; height:100%;">
-              <p  style="font-size:30px; text-align:center; color:white; ">新會員註冊</p>
+            <div class="modal-body">
+            <h2 class="login-title">新會員註冊</h2>
               <form id="signupForm" action="/signup" method="post" onSubmit="">
                 <div class="form-group">
-                  <input type="text" name="realname" required class="form-control" placeholder="姓名">
+                  <input type="text" name="realname" required class="form-control  input-frame" placeholder="姓名">
                 </div>
                 <div class="form-group">
-                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control input-frame" placeholder="帳號(信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password" class="form-control" placeholder="密碼">
+                  <input type="password" name="password" class="form-control input-frame" placeholder="密碼">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="" required class="form-control" placeholder="確認密碼">
+                  <input type="password" name="" required class="form-control input-frame" placeholder="確認密碼">
                 </div>
                 <div class="form-group">
-                  <input type="date" name="birthday" required class="form-control" placeholder="生日">
+                  <input type="date" name="birthday" required class="form-control input-frame" placeholder="生日">
                 </div>
                 <div class="form-group">
-                  <input type="text" name="email" required class="form-control" placeholder="電子信箱">
+                  <input type="text" name="email" required class="form-control input-frame" placeholder="電子信箱">
                 </div>
-
-                <div class="checkbox">
-                  <label><input type="checkbox" value="" checked>Remember me</label>
-                </div >
-                  <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">註冊</button><br>
-                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span><img class="col-md-6" src="facebook-modal.png" style = "height:25px;width:auto"></span>以facebook註冊</button><br>
-                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google註冊</button>
+                <div class="checkbox" style="text-align:center;">
+                  <label style="font-size:8px; color:gray;"><input type="checkbox" value="" checked>Remember me</label>
+                </div>
+                <div style="text-align:center;">
+                  <button type="submit" class="login-btn">註冊</button>
+                  <button class="login-fb" type="submit"><span class="fa fa-facebook login-left"></span>以 Facebook 登入</button>
+                  <button class="login-google" type="submit"><span class="fa fa-google login-left"></span>以 Google 登入</button>
+                </div>
               </form>
             </div>
             <div style="background-color: #f9f9f9" class="modal-footer">
@@ -231,33 +232,32 @@
         <div class="modal-dialog">   
           <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header" style="padding:35px 50px; ">
-            <label style="margin-top:10px; font-size:70px;color:#0000FF;"><span ><img class="col-md-6" src="logo2.png" style = "width:150px; height:auto"></span>CaseBar</label>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" style="font-size:40px; color:red;">&times;</button>
+              <div style="text-align:center;"><img class="login-bottle" src="logo/logo_new.png" /></div>
             </div>
-            <div class="modal-body" style="background-color:#FF7F50; height:450px;">
-              <p  style="font-size:30px; text-align:center; color:white; ">會員登入</p>
+            <div class="modal-body">
+              <h2 class="login-title">會員登入</h2>
               <form id="loginForm" action="/login" method="post">
                 <div class="form-group">
-                  <input type="text" name="username" required class="form-control" placeholder="帳號(信箱)">
+                  <input type="text" name="username" required class="form-control input-frame" placeholder="帳號 (信箱)">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password" required class="form-control" placeholder="密碼">
+                  <input type="password" name="password" required class="form-control input-frame" placeholder="密碼">
                 </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="" checked>Remember me</label>
-                </div >
-                  <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">登入</button><br>
-                  </form>
-                  <a href="/auth/facebook"><button class="col-md-6" style="margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span class="fa fa-facebook"></span>以Facebook登入</button></a>
-
-                  <br>
-                  <a href="/auth/google"><button class="col-md-6" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google登入</button><a>
-                
+                <div class="checkbox" style="text-align:center;">
+                  <label style="font-size:8px; color:gray;"><input type="checkbox" value="" checked>Remember me</label>
+                </div>
+                <div style="text-align:center;">
+                  <button type="submit" class="login-btn">登入</button>
+                </form>
+                  <a href="/auth/facebook"><button class="login-fb"><span class="fa fa-facebook login-left"></span>以 Facebook 登入</button></a>
+                  <a href="/auth/google"><button class="login-google"><span class="fa fa-google login-left"></span>以 Google 登入</button></a>
+              </div>
             </div>
             <div style="background-color:#f9f9f9; margin:auto;" class="modal-footer">
-              <a href="#" class="col-md-offset-2"  >新會員註冊</a>
-              <a href="#" class="col-md-offset-2"  >忘記密碼</a>
+              <a href="#" class="col-md-offset-2"> 新會員註冊 </a>
+              <a href="#" class="col-md-offset-2"> 忘記密碼 </a>
             </div>
           </div>
           
