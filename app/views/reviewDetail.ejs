@@ -115,9 +115,9 @@
       <%for(var j =0; j< thisPost.length;j++) {%>
       <div class="reviewHeader">
         <div class="row">
-          <h2 class="col-md-6"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
+          <h2 class="col-md-5"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
 
-            <div class="col-md-3" style="margin-top: 2.5%;" id="Beers" align="">
+            <div class="col-md-4" style="margin-top: 2.5%;" id="Beers" align="">
               <%for(var i=0;i< thisPost[j].thisPoststar;i++){%> 
               <img src="fullBeerCup.svg" style="height: 50px; width:auto;">
               <%}%> 
@@ -129,11 +129,12 @@
 
           <div class="col-md-3" style="margin-top: 2.5%;">
           <%if(thisPost[j].thisPostowner==username){%> 
-          
+           <row>
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style=" border-color: #FF3333;color:#FF3333;" onclick="location.href='reviseReview'">編輯貼文</button>
             <form action="/reviewDetail" method="POST">
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;" name='postDelete' value='<%=thisPost[j]._id%>'>刪除貼文</button>
             </form>
+          </row>
           <%}%>  
           </div>
         </div>
