@@ -92,6 +92,7 @@
         $('#allhot_posts').show();
         $('#allnew_posts').show();
       }
+
     </script>
 
     <!-- 註冊modal用 -->
@@ -147,7 +148,20 @@
     </nav>
     <div class="container">
       <section style="margin-top:120px;">
-        <input placeholder="搜索類型..." type="search" name="searchType" style="background: url(search.png) no-repeat; background-size: 40px 30px; background-position:10px; height: 50px;width: 250px; padding-left: 60px; border-color:#0000FF;">
+
+        <script type="text/javascript">
+          $("#inputTarget").keypress(function(e){
+            code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13)
+            {
+              $("targetForm").submit();
+            }
+          });
+        </script>
+        <form action="/search" method="GET" id="targetForm">
+          <input id="inputTarget" placeholder="搜索類型..." type="text" name="keyword" placeholder="SEARCH" class="search" style="background: url(search.png) no-repeat; background-size: 40px 30px; background-position:10px; height: 50px;width: 250px; padding-left: 60px; border-color:#0000FF;"> 
+        </form>
+
         <button style="background-color: white; color: black; margin-left: 5px;border-color: black; height: 40px;width:70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" name="postType" value="frontend" onclick="getf2ePost()">前端</button>
         <button style="background-color: white; color: black; margin-left: 5px; border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" name="postType" value="backend" onclick="getbackPost()">後端</button>
         <button style="background-color: white; color: black; margin-left: 5px;border-color: black;height: 40px;width: 70px;font-size: 20px;"onmouseover="Typemouseover(this)" onmouseout="Typemouseout(this)" name="postType" value="photography" onclick="getphotoPost()">攝影</button>
