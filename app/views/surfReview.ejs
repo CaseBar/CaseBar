@@ -344,7 +344,7 @@
 
         <div class="photography_posts" hidden>
          <%for(var i =0; i< posts.length;i++) {%>
-         <%if(posts[i].posttype=="phototgraphy"){%>
+         <%if(posts[i].posttype=="photography"){%>
          <form action="/surfReview" method="POST">
           <button onmouseover="Reviewmouseover(this)" onmouseout="Reviewmouseout(this)" onclick="location.href='reviewDetail'" style="border-radius: 0px; margin-left: 10%; margin-bottom: 5%; text-align: left;" type="submit" name='postId' class="box" value=<%=posts[i]._id%> >
             <div class="reviewHeader " style="text-align: center;">
