@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="style.css" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+    <script src="https://use.fontawesome.com/ee324bca70.js"></script>
   <script type="text/javascript">
     function Typemouseover(x){
       x.style.color = "white";
@@ -92,7 +94,7 @@
         $('#allhot_posts').show();
         $('#allnew_posts').show();
       }
-
+      
     </script>
 
     <!-- 註冊modal用 -->
@@ -120,29 +122,43 @@
 
     </style>
     <body>
-      <nav class="navbar navbar-fixed-top" style="background-color: white">
-       <a class="navbar-brand" href="#" onclick="location.href='landingpage'"><img src="logo.png" style = "height:50px;"></a>
-       <div class="collapse navbar-collapse col-md-offset-2" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="width: 500px; padding-top: 35px;">
-          <a class="nav-item nav-link active" href="#"  style="font-size: 20px;color: #0000FF;margin-left: 5%;" >瀏覽評論</a>
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px; padding-top: 5px; color: black;"onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="javascript:location.href='rule'">發表守則</a>
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: black;" onmouseover="Navmouseover(this)" onmouseout="Navmouseout(this)"onclick="location.href='aboutUs'">關於我們</a>
-          <!-- 登入才有的 -->
-          <a class="nav-item nav-link col-md-offset-1" href="#" style="font-size: 20px;color: #f74a3d; " onclick="location.href='reviewPost'">我要發表</a>
+      <nav class="navbar navbar-fixed-top">
+      <!-- logo  -->
+              <div class="nav-logo">
+          <a class="navbar-brand" href="#" onclick="javascript:location.href='landingpage'">
+            <img class="logo" src="logo/logo_new.png" alt="logo">
+          </a>
         </div>
-        <div class="navbar-nav" style="width: 30%; padding-top: 25px; float: right;">
-          <a href="#"><img src="facebook.png" style = "height:25px;"></a>
-          <a href="#"><img src="instagram.png" style = "height:25px;"></a>
-          <a href="#"><img src="twitter.png" style = "height:25px;"></a>
+      <!-- 按鈕選單 -->
+      <div class="try" id="navbarNavAltMarkup">
+        <div class="navbar-nav nav-btn">
+          <a class="nav-item nav-link" href="#" onclick="javascript:location.href='surfReview'" >瀏覽評論</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" onclick="location.href='rule'">發表守則</a>
+          <a class="nav-item nav-link col-md-offset-1" href="#" onclick="javascript:location.href='aboutUs'">關於我們</a>
+          <!-- 登入才有的 -->
+          <a class="nav-item nav-link col-md-offset-1" href="#" id="userPost" onclick="javascript:location.href='reviewPost'">我要發表</a>
+        </div>
 
-          <%if (login){ %>
-          <span>Hi, <%=username%></span>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 80px; border-color:#FF3333;color:#FF3333; margin-left: 2%;">我的檔案</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="height: 25px;width: 60px; border-color:#FF3333;color:#FF3333;margin-left: 2%;" onclick="location.href='logout_l'">登出</button>
-          <% }else{%>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="signUpBtn" style="margin-left: 20%;height: 25px;width: 60px; border-color:#FF3333;color:#FF3333; ">註冊</button>
-          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" id="LogInBtn" style="margin-left: 2%;height: 25px;width: 60px; border-color: #FF3333; color:#FF3333;" >登入</button>
-          <%}%>
+        <div class="nav-flex">
+
+          <div class="navbar-nav nav-right nav-line">
+            <div class="nav-social nav-line">
+              <a href="#"><i class="fa fa-facebook nav-sma" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-instagram nav-sma" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-twitter nav-sma" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="nav-line">
+              <%if (login){ %>
+              <span>Hi, <%=username%></span>
+              <button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>
+              <button class="nav-line myLogin" id="signUpBtn" onclick="location.href='logout_l'"> 登出 </button>
+              <% }else{%>
+              <button class="nav-line myLogin" id="signUpBtn"> 註冊 </button>
+              <button class="nav-line myLogin" id="LogInBtn"> 登入 </button>
+              <%}%>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
