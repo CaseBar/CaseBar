@@ -334,6 +334,7 @@ var defaultPost = true;
 					postresponsenum: Post.postresponsenum,
 					postowner: Post.postowner,
 					posttype:Post.posttype,
+					poststar:Post.poststar,
 					_id: Post._id,
 				}
 			})
@@ -393,6 +394,7 @@ app.get('/reviewDetail', function(req, res){
 						thisPostdisagree:Post.postdisagree,
 						thisPostresponsenum: Post.postresponsenum,
 						thisPosttype:Post.posttype,
+						thisPoststar:Post.poststar,
 						thisPostneutral: Post.postneutral
 					}
 				})
@@ -1270,6 +1272,7 @@ app.post('/reviewPost', function(req, res){
 			postneutral: 0,
 			postresponsenum: 0,
 			posttype: req.body.posttype,
+			poststar: req.body.starnum,
 			postowner:req.session.username},
 			{ upsert: true },
 			function(err){
@@ -1371,6 +1374,8 @@ var defaultPost = true;
 						postresponsenum: Post.postresponsenum,
 						postowner: Post.postowner,
 						posttype:Post.posttype,
+						poststar:Post.poststar,
+
 						_id: Post._id,
 					}
 				})

@@ -76,6 +76,7 @@
           var iframe = document.getElementById('beerNum'+n);
           iframe.setAttribute('src',"fullBeerCup.svg");
         }
+        $("input[name='starnum']").val(n-1);
     }
     </script>
     <style type="text/css">
@@ -126,9 +127,8 @@
             <p class="col-md-3" style="margin-left: 15%; font-size: 25px; letter-spacing: 0.1em; line-height: 1.4em; font-family: Microsoft JhengHei;">酒杯評價
             </p>
             <div id="Beers" align="left">
-            <button name="poststar" value="1" style="border:0;">
+              <input type="hidden" name="starnum" value="0">
               <img src="emptyBeerCup.svg" id="beerNum1" style="height: 50px; width:auto;" onclick="changeBeerStar(1)">
-            </button>
               <img src="emptyBeerCup.svg" id="beerNum2" style="height: 50px; width:auto;" onclick="changeBeerStar(2)" >
               <img src="emptyBeerCup.svg" id="beerNum3" style="height: 50px; width:auto;" onclick="changeBeerStar(3)">
               <img src="emptyBeerCup.svg" id="beerNum4" style="height: 50px; width:auto;" onclick="changeBeerStar(4)">

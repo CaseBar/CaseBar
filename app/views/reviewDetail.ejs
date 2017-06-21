@@ -99,7 +99,17 @@
       <%for(var j =0; j< thisPost.length;j++) {%>
       <div class="reviewHeader">
         <div class="row">
-          <h2 class="col-md-9"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
+          <h2 class="col-md-6"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
+
+            <div class="col-md-3" style="margin-top: 2.5%;" id="Beers" align="">
+              <%for(var i=0;i< thisPost[j].thisPoststar;i++){%> 
+              <img src="fullBeerCup.svg" style="height: 50px; width:auto;">
+              <%}%> 
+              <%for(var i=0;i< 5-thisPost[j].thisPoststar;i++){%> 
+              <img src="emptyBeerCup.svg" style="height: 50px; width:auto;">
+              <%}%> 
+            </div>
+
 
           <div class="col-md-3" style="margin-top: 2.5%;">
           <%if(thisPost[j].thisPostowner==username){%> 

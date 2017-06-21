@@ -6,6 +6,7 @@ var postSchema = mongoose.Schema({
 	postowner: String,
 	posttype:String,
 	poststar: { type: Number, default: 0 },
+	poststar: { type: Number, default: 0 },
 	postagree: { type: Number, default: 0 },
 	postdisagree: { type: Number, default: 0 },
 	postneutral: { type: Number, default: 0 },
