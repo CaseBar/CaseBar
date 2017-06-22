@@ -1,6 +1,11 @@
 <html>
 
 <head>
+  <meta property="og:url"           content="https://stark-taiga-32856.herokuapp.com/reviewDetail" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="CaseBar" />
+  <meta property="og:description"   content="台灣有131萬接案族，雖然金額與項目多數依照合約，也有同業行情、過往經驗參考，但有些案主出爾反爾、追加不合理要求，或者是不斷的要求，卻只換來低報酬。我們是一個接案資訊討論平台，讓行情資訊透明化、揭露雷案主，同時讓接案者能夠彼此討論、認識，甚至合作。" />
+  <meta property="og:image"         content="https://stark-taiga-32856.herokuapp.com/public/logo/computer.jpeg" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -70,6 +75,24 @@
       }
       
     </style>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1920871271260221',
+          xfbml      : true,
+          version    : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
   <body>
     <nav class="navbar navbar-fixed-top">
       <!-- logo  -->
@@ -128,6 +151,7 @@
 
 
           <div class="col-md-3" style="margin-top: 2.5%;">
+          <div class="fb-share-button" data-href="https://stark-taiga-32856.herokuapp.com/reviewDetail" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstark-taiga-32856.herokuapp.com%2FreviewDetail&amp;src=sdkpreparse">分享</a></div>
           <%if(thisPost[j].thisPostowner==username){%> 
            <row>
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style=" border-color: #FF3333;color:#FF3333;" onclick="location.href='reviseReview'">編輯貼文</button>
