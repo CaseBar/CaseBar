@@ -163,10 +163,12 @@
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div >
-                  <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">註冊</button><br>
-                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span><img class="col-md-6" src="facebook-modal.png" style = "height:25px;width:auto"></span>以facebook註冊</button><br>
-                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google註冊</button>
-              </form>
+                  <div style="text-align:center;">
+                  <button type="submit" class="login-btn">註冊</button>
+                  <a href="/auth/facebook"><button type=button class="login-fb"><span class="fa fa-facebook login-left"></span>以 Facebook 登入</button></a>
+                  <a href="/auth/google"><button type=button class="login-google"><span class="fa fa-google login-left"></span>以 Google 登入</button></a>
+                </div>
+                </form>
             </div>
             <div style="background-color: #f9f9f9" class="modal-footer">
               <p>已經註冊了? <a href="#">登入</a></p>
@@ -200,10 +202,12 @@
                 <div class="checkbox">
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div >
-                  <button type="submit" style="text-align:center; margin-top:10px; border-color:white; width:100%; height: 50px;font-weight:bold; font-size: 20px; color:white;">登入</button><br>
-                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#4169E1; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#4169E1; color:white;"> <span><img class="col-md-6" src="facebook-modal.png" style = "height:25px;width:auto"></span>以facebook登入</button><br>
-                  <button class="col-md-6" type="submit" style=" margin-top:10px; border-color:#DC143C; width:100%; height: 50px;font-weight:bold; font-size: 20px; background-color:#DC143C; color:white;"> <span><img class="col-md-6" src="google-modal.png" style = "height:25px;width:auto"></span>以Google登入</button>
-              </form>
+                  <div style="text-align:center;">
+                  <button type="submit" class="login-btn">註冊</button>
+                  <a href="/auth/facebook"><button type=button class="login-fb"><span class="fa fa-facebook login-left"></span>以 Facebook 登入</button></a>
+                  <a href="/auth/google"><button type=button class="login-google"><span class="fa fa-google login-left"></span>以 Google 登入</button></a>
+                </div>
+                </form>
             </div>
             <div style="background-color:#f9f9f9; margin:auto;" class="modal-footer">
               <a href="#" class="col-md-offset-2"  >新會員註冊</a>
