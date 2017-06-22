@@ -104,7 +104,7 @@
             <div class="nav-line">
               <%if (login){ %>
               <span>Hi, <%=username%></span>
-              <button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>
+              <!--<button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>-->
               <button class="nav-line myLogin" onclick="location.href='logout_l'"> 登出 </button>
               <% }else{%>
               <button class="nav-line myLogin" id="signUpBtn"> 註冊 </button>
@@ -207,7 +207,7 @@
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div >
                   <div style="text-align:center;">
-                  <button type="submit" class="login-btn">註冊</button>
+                  <button type="submit" class="login-btn">登入</button>
                   <a href="/auth/facebook"><button type=button class="login-fb"><span class="fa fa-facebook login-left"></span>以 Facebook 登入</button></a>
                   <a href="/auth/google"><button type=button class="login-google"><span class="fa fa-google login-left"></span>以 Google 登入</button></a>
                 </div>
