@@ -52,6 +52,8 @@ app.get('/aboutUs', sites.aboutUs);
 app.get('/rule', sites.rule);
 app.get('/surfReview', sites.surfReviewGet);
 app.post('/surfReview', sites.surfReviewPost);
+//app.post('/surfReview', posts.reviewDetailGet);
+
 
 app.get('/login', user.loginGet);
 app.post('/login', user.loginPost);
@@ -66,146 +68,61 @@ app.get('/reviseReview', posts.reviseReviewGet);
 app.post('/reviseReview', posts.reviseReviewPost);
 app.get('/reviewPost', posts.reviewPostGet);
 app.post('/reviewPost', posts.reviewPostPost);
+app.get('/search', posts.search);
 
+//TODO SOCIAL MEDIA USER
 
+// var User = require('./models/user.js');
+// var Post = require('./models/post.js');
+// var Response = require('./models/response.js');
 
+// var passport = require('passport');
+// app.use(passport.initialize());
+// app.use(passport.session());
+// require('./config/passport')(passport);
 
+// app.get('/auth/google', 
+// 	passport.authenticate('google', { scope : ['profile', 'email'] })
+// );
 
+// app.get('/auth/google/callback',
+//     passport.authenticate('google', {
+//     	successRedirect : '/googlelogin',
+//     	failureRedirect : '/landingpage'
+//     })
+// );
 
+// app.get('/googlelogin', function(req, res,user){
+//     req.session.login = true;
+//     req.session.username = req.user.google.name;
+// 	res.redirect(303, '/landingpage');
+// });
+// app.get('/auth/facebook',
+//     passport.authenticate('facebook', {session: false, scope : ['email'] })
+// );
 
-
-
-var User = require('./models/user.js');
-var Post = require('./models/post.js');
-var Response = require('./models/response.js');
-
-var passport = require('passport');
-app.use(passport.initialize());
-app.use(passport.session());
-require('./config/passport')(passport);
-
-    // =====================================
-    // GOOGLE ROUTES =======================
-    // =====================================
-    // send to google to do the authentication
-    // profile gets us their basic information including their name
-    // email gets their emails
-app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-
-    // the callback after google has authenticated the user
-app.get('/auth/google/callback',
-    passport.authenticate('google', {
-    	successRedirect : '/googlelogin',
-    	failureRedirect : '/landingpage'
-    })
-);
-
-app.get('/googlelogin', function(req, res,user){
-    req.session.login = true;
-    req.session.username = req.user.google.name;
-	//console.log(req.session.login);
-	//console.log(req.session.username);
-	res.redirect(303, '/landingpage');
-});
-app.get('/auth/facebook',
-    passport.authenticate('facebook', {session: false, scope : ['email'] })
-);
-// handle the callback after facebook has authenticated the user
-app.get('/auth/facebook/callback',
-	passport.authenticate('facebook',  { session: false, failureRedirect : '/'}),
+// app.get('/auth/facebook/callback',
+// 	passport.authenticate('facebook',  { session: false, failureRedirect : '/'}),
 	
-    // on succes
-    function(req,res) {
-		res.render('json', {data: JSON.stringify(req.user.access_token)});
-    },
+//     function(req,res) {
+// 		res.render('json', {data: JSON.stringify(req.user.access_token)});
+//     },
     
-    function(err,req,res,next) {
-        if(err) {
-        	res.status(400);
-        	res.render('error', {message: err.message});
-        }
-    }
-);
+//     function(err,req,res,next) {
+//         if(err) {
+//         	res.status(400);
+//         	res.render('error', {message: err.message});
+//         }
+//     }
+// );
 
-app.get('/facebooklogin', function(req, res,user){
-    req.session.login = true;
-    req.session.username = req.user.google.name;
-    console.log(req.session.login);
-    console.log(req.session.username);
-    res.redirect(303, '/landingpage');
-});
+// app.get('/facebooklogin', function(req, res,user){
+//     req.session.login = true;
+//     req.session.username = req.user.google.name;
+//     res.redirect(303, '/landingpage');
+// });
 
-
-
-app.get('/search', function (req, res) {
-
-
-	if (req.session.login == null)
-		var login = false;
-	else
-		var login = true;
-	var username = req.session.username;
-	var context = {
-		username: username,
-		login: login,
-	}
-
-	User.find(function(err, users){
-		signupContext = {
-			users: users.map(function(User){
-				return {
-					user: User.username,
-				}
-			})
-		};
-	});
-
-//預設文章
-var defaultPost = true;
-	//點選文章
-	if (req.session.postId != null)
-		defaultPost = false;
-
-	var word = req.query.keyword;
-
-
-	Post.find(
-		{ $or:[
-			{"postcontent": { "$regex": word, "$options": "i" } },
-			{"posttitle": { "$regex": word, "$options": "i" } }
-			]
-		}  ,
-
-		function(err, posts){
-			var context = {
-				user: signupContext.users,
-				defaultPost: defaultPost,
-				login: login,
-				username: req.session.username,
-				posts: posts.map(function(Post){
-					return {
-						posttitle: Post.posttitle,
-						postcontent: Post.postcontent,
-						postagree: Post.postagree,
-						postdisagree: Post.postdisagree,
-						postneutral: Post.postneutral,
-						postresponsenum: Post.postresponsenum,
-						postowner: Post.postowner,
-						posttype:Post.posttype,
-						poststar:Post.poststar,
-
-						_id: Post._id,
-					}
-				})
-			};
-			res.render('surfReview', context);
-		}
-
-		);
-
-});
-
-
+//TODO
 
 app.use(function(req, res, next){
 	res.status(404);
@@ -221,6 +138,3 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
 	console.log("Server started on", app.get('port'));
 });
-
-
-

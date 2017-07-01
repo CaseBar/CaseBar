@@ -34,60 +34,71 @@ exports.rule = function(req, res){
 
 exports.surfReviewGet = function(req, res){
 
-    context = initLoginState(req, res);
+    if (req.session.login == null)
+        var login = false;
+    else
+        var login = true;
 
-    User.find(function(err, users){
-        signupContext = {
-            users: users.map(function(User){
-                return {
-                    user: User.username,
-                }
-            })
-        };
-    });
+    var username = req.session.username;
+    var context = {
+        username: username,
+        login: login,
+    }
 
-    //預設文章
-    var defaultPost = true;
-    //點選文章
-    if (req.session.postId != null)
-        defaultPost = false;
-    //所有文章
+    function promise(req, res){
+        return new Promise(function(resolve, reject){
+                resolve();
+        });
+    }
 
-    setTimeout(function() {
-        Post.find({ }, function(err, posts){
-            var context = {
+    promise(req, res)
+    .then(function(){
+        User.find(function(err, users){
+            signupContext = {
+                users: users.map(function(User){
+                    return {
+                        user: User.username,
+                    }
+                })
+            };
+            });
+    })
+
+    .then(function(){
+        var defaultPost = true;
+        if (req.session.postId != null)
+            defaultPost = false;
+
+            Post.find({ }, function(err, posts){
+                var context = {
                 user: signupContext.users,
-            //thisPost: thisPost.posts,
-            defaultPost: defaultPost,
-            login: login,
-            username: req.session.username,
-            posts: posts.map(function(Post){
-                return {
-                    posttitle: Post.posttitle,
-                    postcontent: Post.postcontent,
-                    postagree: Post.postagree,
-                    postdisagree: Post.postdisagree,
-                    postneutral: Post.postneutral,
-                    postresponsenum: Post.postresponsenum,
-                    postowner: Post.postowner,
-                    posttype:Post.posttype,
-                    poststar:Post.poststar,
-                    _id: Post._id,
-                }
-            })
-
-    };
-    res.render('surfReview', context);
-    }).sort({postdate: -1});
-    }, 1500 );
-
+                defaultPost: defaultPost,
+                login: login,
+                username: req.session.username,
+                posts: posts.map(function(Post){
+                    return {
+                        posttitle: Post.posttitle,
+                        postcontent: Post.postcontent,
+                        postagree: Post.postagree,
+                        postdisagree: Post.postdisagree,
+                        postneutral: Post.postneutral,
+                        postresponsenum: Post.postresponsenum,
+                        postowner: Post.postowner,
+                        posttype:Post.posttype,
+                        poststar:Post.poststar,
+                        _id: Post._id,
+                    }
+                })
+        };
+        res.render('surfReview', context);
+        }).sort({postdate: -1});
+    });
 };
 
 exports.surfReviewPost = function(req, res){
-
+    //console.log('ID:', req.params.posttitle);
     if (req.body.postId != null) {
         req.session.postId = req.body.postId;
-        return res.redirect(303, '/reviewDetail');
+        res.redirect(303, '/reviewDetail');
     }
-
 };

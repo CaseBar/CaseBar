@@ -47,13 +47,14 @@ exports.signupGet = function(req, res){
     context = initLoginState(req, res);
     res.render('landingpage', context);
 };
+
 exports.signupPost = function(req, res){
     User.update(
         { username: req.body.username },
         { realname: req.body.realname,
-            password: req.body.password,
-            birthday: req.body.birthday,
-            email: req.body.email
+          password: req.body.password,
+          birthday: req.body.birthday,
+          email: req.body.email
         },
         { upsert: true },
         function(err){
@@ -67,7 +68,7 @@ exports.signupPost = function(req, res){
             }
             return res.redirect(303, 'landingpage');
         }
-        );
+    );
 };
 
 exports.logout = function(req, res){
