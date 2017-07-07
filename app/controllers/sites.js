@@ -2,7 +2,6 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var Response = require('../models/response.js');
 
-
 function initLoginState(req, res){
     if (req.session.login == null)
         var login = false;

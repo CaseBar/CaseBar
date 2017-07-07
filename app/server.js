@@ -1,5 +1,5 @@
 
-// module dependencies
+// Module Dependencies
 
 var express = require('express');
 var app = express();
@@ -7,7 +7,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
-var session = require('express-session');/////
+var session = require('express-session');
 
 var sites = require('./controllers/sites');
 var posts = require('./controllers/posts');
@@ -15,7 +15,7 @@ var user = require('./controllers/user');
 
 module.exports = app;
 
-// config
+// Config
 
 app.set('port', process.env.PORT || 8000);
 app.set("view engine", 'ejs');
@@ -25,18 +25,18 @@ app.use(bodyParser());
 app.use(cookieParser());
 app.use(session({
 	secret: 'my_session_secret',
-	cookie: { maxAge: 24 * 60 * 60 * 1000 } /////
+	cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
+
+//Database
 
 var opts = {
 	server: {
-		socketOptions: { keepAlive: 1 }/////
+		socketOptions: { keepAlive: 1 }
 	}
 };
 
-//database
-
-mongoose.connect('mongodb://demo:12345@ds127101.mlab.com:27101/snademo');
+mongoose.connect('mongodb://demo:12345@ds127101.mlab.com:27101/snademo', opts);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -45,15 +45,13 @@ db.once('open', function callback () {
 
 mongoose.Promise = global.Promise;
 
-//routers
+//Routers
 
 app.get('/landingpage', sites.index);
 app.get('/aboutUs', sites.aboutUs);
 app.get('/rule', sites.rule);
 app.get('/surfReview', sites.surfReviewGet);
 app.post('/surfReview', sites.surfReviewPost);
-//app.post('/surfReview', posts.reviewDetailGet);
-
 
 app.get('/login', user.loginGet);
 app.post('/login', user.loginPost);
