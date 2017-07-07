@@ -9,9 +9,9 @@ var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');/////
 
-var sites = require('./routes/sites');
-var posts = require('./routes/posts');
-var user = require('./routes/user');
+var sites = require('./controllers/sites');
+var posts = require('./controllers/posts');
+var user = require('./controllers/user');
 
 module.exports = app;
 
