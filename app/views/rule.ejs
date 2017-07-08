@@ -1,98 +1,45 @@
 <html>
 
-<head>
-    <% include common/header %> 
-    <script type="text/javascript">
-      function Typemouseover(x){
-        x.style.color = "white";
-        x.style.backgroundColor = "black";
-      }
-      function Typemouseout(x){
-        x.style.color = "black";
-        x.style.backgroundColor = "white";
-      }
-      function Navmouseover(x){
-        x.style.textDecoration = "underline";
-        x.style.textDecorationColor= "#0000FF";
-      }
-      function Navmouseout(x){
-        x.style.textDecoration = "none";
-      }
-      function Mymouseover(x){
-        var color_ = x.style.color;
-        x.style.color = "white";
-        x.style.backgroundColor = color_;
-      }
-      function Mymouseout(x){
-        var color_ = x.style.backgroundColor;
-        x.style.color = color_;
-        x.style.backgroundColor = "rgba(1,1,1,0)";
-      }
-      function submitmouseover(x){
-        x.style.color = "white";
-        x.style.backgroundColor = "#0000FF";
-      }
-      function submitmouseout(x){
-        x.style.color = "#0000FF";
-        x.style.backgroundColor = "white";
-      }
-    </script>
+<% include common/header %> 
 
-    <!-- 註冊modal用 -->
-    <script>
-    $(document).ready(function(){
-        $("#signUpBtn").click(function(){
-            $("#signUpModal").modal();
-        });
-    });
-    </script>
+<style type="text/css">
+  h2{
+    font-weight: 3px;
+    padding-left: 2%;
+    text-align: left;
+    font-size: 25px;
+  }
+  p{
+    text-align: left;
+  }
+</style>
+<body>
 
-    <!-- 登入modal用 -->
-    <script >
-    $(document).ready(function(){
-        $("#LogInBtn").click(function(){
-            $("#LogInModal").modal();
-        });
-    });
-    </script>
-    <style type="text/css">
-      h2{
-        font-weight: 3px;
-        padding-left: 2%;
-        text-align: left;
-        font-size: 25px;
-      }
-      p{
-        text-align: left;
-      }
-    </style>
-  <body>
+  <% include common/navbar %>  
 
-<% include common/navbar %>  
+  <section class="container" style="margin-top: 10%; text-align: center;">
+    <h1>發言規定</h1>
+    <div>
+      <h2><strong>(一) 評論要屬實</strong></h2>
+      <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所有的發言都應該是從個人經驗出發，並以誠實為前提。如果被檢舉不實，本平台將有刪除評論的權利，並把帳號列入黑名單之內。
+      </p>
+    </div>
+    <div>
+      <h2><strong>(二) 要秉持公正</strong></h2>
+      <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評論的時候，應保持公正的態度，這不只會讓自己的發言更具中立性，也給了其他使用者評估的空間，讓自身經驗更具參考性。
+      </p>
+    </div>
+    <div>
+      <h2><strong>(三) 要為自己的言論負責</strong></h2>
+      <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本平台不為使用者的評論做任何負責，因此在書寫評論時，請三思後再書寫，避免讓自己捲入法律的糾紛。
+      </p>
+    </div>
+  </section>
 
-    <section class="container" style="margin-top: 10%; text-align: center;">
-      <h1>發言規定</h1>
-      <div>
-        <h2><strong>(一) 評論要屬實</strong></h2>
-        <p>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所有的發言都應該是從個人經驗出發，並以誠實為前提。如果被檢舉不實，本平台將有刪除評論的權利，並把帳號列入黑名單之內。
-        </p>
-      </div>
-      <div>
-        <h2><strong>(二) 要秉持公正</strong></h2>
-        <p>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評論的時候，應保持公正的態度，這不只會讓自己的發言更具中立性，也給了其他使用者評估的空間，讓自身經驗更具參考性。
-        </p>
-      </div>
-      <div>
-        <h2><strong>(三) 要為自己的言論負責</strong></h2>
-        <p>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本平台不為使用者的評論做任何負責，因此在書寫評論時，請三思後再書寫，避免讓自己捲入法律的糾紛。
-        </p>
-      </div>
-    </section>
+  <% include common/footer %>  
 
-<% include common/footer %>  
-
-  </body>
+</body>
 </html>

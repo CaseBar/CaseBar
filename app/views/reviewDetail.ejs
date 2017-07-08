@@ -1,127 +1,52 @@
 <html>
+<meta property="og:url"           content="https://stark-taiga-32856.herokuapp.com/reviewDetail" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="CaseBar" />
+<meta property="og:description"   content="台灣有131萬接案族，雖然金額與項目多數依照合約，也有同業行情、過往經驗參考，但有些案主出爾反爾、追加不合理要求，或者是不斷的要求，卻只換來低報酬。我們是一個接案資訊討論平台，讓行情資訊透明化、揭露雷案主，同時讓接案者能夠彼此討論、認識，甚至合作。" />
+<meta property="og:image"         content="https://stark-taiga-32856.herokuapp.com/public/logo/computer.jpeg" />
+<% include common/header %> 
 
-<head>
-  <meta property="og:url"           content="https://stark-taiga-32856.herokuapp.com/reviewDetail" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="CaseBar" />
-  <meta property="og:description"   content="台灣有131萬接案族，雖然金額與項目多數依照合約，也有同業行情、過往經驗參考，但有些案主出爾反爾、追加不合理要求，或者是不斷的要求，卻只換來低報酬。我們是一個接案資訊討論平台，讓行情資訊透明化、揭露雷案主，同時讓接案者能夠彼此討論、認識，甚至合作。" />
-  <meta property="og:image"         content="https://stark-taiga-32856.herokuapp.com/public/logo/computer.jpeg" />
-  <% include common/header %> 
-    <script type="text/javascript">
-      function Typemouseover(x){
-        x.style.color = "white";
-        x.style.backgroundColor = "black";
-      }
-      function Typemouseout(x){
-        x.style.color = "black";
-        x.style.backgroundColor = "white";
-      }
-      function Navmouseover(x){
-        x.style.textDecoration = "underline";
-        x.style.textDecorationColor= "#0000FF";
-      }
-      function Navmouseout(x){
-        x.style.textDecoration = "none";
-      }
-      function Mymouseover(x){
-        var color_ = x.style.color;
-        x.style.color = "white";
-        x.style.backgroundColor = color_;
-      }
-      function Mymouseout(x){
-        var color_ = x.style.backgroundColor;
-        x.style.color = color_;
-        x.style.backgroundColor = "rgba(1,1,1,0)";
-      }
+<!-- 這段css移出去 -->
+<style type="text/css">
+  h2{
+    font-weight: 10px;
+    padding-left: 2%;
+  }
+</style>
 
-    </script>
+<body>
+  <% include common/navbar %>  
+  <div class="box container" style="margin-top: 10%; margin-left: 10%;">
+    <%for(var j =0; j< thisPost.length;j++) {%>
+    <div class="reviewHeader">
+      <div class="row">
+        <h2 class="col-md-5"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
 
-    <!-- 註冊modal用 -->
-    <script>
-    $(document).ready(function(){
-        $("#signUpBtn").click(function(){
-            $("#signUpModal").modal();
-        });
-        $('#opinionForm').submit(function() {
-          if(<%=username%>===null){
-            alert("請先登入以繼續");
-            return false;
-          }
-
-        });
-    });
-    </script>
-
-    <!-- 登入modal用 -->
-    <script >
-    $(document).ready(function(){
-        $("#LogInBtn").click(function(){
-            $("#LogInModal").modal();
-        });
-    });
-    </script>
-    <style type="text/css">
-      h2{
-        font-weight: 10px;
-        padding-left: 2%;
-      }
-      
-    </style>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1920871271260221',
-          xfbml      : true,
-          version    : 'v2.9'
-        });
-        FB.AppEvents.logPageView();
-      };
-
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-      </script>
-  <body>
-
-<% include common/navbar %>  
-
-    <div class="box container" style="margin-top: 10%; margin-left: 10%;">
-      <%for(var j =0; j< thisPost.length;j++) {%>
-      <div class="reviewHeader">
-        <div class="row">
-          <h2 class="col-md-5"><%=thisPost[j].thisPosttitle%></h2> <!-- 要改的 -->
-
-            <div class="col-md-4" style="margin-top: 2.5%;" id="Beers" align="">
-              <%for(var i=0;i< thisPost[j].thisPoststar;i++){%> 
-              <img src="fullBeerCup.svg" style="height: 50px; width:auto;">
-              <%}%> 
-              <%for(var i=0;i< 5-thisPost[j].thisPoststar;i++){%> 
-              <img src="emptyBeerCup.svg" style="height: 50px; width:auto;">
-              <%}%> 
-            </div>
-
-
-          <div class="col-md-3" style="margin-top: 2.5%;">
+        <div class="col-md-4" style="margin-top: 2.5%;" id="Beers" align="">
+          <%for(var i=0;i< thisPost[j].thisPoststar;i++){%> 
+          <img src="fullBeerCup.svg" style="height: 50px; width:auto;">
+          <%}%> 
+          <%for(var i=0;i< 5-thisPost[j].thisPoststar;i++){%> 
+          <img src="emptyBeerCup.svg" style="height: 50px; width:auto;">
+          <%}%> 
+        </div>
+        <div class="col-md-3" style="margin-top: 2.5%;">
           <div class="fb-share-button" data-href="https://stark-taiga-32856.herokuapp.com/surfReview" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstark-taiga-32856.herokuapp.com%2FreviewDetail&amp;src=sdkpreparse">分享</a></div>
           <%if(thisPost[j].thisPostowner==username){%> 
-           <row>
+          <row>
             <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" style=" border-color: #FF3333;color:#FF3333;" onclick="location.href='reviseReview'">編輯貼文</button>
             <form action="/reviewDetail" method="POST">
-            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;" name='postDelete' value='<%=thisPost[j]._id%>'>刪除貼文</button>
+              <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;" name='postDelete' value='<%=thisPost[j]._id%>'>刪除貼文</button>
             </form>
           </row>
           <%}%>  
-          </div>
         </div>
       </div>
-      <div class="review">
-        <p><%=thisPost[j].thisPostcontent%></p>
-      </div>
-      <div class = "reviewFooter">
+    </div>
+    <div class="review">
+      <p><%=thisPost[j].thisPostcontent%></p>
+    </div>
+    <div class = "reviewFooter">
       <form id="opinionForm" action="/reviewDetail" method="POST">
         <div class="col-md-3">
           <button style="float: left;border:none;">
@@ -147,53 +72,44 @@
           </button>
           <p class="seeNumber" style="padding-left: 3%; font-size: 30px;"><%=thisPost[j].thisPostneutral%></p>
         </div>
-        </form>
-      </div>
-      <%}%>
-      <div>
-
-        <form action="/reviewDetail" method="POST">
-          <div style="border-top:1px solid #FF3333; border-bottom:1px solid #FF3333">
-              <%for(var j =0; j< responses.length;j++) {%>     
-            <div style="border-top:1px solid #FF3333; border-bottom:1px solid #FF3333">
-              <a class="r" style="font-size: 20px;"><%=responses[j].responseWriter%></a>
-             
-              
-              <div class="metadata">
-                <span class="date"><%=new Date(responses[j].responseTime)%></span>
-              </div>
-              <div class="text" style="font-size: 20px;">
-                <%=responses[j].response%>
-              </div>
-            <%if (responses[j].responseWriter==username){%>
-              <form action="/reviewDetails" method="POST">  
-                <button type="submit" name='responseDelete' value='<%=responses[j]._id%>' style="border-color: #0000FF;color:#0000FF;margin-bottom: 1%;margin-top: 2%;"onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)">刪除留言
-                </button>
-                
-              </form>
-              <%}%>
-            </div>
-              <%}%>
-          </div>
-<%if (username){ %>
-          <div style="text-align: center;">
-            <h2 >我要留言</h2>
-            <textarea name='response' style=" margin-top: 1%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
-            <br>
-            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;width:8%;margin-bottom: 1%; ">取消</button>
-            <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;width:8%; margin-bottom: 1%;">送出</button>
-          </div>
-                    <% }else{%>
-<h2>請先登入以留言</h2>
-    <%}%>
-        </form>
-
-
-
-
-      </div>
+      </form>
     </div>
- 
-<% include common/footer %> 
-  </body>
+    <%}%>
+    <div>
+      <form action="/reviewDetail" method="POST">
+        <div style="border-top:1px solid #FF3333; border-bottom:1px solid #FF3333">
+          <%for(var j =0; j< responses.length;j++) {%>     
+          <div style="border-top:1px solid #FF3333; border-bottom:1px solid #FF3333">
+            <a class="r" style="font-size: 20px;"><%=responses[j].responseWriter%></a>
+            <div class="metadata">
+              <span class="date"><%=new Date(responses[j].responseTime)%></span>
+            </div>
+            <div class="text" style="font-size: 20px;">
+              <%=responses[j].response%>
+            </div>
+            <%if (responses[j].responseWriter==username){%>
+            <form action="/reviewDetails" method="POST">  
+              <button type="submit" name='responseDelete' value='<%=responses[j]._id%>' style="border-color: #0000FF;color:#0000FF;margin-bottom: 1%;margin-top: 2%;"onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)">刪除留言
+              </button>
+            </form>
+            <%}%>
+          </div>
+          <%}%>
+        </div>
+        <%if (username){ %>
+        <div style="text-align: center;">
+          <h2 >我要留言</h2>
+          <textarea name='response' style=" margin-top: 1%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
+          <br>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;width:8%;margin-bottom: 1%; ">取消</button>
+          <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;width:8%; margin-bottom: 1%;">送出</button>
+        </div>
+        <% }else{%>
+        <h2>請先登入以留言</h2>
+        <%}%>
+      </form>
+    </div>
+  </div>
+  <% include common/footer %> 
+</body>
 </html>

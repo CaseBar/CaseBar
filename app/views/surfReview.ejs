@@ -2,131 +2,19 @@
 
 <head>
   <% include common/header %>
-  <script type="text/javascript">
-    function Typemouseover(x){
-      x.style.color = "white";
-      x.style.backgroundColor = "black";
-    }
-    function Typemouseout(x){
-      x.style.color = "black";
-      x.style.backgroundColor = "white";
-    }
-    function Navmouseover(x){
-      x.style.textDecoration = "underline";
-      x.style.textDecorationColor= "#0000FF";
-    }
-    function Navmouseout(x){
-      x.style.textDecoration = "none";
-    }
-    function Mymouseover(x){
-      var color_ = x.style.color;
-      x.style.color = "white";
-      x.style.backgroundColor = color_;
-    }
-    function Mymouseout(x){
-      var color_ = x.style.backgroundColor;
 
-      x.style.color = color_;
-      x.style.backgroundColor = "rgba(1,1,1,0)";
-    }
-    function Reviewmouseover(x){
-
-      x.style.boxShadow = "20px 20px 20px  #444444";
-      x.style.transition = "box-shadow 0.8s,width 2s,height 2s";
+  <style type="text/css">
+    h2{
+      font-weight: 10px;
       
-
-    }
-    function Reviewmouseout(x){
-      x.style.boxShadow = "none";
-     
-
     }
 
-      //暫時寫死
-      function getf2ePost(){
-        $('.frontend_posts').show();
-        $('.backend_posts').hide();
-        $('.uiux_posts').hide();
-        $('.photography_posts').hide();
-        $('#allhot_posts').hide();
-        $('#allnew_posts').hide();
-      }
-
-      function getbackPost(){
-        $('.backend_posts').show();
-        $('.uiux_posts').hide();
-        $('.photography_posts').hide();
-        $('.frontend_posts').hide();
-        $('#allhot_posts').hide();
-        $('#allnew_posts').hide();
-      }
-
-      function getuiuxPost(){
-        $('.frontend_posts').hide();
-        $('.backend_posts').hide();
-        $('.uiux_posts').show();
-        $('.photography_posts').hide();
-        $('#allhot_posts').hide();
-        $('#allnew_posts').hide();
-      }
-
-      function getphotoPost(){
-        $('.backend_posts').hide();
-        $('.uiux_posts').hide();
-        $('.photography_posts').show();
-        $('.frontend_posts').hide();
-        $('#allhot_posts').hide();
-        $('#allnew_posts').hide();
-      }
-      function getallPost(){
-        $('.backend_posts').hide();
-        $('.uiux_posts').hide();
-        $('.photography_posts').hide();
-        $('.frontend_posts').hide();
-        $('#allhot_posts').show();
-        $('#allnew_posts').show();
-      }
-      
-    </script>
-
-    <!-- 註冊modal用 -->
-    <script>
-      $(document).ready(function(){
-        $("#signUpBtn").click(function(){
-          $("#signUpModal").modal();
-        });
-      });
-    </script>
-
-    <!-- 登入modal用 -->
-    <script >
-      $(document).ready(function(){
-        $("#LogInBtn").click(function(){
-          $("#LogInModal").modal();
-        });
-      });
-    </script>
-    <style type="text/css">
-      h2{
-        font-weight: 10px;
-        
-      }
-
-    </style>
-    <body>
-<% include common/navbar %>  
+  </style>
+  <body>
+    <% include common/navbar %>  
     <div class="container">
       <section style="margin-top:120px;">
 
-        <script type="text/javascript">
-          $("#inputTarget").keypress(function(e){
-            code = (e.keyCode ? e.keyCode : e.which);
-            if (code == 13)
-            {
-              $("targetForm").submit();
-            }
-          });
-        </script>
         <form action="/search" method="GET" id="targetForm">
           <input id="inputTarget" placeholder="搜索類型..." type="text" name="keyword" placeholder="SEARCH" class="search" style="background: url(search.png) no-repeat; background-size: 40px 30px; background-position:10px; height: 50px;width: 250px; padding-left: 60px; border-color:#0000FF;"> 
         </form>
@@ -145,11 +33,6 @@
           </ul>
           <div class="tab-content">
             <div id="hotPost" class="tab-pane active">
-
-
-            
-
-
 
               <div id="allhot_posts">
                 <%for(var i =0; i< posts.length;i++) {%>
@@ -335,7 +218,7 @@
       </div>
 
     </div> 
-   
+    
     <div id="newPost" class="tab-pane fade">
 
 
@@ -524,10 +407,6 @@
 <%}%>
 <%}%>
 </div>
-
-
-
-
 
 
 </div>

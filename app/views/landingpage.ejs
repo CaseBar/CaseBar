@@ -1,73 +1,7 @@
 <html>
-
-<head>
-    <% include common/header %> 
-    <script type="text/javascript">
-
-      function Mymouseover(x){
-        var color_ = x.style.color;
-        x.style.color = "white";
-        x.style.backgroundColor = color_;
-      }
-
-      function Mymouseout(x){
-        var color_ = x.style.backgroundColor;
-        x.style.color = color_;
-        x.style.backgroundColor = "rgba(1,1,1,0)";
-      }
-
-      function Navmouseover(x){
-        x.style.textDecorationColor= "#0000FF";
-        x.style.textDecoration="none";
-      }
-      function Navmouseout(x){
-        x.style.textDecoration = "none";
-      }
-    $(document).scroll(function () {
-        var scrollPos = $(document).scrollTop() + 100;
-
-        if (scrollPos > 250) {
-          $(".logo").src="logo.png";
-        } else {
-          $(".logo").src="logo/logo_new.png";
-        }
-    });
-        // <!-- 註冊modal用 -->
-    $(document).ready(function(){
-        $("#signUpBtn").click(function(){
-            $("#signUpModal").modal();
-        });
-    });
-
-    // <!-- 登入modal用 -->
-    $(document).ready(function(){
-        $("#LogInBtn").click(function(){
-            $("#LogInModal").modal();
-        });
-    });
-
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1920871271260221',
-      xfbml      : true,
-      version    : 'v2.9'
-    });
-    FB.AppEvents.logPageView();
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
+<% include common/header %> 
   <body>
-
     <% include common/navbar %>   
-
     <header>
       <div class="shade">
         <h2>找尋最合理的接案行情</h2>
@@ -91,10 +25,10 @@
 
       <section class="feature-bg">
         <h1 id="fr">我們的特點</h1>
-          <div  class="feature-flex">
-            <img id="feature-1" class="feature-us" src="image/feature-1.png" alt="feature-1">
-            <img id="feature-2" class="feature-us" src="image/feature-2.png" alt="feature-2">
-            <img id="feature-3" class="feature-us" src="image/feature-3.png" alt="feature-3">
+        <div  class="feature-flex">
+          <img id="feature-1" class="feature-us" src="image/feature-1.png" alt="feature-1">
+          <img id="feature-2" class="feature-us" src="image/feature-2.png" alt="feature-2">
+          <img id="feature-3" class="feature-us" src="image/feature-3.png" alt="feature-3">
         </div>
       </section>
 
@@ -125,10 +59,7 @@
           </div>
         </div>
       </section>
-
     </div>
-
     <% include common/footer %>  
-
   </body>
 </html>

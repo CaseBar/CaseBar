@@ -1,87 +1,30 @@
 <html>
 
-<head>
-    <% include common/header %> 
-    <script type="text/javascript">
-      function Typemouseover(x){
-        x.style.color = "white";
-        x.style.backgroundColor = "black";
-      }
-      function Typemouseout(x){
-        x.style.color = "black";
-        x.style.backgroundColor = "white";
-      }
-      function Navmouseover(x){
-        x.style.textDecoration = "underline";
-        x.style.textDecorationColor= "#0000FF";
-      }
-      function Navmouseout(x){
-        x.style.textDecoration = "none";
-      }
-      function Mymouseover(x){
-        var color_ = x.style.color;
-        x.style.color = "white";
-        x.style.backgroundColor = color_;
-      }
-      function Mymouseout(x){
-        var color_ = x.style.backgroundColor;
-        x.style.color = color_;
-        x.style.backgroundColor = "rgba(1,1,1,0)";
-      }
-      function submitmouseover(x){
-        x.style.color = "white";
-        x.style.backgroundColor = "#0000FF";
-      }
-      function submitmouseout(x){
-        x.style.color = "#0000FF";
-        x.style.backgroundColor = "white";
-      }
-    </script>
+<% include common/header %> 
 
-    <!-- 註冊modal用 -->
-    <script>
-    $(document).ready(function(){
-        $("#signUpBtn").click(function(){
-            $("#signUpModal").modal();
-        });
-    });
-    </script>
+<style type="text/css">
+  h2{
+    font-weight: 10px;
+    padding-left: 2%;
+  }
 
-    <!-- 登入modal用 -->
-    <script >
-    $(document).ready(function(){
-        $("#LogInBtn").click(function(){
-            $("#LogInModal").modal();
-        });
-    });
-    </script>
-    <style type="text/css">
-      h2{
-        font-weight: 10px;
-        padding-left: 2%;
-      }
-      
-    </style>
-  <body>
-<% include common/navbar %>  
+</style>
+<body>
+  <% include common/navbar %>  
 
-    <section class="container" style="margin-top: 10%; text-align: center; padding-bottom: 5%;border:3px solid #0000FF; width: 80%;">
+  <section class="container" style="margin-top: 10%; text-align: center; padding-bottom: 5%;border:3px solid #0000FF; width: 80%;">
     <form class="" action="/reviseReview" method="post">
-    
-    <%for(var j =0; j< posts.length;j++) {%>
-    <h2>標題</h2>
+      <%for(var j =0; j< posts.length;j++) {%>
+      <h2>標題</h2>
       <textarea rows="8" cols="50" type="text" maxlength='16' name="posttitle" value=<%=posts[j].thisPosttitle%>><%=posts[j].thisPosttitle%></textarea>
       <h2>內文</h2>
       <textarea rows="8" cols="50" type="text" cols="30" rows="8" name='postcontent' value=<%=posts[j].thisPostcontent%>><%=posts[j].thisPostcontent%></textarea>
-<%}%>
+      <%}%>
       <br>
       <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style="border-color: #FF3333;color:#FF3333;width:8%;margin-bottom: 1%; ">取消</button>
       <button onmouseover="Mymouseover(this)" onmouseout="Mymouseout(this)" type="submit"  style=" border-color: #FF3333;color:#FF3333;width:8%; margin-bottom: 1%;">送出</button>
-      </form>
-      
-    </section>
-
-<% include common/footer %>  
-
-  </body>
+    </form>
+  </section>
+  <% include common/footer %>  
+</body>
 </html>
