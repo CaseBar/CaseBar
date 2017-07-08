@@ -115,7 +115,7 @@
             </div>
 
             <div class="nav-line">
-              <%if (login){ %>
+              <%if (username){ %>
               <span>Hi, <%=username%></span>
               <!--<button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>-->
               <button class="nav-line myLogin" onclick="location.href='logout_l'"> 登出 </button>
@@ -131,7 +131,7 @@
 
 
     <section class="container" style="margin-top: 10%; text-align: center; padding-bottom: 5%;border:3px solid #0000FF; width: 80%;">
-    <%if (login){ %>
+    <%if (username){ %>
       <form id="newpostForm" action="/reviewPost" method="post" style="margin-top: 50px;" >
         <div class="row"  >
           <p  class="col-md-3"  style="margin-left: 15%;  font-size: 25px; letter-spacing: 0.1em; line-height: 1.4em; font-family: Microsoft JhengHei;">案主/公司名稱</p>

@@ -51,7 +51,7 @@
             $("#signUpModal").modal();
         });
         $('#opinionForm').submit(function() {
-          if(<%=login%>===false){
+          if(<%=username%>===null){
             alert("請先登入以繼續");
             return false;
           }
@@ -121,7 +121,7 @@
             </div>
 
             <div class="nav-line">
-              <%if (login){ %>
+              <%if (username){ %>
               <span>Hi, <%=username%></span>
               <!--<button class="nav-line myLogin" id="MyFile"> 我的檔案 </button>-->
               <button class="nav-line myLogin" onclick="location.href='logout_l'"> 登出 </button>
@@ -220,7 +220,7 @@
             </div>
               <%}%>
           </div>
-<%if (login){ %>
+<%if (username){ %>
           <div style="text-align: center;">
             <h2 >我要留言</h2>
             <textarea name='response' style=" margin-top: 1%;" rows="10" cols="80" placeholder="有什麼話想對Po文者說呢..."></textarea>
