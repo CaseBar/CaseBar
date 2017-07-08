@@ -47,14 +47,7 @@ mongoose.Promise = global.Promise;
 
 //Routers
 
-function middleware(req, res, next){
-console.log("middleware");
-	next();
-}
-
-
-
-app.get('/landingpage', middleware,sites.index);
+app.get('/landingpage', sites.index);
 app.get('/aboutUs', sites.aboutUs);
 app.get('/rule', sites.rule);
 app.get('/surfReview', sites.surfReviewGet);
