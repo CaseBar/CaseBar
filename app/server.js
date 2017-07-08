@@ -58,7 +58,7 @@ app.post('/login', user.loginPost);
 app.get('/signup', user.signupGet);
 app.post('/signup', user.signupPost);
 app.get('/logout', user.logout);
-app.get('/logout_l', user.logout_l);
+app.get('/logout_l', user.logout);
 
 app.get('/reviewDetail', posts.reviewDetailGet);
 app.post('/reviewDetail', posts.reviewDetailPost);

@@ -37,7 +37,7 @@ exports.signupPost = function(req, res){
                 console.error(err.stack);
                 return res.redirect(303, 'landingpage');
             }
-            if(User.username!=null){
+            if(User.username != null){
                 req.session.username = req.body.username;
             }
             return res.redirect(303, 'landingpage');
@@ -50,11 +50,4 @@ exports.logout = function(req, res){
     delete req.session.postId;
     delete req.session.ownername;
     res.redirect(303, 'landingpage');
-};
-
-exports.logout_l = function(req, res){
-    delete req.session.username;
-    delete req.session.postId;
-    delete req.session.ownername;
-    res.redirect(303, 'surfReview');
 };
