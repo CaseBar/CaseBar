@@ -5,18 +5,6 @@ var Response = require('../models/response.js');
 //TODO AND BUG NEED FIX
 exports.reviewDetailGet = function(req, res){
 
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
-
-    var username = req.session.username;
-    console.log(username);
-    var context = {
-        username: username,
-        login: login
-    };
-
     User.find(function(err, users){
         signupContext = {
             users: users.map(function(User){
@@ -101,7 +89,6 @@ exports.reviewDetailGet = function(req, res){
                 thisPost: thisPost.posts,
                 responses: responseContext.responses,
                 //defaultPost: defaultPost,
-                login: login,
                 username: req.session.username,
             };
             res.render('reviewDetail', context);
@@ -437,13 +424,9 @@ exports.reviewDetailPost = function(req, res){
 
 
 exports.reviseReviewGet = function(req, res){
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
+
     Post.find({ _id: req.session.postId }, function(err, posts){
         var thisPost = {
-            login: login,
             username: req.session.username,
             posts: posts.map(function(Post){
                 return {
@@ -474,15 +457,8 @@ exports.reviseReviewPost = function(req, res){
 };
 
 exports.reviewPostGet = function(req, res){
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
-    var context = {
-        login: login,
-        username: req.session.username,
-    };
-    res.render('reviewPost', context);
+
+    res.render('reviewPost', {username: req.session.username});
 };
 
 exports.reviewPostPost = function(req, res){
@@ -511,15 +487,6 @@ exports.reviewPostPost = function(req, res){
 };
 
 exports.search = function(req, res){
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
-    var username = req.session.username;
-    var context = {
-        username: username,
-        login: login,
-    }
 
     User.find(function(err, users){
         signupContext = {
@@ -547,7 +514,6 @@ exports.search = function(req, res){
             var context = {
                 user: signupContext.users,
                 defaultPost: defaultPost,
-                login: login,
                 username: req.session.username,
                 posts: posts.map(function(Post){
                     return {
@@ -560,7 +526,6 @@ exports.search = function(req, res){
                         postowner: Post.postowner,
                         posttype:Post.posttype,
                         poststar:Post.poststar,
-
                         _id: Post._id,
                     }
                 })

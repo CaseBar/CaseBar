@@ -2,77 +2,46 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var Response = require('../models/response.js');
 
-function initLoginState(req, res){
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
-
-    var username = req.session.username;
-    var context = {
-        username: username,
-        login: login,
-    }
-    return context;
-}
-
 exports.index = function(req, res){
-    context = initLoginState(req, res);
-    res.render('landingpage', context);
+    res.render('landingpage', {username: req.session.username});
 };
 
 exports.aboutUs = function(req, res){
-    context = initLoginState(req, res);
-    res.render('aboutUs', context);
+    res.render('aboutUs', {username: req.session.username});
 };
 
 exports.rule = function(req, res){
-    context = initLoginState(req, res);
-    res.render('rule', context);
+    res.render('rule', {username: req.session.username});
 };
 
 exports.surfReviewGet = function(req, res){
 
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
-
-    var username = req.session.username;
-    var context = {
-        username: username,
-        login: login,
-    }
-
     function promise(req, res){
         return new Promise(function(resolve, reject){
-                resolve();
+            User.find(function(err, users){
+                signupContext = {
+                    users: users.map(function(User){
+                        return {
+                            user: User.username,
+                        }
+                    })
+                };
+            });
+            resolve();
         });
     }
 
     promise(req, res)
     .then(function(){
-        User.find(function(err, users){
-            signupContext = {
-                users: users.map(function(User){
-                    return {
-                        user: User.username,
-                    }
-                })
-            };
-            });
-    })
 
-    .then(function(){
         var defaultPost = true;
         if (req.session.postId != null)
             defaultPost = false;
 
-            Post.find({ }, function(err, posts){
-                var context = {
+        Post.find({ }, function(err, posts){
+            var context = {
                 user: signupContext.users,
                 defaultPost: defaultPost,
-                login: login,
                 username: req.session.username,
                 posts: posts.map(function(Post){
                     return {
@@ -83,19 +52,18 @@ exports.surfReviewGet = function(req, res){
                         postneutral: Post.postneutral,
                         postresponsenum: Post.postresponsenum,
                         postowner: Post.postowner,
-                        posttype:Post.posttype,
-                        poststar:Post.poststar,
+                        posttype: Post.posttype,
+                        poststar: Post.poststar,
                         _id: Post._id,
                     }
                 })
-        };
-        res.render('surfReview', context);
+            };
+            res.render('surfReview', context);
         }).sort({postdate: -1});
     });
 };
 
 exports.surfReviewPost = function(req, res){
-    //console.log('ID:', req.params.posttitle);
     if (req.body.postId != null) {
         req.session.postId = req.body.postId;
         res.redirect(303, '/reviewDetail');

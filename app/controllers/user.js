@@ -2,23 +2,8 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var Response = require('../models/response.js');
 
-function initLoginState(req, res){
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
-
-    var username = req.session.username;
-    var context = {
-        username: username,
-        login: login,
-    }
-    return context;
-}
-
 exports.loginGet = function(req, res){
-    context = initLoginState(req, res);
-    res.render('login', context);
+    res.render('login', {username: req.session.username});
 };
 
 exports.loginPost = function(req, res){
@@ -28,23 +13,14 @@ exports.loginPost = function(req, res){
         user = user.map(function(User){
             if (username == User.username && password == User.password) {
                 req.session.username = username;
-                req.session.login = 'login';
+                res.redirect(303, 'landingpage');
             }
         });
-        if (req.session.login == null) {
-            var login = false;
-            res.redirect(303, 'landingpage');
-        }
-        else {
-            var login = true;
-            res.redirect(303, 'landingpage');
-        }
     });
 };
 
 exports.signupGet = function(req, res){
-    context = initLoginState(req, res);
-    res.render('landingpage', context);
+    res.render('landingpage', {username: req.session.username});
 };
 
 exports.signupPost = function(req, res){
@@ -63,7 +39,6 @@ exports.signupPost = function(req, res){
             }
             if(User.username!=null){
                 req.session.username = req.body.username;
-                req.session.login = 'login';
             }
             return res.redirect(303, 'landingpage');
         }
@@ -72,7 +47,6 @@ exports.signupPost = function(req, res){
 
 exports.logout = function(req, res){
     delete req.session.username;
-    delete req.session.login;
     delete req.session.postId;
     delete req.session.ownername;
     res.redirect(303, 'landingpage');
@@ -80,7 +54,6 @@ exports.logout = function(req, res){
 
 exports.logout_l = function(req, res){
     delete req.session.username;
-    delete req.session.login;
     delete req.session.postId;
     delete req.session.ownername;
     res.redirect(303, 'surfReview');
