@@ -17,32 +17,32 @@ function initLoginState(req, res){
 }
 
 exports.index = function(req, res){
-    context = initLoginState(req, res);
-    res.render('landingpage', context);
+    //context = initLoginState(req, res);
+    res.render('landingpage', initLoginState(req, res));
 };
 
 exports.aboutUs = function(req, res){
-    context = initLoginState(req, res);
-    res.render('aboutUs', context);
+    //context = initLoginState(req, res);
+    res.render('aboutUs', initLoginState(req, res));
 };
 
 exports.rule = function(req, res){
-    context = initLoginState(req, res);
-    res.render('rule', context);
+    //context = initLoginState(req, res);
+    res.render('rule', initLoginState(req, res));
 };
 
 exports.surfReviewGet = function(req, res){
 
-    if (req.session.login == null)
-        var login = false;
-    else
-        var login = true;
+    // if (req.session.login == null)
+    //     var login = false;
+    // else
+    //     var login = true;
 
-    var username = req.session.username;
-    var context = {
-        username: username,
-        login: login,
-    }
+    // var username = req.session.username;
+    // var context = {
+    //     username: username,
+    //     login: login,
+    // }
 
     function promise(req, res){
         return new Promise(function(resolve, reject){
@@ -68,11 +68,11 @@ exports.surfReviewGet = function(req, res){
         if (req.session.postId != null)
             defaultPost = false;
 
-            Post.find({ }, function(err, posts){
-                var context = {
+        Post.find({ }, function(err, posts){
+            var context = {
                 user: signupContext.users,
                 defaultPost: defaultPost,
-                login: login,
+                //login: login,
                 username: req.session.username,
                 posts: posts.map(function(Post){
                     return {
@@ -83,19 +83,18 @@ exports.surfReviewGet = function(req, res){
                         postneutral: Post.postneutral,
                         postresponsenum: Post.postresponsenum,
                         postowner: Post.postowner,
-                        posttype:Post.posttype,
-                        poststar:Post.poststar,
+                        posttype: Post.posttype,
+                        poststar: Post.poststar,
                         _id: Post._id,
                     }
                 })
-        };
-        res.render('surfReview', context);
+            };
+            res.render('surfReview', context);
         }).sort({postdate: -1});
     });
 };
 
 exports.surfReviewPost = function(req, res){
-    //console.log('ID:', req.params.posttitle);
     if (req.body.postId != null) {
         req.session.postId = req.body.postId;
         res.redirect(303, '/reviewDetail');

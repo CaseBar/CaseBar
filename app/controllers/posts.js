@@ -11,7 +11,7 @@ exports.reviewDetailGet = function(req, res){
         var login = true;
 
     var username = req.session.username;
-    console.log(username);
+    //console.log(username);
     var context = {
         username: username,
         login: login
@@ -27,17 +27,17 @@ exports.reviewDetailGet = function(req, res){
         };
     });
 
-    // function promise(req, res){
-    //     return new Promise(function(resolve, reject){
-    //             resolve();
-    //     });
-    // }
+    function promise(){
+        return new Promise(function(resolve, reject){
+                resolve();
+        });
+    }
 
     console.log("0701");
     console.log(req.session.postId);
 
-    // promise(req, res)
-    // .then(function(){
+    promise()
+    .then(function(){
     setTimeout(function() {
             Post.find({ _id: req.session.postId }, function(err, posts){
                 thisPost = {
@@ -57,9 +57,6 @@ exports.reviewDetailGet = function(req, res){
                 };
             });
             // console.log(thisPost.posts);
-        // })
-
-        // .then(function(){
             Response.find({ responsePost: req.session.postId }, function(err,responses){
                 responseContext = {
                     responses: responses.map(function(Response){
@@ -85,17 +82,19 @@ exports.reviewDetailGet = function(req, res){
                 };
             });
             console.log("070122");
-    }, 2000 );
-        // })
+            //console.log(thisPost.posts);
+    }, 100 );//2000
+        })
 
-        // .then(function(){
+        .then(function(){
     setTimeout(function() {
             console.log("070133");
             // var defaultPost = true;
             // if (req.session.postId != null)
             //     defaultPost = false;
-            console.log(req.session.postId);
-            // console.log(thisPost.posts);
+            //console.log(req.session.postId);
+             console.log(thisPost.posts);
+             console.log(responseContext.responses);
             var context = {
                 user: signupContext.users,
                 thisPost: thisPost.posts,
@@ -105,17 +104,18 @@ exports.reviewDetailGet = function(req, res){
                 username: req.session.username,
             };
             res.render('reviewDetail', context);
-    }, 2500 );
-        // })
-        // .catch(function(){
-        //     console.log("Something went wrong!");
-        // })
+    }, 800 );//2500
+        })
+        .catch(function(){
+            console.log("Something went wrong!");
+        });
+
 };
 
 
 // TODO 看能怎樣改寫
 
-// 使用者 同意、不同意、圍觀 意見變動
+// 使用者 同意、不同意、圍觀 意見減少
 function deleteUserAdvice(req, res, type){
     User.update({ username: req.session.username},
         { "$pull": { [type]: req.session.postId } },
@@ -128,6 +128,7 @@ function deleteUserAdvice(req, res, type){
     });
 }
 
+// 使用者 同意、不同意、圍觀 意見增加
 function addUserAdvice(req, res, type){
     User.update({ username: req.session.username},
         { "$push": { [type]: req.session.postId } },
@@ -150,7 +151,6 @@ function changePostAdviceNum(req, res, type, num){
                 console.error(err.stack);
                 return res.redirect(303, '/reviewDetail');
             }
-            //res.redirect(303, '/reviewDetail');
         }
     );
 }
