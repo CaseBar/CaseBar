@@ -2,111 +2,87 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var Response = require('../models/response.js');
 
-//TODO AND BUG NEED FIX
 exports.reviewDetailGet = function(req, res){
 
-    User.find(function(err, users){
-        signupContext = {
-            users: users.map(function(User){
-                return {
-                    user: User.username,
-                }
-            })
-        };
-    });
-
-    // function promise(req, res){
-    //     return new Promise(function(resolve, reject){
-    //             resolve();
-    //     });
-    // }
-
-    console.log("0701");
-    console.log(req.session.postId);
-
-    // promise(req, res)
-    // .then(function(){
-    setTimeout(function() {
-            Post.find({ _id: req.session.postId }, function(err, posts){
-                thisPost = {
-                    posts: posts.map(function(Post){
+    function promise(req, res){
+        return new Promise(function(resolve, reject){
+            User.find(function(err, users){
+                signupContext = {
+                    users: users.map(function(User){
                         return {
-                            thisPosttitle: Post.posttitle,
-                            thisPostcontent: Post.postcontent,
-                            thisPostowner: Post.postowner,
-                            thisPostagree:Post.postagree,
-                            thisPostdisagree:Post.postdisagree,
-                            thisPostresponsenum: Post.postresponsenum,
-                            thisPosttype:Post.posttype,
-                            thisPoststar:Post.poststar,
-                            thisPostneutral: Post.postneutral
+                            user: User.username,
                         }
                     })
                 };
             });
-            // console.log(thisPost.posts);
-        // })
+            resolve();
+        });
+    }
 
-        // .then(function(){
-            Response.find({ responsePost: req.session.postId }, function(err,responses){
-                responseContext = {
-                    responses: responses.map(function(Response){
-                        if (Response.responseWriter != req.session.username) {
-                            return {
-                                response: Response.response,
-                                responseTime: Response.responseDate,
-                                responseWriter: Response.responseWriter,
-                                responseWriterIsUser: false,
-                                _id: Response._id,
-                            }
+    promise(req, res)
+    .then(function(){
+        Post.find({ _id: req.session.postId }, function(err, posts){
+            thisPost = {
+                posts: posts.map(function(Post){
+                    return {
+                        thisPosttitle: Post.posttitle,
+                        thisPostcontent: Post.postcontent,
+                        thisPostowner: Post.postowner,
+                        thisPostagree: Post.postagree,
+                        thisPostdisagree: Post.postdisagree,
+                        thisPostresponsenum: Post.postresponsenum,
+                        thisPosttype: Post.posttype,
+                        thisPoststar: Post.poststar,
+                        thisPostneutral: Post.postneutral
+                    }
+                })
+            };
+        });
+    })
+    .then(function(){
+        Response.find({ responsePost: req.session.postId }, function(err,responses){
+            responseContext = {
+                responses: responses.map(function(Response){
+                    if (Response.responseWriter != req.session.username) {
+                        return {
+                            response: Response.response,
+                            responseTime: Response.responseDate,
+                            responseWriter: Response.responseWriter,
+                            responseWriterIsUser: false,
+                            _id: Response._id,
                         }
-                        else {
-                            return {
-                                response: Response.response,
-                                responseTime: Response.responseDate,
-                                responseWriter: Response.responseWriter,
-                                responseWriterIsUser: true,
-                                _id: Response._id,
-                            }
+                    }
+                    else {
+                        return {
+                            response: Response.response,
+                            responseTime: Response.responseDate,
+                            responseWriter: Response.responseWriter,
+                            responseWriterIsUser: true,
+                            _id: Response._id,
                         }
-                    })
-                };
-            });
-            console.log("070122");
-    }, 2000 );
-        // })
+                    }
+                })
+            };
 
-        // .then(function(){
-    setTimeout(function() {
-            console.log("070133");
-            // var defaultPost = true;
-            // if (req.session.postId != null)
-            //     defaultPost = false;
-            console.log(req.session.postId);
-            // console.log(thisPost.posts);
             var context = {
                 user: signupContext.users,
                 thisPost: thisPost.posts,
                 responses: responseContext.responses,
-                //defaultPost: defaultPost,
-                username: req.session.username,
+                username: req.session.username
             };
             res.render('reviewDetail', context);
-    }, 2500 );
-        // })
-        // .catch(function(){
-        //     console.log("Something went wrong!");
-        // })
+        });
+    })
+    .catch(function(){
+        console.log("Something went wrong!");
+    })
 };
 
-
-// TODO 看能怎樣改寫
-
-// 使用者 同意、不同意、圍觀 意見變動
+// 使用者 同意、不同意、圍觀 意見減少
 function deleteUserAdvice(req, res, type){
     User.update({ username: req.session.username},
         { "$pull": { [type]: req.session.postId } },
-        { multi : true }, 
+        { multi: true }, 
         function(err,User){
             if (err){
             console.error(err.stack);
@@ -115,6 +91,7 @@ function deleteUserAdvice(req, res, type){
     });
 }
 
+// 使用者 同意、不同意、圍觀 意見增加
 function addUserAdvice(req, res, type){
     User.update({ username: req.session.username},
         { "$push": { [type]: req.session.postId } },
@@ -130,57 +107,74 @@ function addUserAdvice(req, res, type){
 // 文章 同意、不同意、圍觀 意見數量變動
 function changePostAdviceNum(req, res, type, num){
     Post.update({_id: req.session.postId},
-        { $inc : { [type] : num }},
+        { $inc: { [type]: num }},
         { upsert: true },
         function(err,Post){
             if (err){
                 console.error(err.stack);
                 return res.redirect(303, '/reviewDetail');
             }
-            //res.redirect(303, '/reviewDetail');
         }
     );
 }
 
 exports.reviewDetailPost = function(req, res){
-
-    var state = 0;
-    // 1 2 3
+    /* state 使用者意見狀態
+       1 -> 按過同意
+       2 -> 按過不同意
+       3 -> 按過圍觀
+       0 -> 都沒按過 */
 
     //文章同意
     if (req.body.postAgree != null) {
+        var state = 0;
         setTimeout(function() {
-            User.find(function(err, user){
-                user = user.map(function(User){
-                    if(req.session.username == User.username){
-                        if(User.agreeposts!=null){
-                            //另一種寫法，但是版本低ie好像不支援
+        // function promise(req, res){
+        //     return new Promise(function(resolve, reject){
+                User.find(function(err, user){
+                    user = user.map(function(User){
+                        if(req.session.username == User.username){
+                            if(User.agreeposts != null){
+                            //另一種寫法，但是低版本IE好像不支援
                             // if ( User.agreeposts.indexOf(req.session.postId) != -1) {
                             //     state = 1;
                             // }
                             for (var i = User.agreeposts.length - 1; i >= 0; i--) {
                                 if (User.agreeposts[i] == req.session.postId) {
                                     state = 1;
+                                    console.log("1state: "+state);
                                 }
                             }
                             for (var i = User.disagreeposts.length - 1; i >= 0; i--) {
                                 if (User.disagreeposts[i] == req.session.postId) {
                                     state = 2;
+                                    console.log("2state: "+state);
                                 }
                             }
                             for (var i = User.neutralposts.length - 1; i >= 0; i--) {
                                 if (User.neutralposts[i] == req.session.postId) {
                                     state = 3;
+                                    console.log("3state: "+state);
                                 }
                             }
                         }
                     }
                 });
-            })
+                })
+                console.log("4state: "+state);
+                //resolve(state);
+            //});
+        //}
+
+
+    
         }, 500 );
+        // promise(req, res)
+        // .then(function(state){
 
         setTimeout(function() {
-
+            console.log(state);
+            console.log(state);
             if(state == 1){
                 deleteUserAdvice(req, res, "agreeposts");
                 changePostAdviceNum(req, res, "postagree", -1);
@@ -198,11 +192,12 @@ exports.reviewDetailPost = function(req, res){
                 addUserAdvice(req, res, "agreeposts");
                 changePostAdviceNum(req, res, "postagree", 1);
             }
-
+            return res.redirect(303, '/reviewDetail');
         }, 1000 );
-
-        return res.redirect(303, '/reviewDetail');
-
+        // })
+        // .catch(function(){
+        //     console.log("Something went wrong!");
+        // });
     }
 
     //文章不同意
