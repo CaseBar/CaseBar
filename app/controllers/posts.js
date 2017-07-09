@@ -2,6 +2,7 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var Response = require('../models/response.js');
 
+// 到底為何資料抓不正確阿阿阿
 exports.reviewDetailGet = function(req, res){
 
     function promise(req, res){
@@ -323,7 +324,7 @@ exports.reviewDetailPost = function(req, res){
                 }
             }
             );
-        }, 1000 );
+        }, 500 );
 
         setTimeout(function() {
             Post.remove({_id: req.session.postId},function(err){
@@ -333,11 +334,11 @@ exports.reviewDetailPost = function(req, res){
                     return res.redirect(303, '/surfReview');
                 }
                 req.session.postId = null;
-                //return res.redirect(303, '/reviewDetail');
+                return res.redirect(303, '/reviewDetail');
             }
             );
-        }, 500 );
-        return res.redirect(303, '/surfReview');
+        }, 1000 );
+        //return res.redirect(303, '/surfReview');
     }
 
     //刪除留言
@@ -350,27 +351,23 @@ exports.reviewDetailPost = function(req, res){
                         console.error(err.stack);
                         return res.redirect(303, '/reviewDetail');
                     }
-                    //return res.redirect(303, '/reviewDetail');
-                }
-                );
+                });
         }, 500 );
 
         setTimeout(function() {
-
             Post.update({_id: req.session.postId},
-                { $inc : { postresponsenum : -1 }},
+                { $inc: { postresponsenum: -1 }},
                 { upsert: true },
                 function(err,Post){
                     if (err){
                         console.error(err.stack);
                         return res.redirect(303, '/reviewDetail');
                     }
-                    //res.redirect(303, '/reviewDetail');
+                    return res.redirect(303, '/reviewDetail')
                 }
-
-                );
+            );
         }, 1000 );
-        return res.redirect(303, '/reviewDetail');
+        
     }
 
     //留言
@@ -379,41 +376,33 @@ exports.reviewDetailPost = function(req, res){
             Response.update(
                 { responseDate: Date.now() },
                 { response: req.body.response,
-                    responseWriter: req.session.username,
-                    responsePost: req.session.postId },
+                  responseWriter: req.session.username,
+                  responsePost: req.session.postId },
                     { upsert: true },
                     function(err){
                         if (err){
                             console.error(err.stack);
                             return res.redirect(303, '/reviewDetail');
                         }
-                        //return res.redirect(303, '/reviewDetail');
-                    }
-                    );
+                    });
         }, 500 );
 
         setTimeout(function() {
             Post.update({_id: req.session.postId},
-                { $inc : { postresponsenum : 1 }},
+                { $inc: { postresponsenum: 1 }},
                 { upsert: true },
                 function(err,Post){
                     if (err){
                         console.error(err.stack);
                         return res.redirect(303, '/reviewDetail');
                     }
-                    //res.redirect(303, '/reviewDetail');
-                }
+                    return res.redirect(303, '/reviewDetail');
+                });
 
-                );
+
         }, 1000 );
-        return res.redirect(303, '/reviewDetail');
+        
     }
-
-    //儲存點選文章
-    // else if (req.body.postId != null) {
-    //  req.session.postId = req.body.postId;
-    //  return res.redirect(303, '/reviewDetail');
-    // }
 
 };
 
@@ -438,21 +427,20 @@ exports.reviseReviewPost = function(req, res){
     Post.update(
         { _id: req.session.postId },
         { postdate: Date.now(),
-            posttitle: req.body.posttitle,
-            postcontent: req.body.postcontent },
-            { upsert: true },
-            function(err){
-                if (err){
-                    console.error(err.stack);
-                    return res.redirect(303, '/reviewDetail');
-                }
+          posttitle: req.body.posttitle,
+          postcontent: req.body.postcontent },
+        { upsert: true },
+        function(err){
+            if (err){
+                console.error(err.stack);
                 return res.redirect(303, '/reviewDetail');
             }
-            );
+        return res.redirect(303, '/reviewDetail');
+        }
+    );
 };
 
 exports.reviewPostGet = function(req, res){
-
     res.render('reviewPost', {username: req.session.username});
 };
 
@@ -460,24 +448,24 @@ exports.reviewPostPost = function(req, res){
     Post.update(
         { postdate: Date.now() },
         { posttitle: req.body.posttitle,
-            postcontent: req.body.postcontent,
-            postagree: 0,
-            postdisagree: 0,
-            postneutral: 0,
-            postresponsenum: 0,
-            posttype: req.body.posttype,
-            poststar: req.body.starnum,
-            postowner:req.session.username},
-            { upsert: true },
-            function(err){
-                if (err){
-                    console.error(err.stack);
-                    delete req.session.postId;
-                    return res.redirect(303, '/surfReview');
-                }
+          postcontent: req.body.postcontent,
+          postagree: 0,
+          postdisagree: 0,
+          postneutral: 0,
+          postresponsenum: 0,
+          posttype: req.body.posttype,
+          poststar: req.body.starnum,
+          postowner: req.session.username},
+          { upsert: true },
+        function(err){
+            if (err){
+                console.error(err.stack);
                 delete req.session.postId;
                 return res.redirect(303, '/surfReview');
             }
+            delete req.session.postId;
+            return res.redirect(303, '/surfReview');
+        }
     );
 };
 
@@ -519,8 +507,8 @@ exports.search = function(req, res){
                         postneutral: Post.postneutral,
                         postresponsenum: Post.postresponsenum,
                         postowner: Post.postowner,
-                        posttype:Post.posttype,
-                        poststar:Post.poststar,
+                        posttype: Post.posttype,
+                        poststar: Post.poststar,
                         _id: Post._id,
                     }
                 })
